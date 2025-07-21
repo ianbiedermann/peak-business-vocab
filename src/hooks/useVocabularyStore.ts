@@ -1,18 +1,20 @@
 import { useState, useEffect } from 'react';
-import { Vocabulary, LearningStats, AppStats, BOX_INTERVALS } from '../types/vocabulary';
-import { initializeVocabularies } from '../data/businessVocabulary';
+import { Vocabulary, VocabularyList, LearningStats, AppStats, BOX_INTERVALS } from '../types/vocabulary';
 
 const STORAGE_KEY = 'peakEnglish_vocabularies';
 const STATS_KEY = 'peakEnglish_stats';
+const LISTS_KEY = 'peakEnglish_lists';
 
 export function useVocabularyStore() {
   const [vocabularies, setVocabularies] = useState<Vocabulary[]>([]);
   const [stats, setStats] = useState<LearningStats[]>([]);
+  const [lists, setLists] = useState<VocabularyList[]>([]);
 
   // Initialize data on first load
   useEffect(() => {
     const savedVocabs = localStorage.getItem(STORAGE_KEY);
     const savedStats = localStorage.getItem(STATS_KEY);
+    const savedLists = localStorage.getItem(LISTS_KEY);
 
     if (savedVocabs) {
       const parsed = JSON.parse(savedVocabs);
@@ -24,14 +26,19 @@ export function useVocabularyStore() {
         createdAt: new Date(vocab.createdAt)
       }));
       setVocabularies(vocabsWithDates);
-    } else {
-      const initialVocabs = initializeVocabularies();
-      setVocabularies(initialVocabs);
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(initialVocabs));
     }
 
     if (savedStats) {
       setStats(JSON.parse(savedStats));
+    }
+
+    if (savedLists) {
+      const parsed = JSON.parse(savedLists);
+      const listsWithDates = parsed.map((list: any) => ({
+        ...list,
+        uploadedAt: new Date(list.uploadedAt)
+      }));
+      setLists(listsWithDates);
     }
   }, []);
 
@@ -47,15 +54,27 @@ export function useVocabularyStore() {
     localStorage.setItem(STATS_KEY, JSON.stringify(stats));
   }, [stats]);
 
+  // Save lists whenever they change
+  useEffect(() => {
+    localStorage.setItem(LISTS_KEY, JSON.stringify(lists));
+  }, [lists]);
+
+  const getActiveVocabularies = (): Vocabulary[] => {
+    const activeListIds = lists.filter(list => list.isActive).map(list => list.id);
+    return vocabularies.filter(vocab => activeListIds.includes(vocab.listId));
+  };
+
   const getRandomVocabularies = (count: number = 5): Vocabulary[] => {
-    const availableVocabs = vocabularies.filter(v => v.box === 0);
+    const activeVocabs = getActiveVocabularies();
+    const availableVocabs = activeVocabs.filter(v => v.box === 0);
     const shuffled = [...availableVocabs].sort(() => Math.random() - 0.5);
     return shuffled.slice(0, Math.min(count, availableVocabs.length));
   };
 
   const getVocabulariesForReview = (): Vocabulary[] => {
+    const activeVocabs = getActiveVocabularies();
     const now = new Date();
-    return vocabularies.filter(vocab => {
+    return activeVocabs.filter(vocab => {
       if (vocab.box === 0 || vocab.box === 6) return false;
       if (!vocab.nextReview) return true; // No review date set, available for review
       return vocab.nextReview <= now;
@@ -122,24 +141,68 @@ export function useVocabularyStore() {
   const getAppStats = (): AppStats => {
     const today = new Date().toISOString().split('T')[0];
     const todayStats = stats.find(s => s.date === today);
+    const activeVocabs = getActiveVocabularies();
 
     return {
-      totalVocabularies: vocabularies.length,
-      notStarted: vocabularies.filter(v => v.box === 0).length,
-      inProgress: vocabularies.filter(v => v.box >= 1 && v.box <= 5).length,
-      mastered: vocabularies.filter(v => v.box === 6).length,
+      totalVocabularies: activeVocabs.length,
+      notStarted: activeVocabs.filter(v => v.box === 0).length,
+      inProgress: activeVocabs.filter(v => v.box >= 1 && v.box <= 5).length,
+      mastered: activeVocabs.filter(v => v.box === 6).length,
       dailyStats: stats,
       todayLearned: todayStats?.newLearned || 0,
-      todayReviewed: todayStats?.reviewed || 0
+      todayReviewed: todayStats?.reviewed || 0,
+      activeLists: lists.filter(l => l.isActive).length,
+      totalLists: lists.length
     };
   };
 
   const getVocabulariesByBox = (box: number): Vocabulary[] => {
-    return vocabularies.filter(v => v.box === box);
+    const activeVocabs = getActiveVocabularies();
+    return activeVocabs.filter(v => v.box === box);
+  };
+
+  const uploadVocabularyList = (name: string, vocabularyData: Array<{english: string, german: string}>) => {
+    const listId = `list_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+    
+    // Create new list
+    const newList: VocabularyList = {
+      id: listId,
+      name,
+      isActive: true,
+      uploadedAt: new Date(),
+      vocabularyCount: vocabularyData.length
+    };
+
+    // Create vocabularies
+    const newVocabularies: Vocabulary[] = vocabularyData.map((item, index) => ({
+      id: `${listId}_vocab_${index}`,
+      english: item.english,
+      german: item.german,
+      listId,
+      box: 0,
+      timesCorrect: 0,
+      timesIncorrect: 0,
+      createdAt: new Date()
+    }));
+
+    setLists(prev => [...prev, newList]);
+    setVocabularies(prev => [...prev, ...newVocabularies]);
+  };
+
+  const toggleVocabularyList = (listId: string, isActive: boolean) => {
+    setLists(prev => prev.map(list => 
+      list.id === listId ? { ...list, isActive } : list
+    ));
+  };
+
+  const deleteVocabularyList = (listId: string) => {
+    setLists(prev => prev.filter(list => list.id !== listId));
+    setVocabularies(prev => prev.filter(vocab => vocab.listId !== listId));
   };
 
   return {
     vocabularies,
+    lists,
     getRandomVocabularies,
     getVocabulariesForReview,
     moveVocabularyToBox,
@@ -147,6 +210,9 @@ export function useVocabularyStore() {
     resetVocabularyToBox1,
     updateDailyStats,
     getAppStats,
-    getVocabulariesByBox
+    getVocabulariesByBox,
+    uploadVocabularyList,
+    toggleVocabularyList,
+    deleteVocabularyList
   };
 }

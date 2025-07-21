@@ -1,7 +1,16 @@
+export interface VocabularyList {
+  id: string;
+  name: string;
+  isActive: boolean;
+  uploadedAt: Date;
+  vocabularyCount: number;
+}
+
 export interface Vocabulary {
   id: string;
   english: string;
   german: string;
+  listId: string;
   box: number; // 0 = not learned, 1-5 = learning boxes, 6 = mastered
   nextReview?: Date;
   timesCorrect: number;
@@ -33,6 +42,8 @@ export interface AppStats {
   dailyStats: LearningStats[];
   todayLearned: number;
   todayReviewed: number;
+  activeLists: number;
+  totalLists: number;
 }
 
 export const BOX_INTERVALS = {

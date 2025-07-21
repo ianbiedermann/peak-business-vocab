@@ -4,15 +4,23 @@ import { LearningSessionComponent } from '../components/LearningSession';
 import { ReviewSession } from '../components/ReviewSession';
 import { BoxView } from '../components/BoxView';
 import { Statistics } from '../components/Statistics';
+import { VocabularyLists } from '../components/VocabularyLists';
 import { useVocabularyStore } from '../hooks/useVocabularyStore';
 import { Vocabulary } from '../types/vocabulary';
 
-type AppView = 'dashboard' | 'learning' | 'review' | 'boxes' | 'statistics' | 'continue-learning';
+type AppView = 'dashboard' | 'learning' | 'review' | 'boxes' | 'statistics' | 'lists' | 'continue-learning';
 
 const Index = () => {
   const [currentView, setCurrentView] = useState<AppView>('dashboard');
   const [sessionVocabularies, setSessionVocabularies] = useState<Vocabulary[]>([]);
-  const { getRandomVocabularies, getVocabulariesForReview } = useVocabularyStore();
+  const { 
+    lists,
+    getRandomVocabularies, 
+    getVocabulariesForReview,
+    uploadVocabularyList,
+    toggleVocabularyList,
+    deleteVocabularyList
+  } = useVocabularyStore();
 
   const handleStartLearning = () => {
     const vocabs = getRandomVocabularies(5);
@@ -90,6 +98,7 @@ const Index = () => {
           onStartReview={handleStartReview}
           onViewBoxes={() => setCurrentView('boxes')}
           onViewStatistics={() => setCurrentView('statistics')}
+          onViewLists={() => setCurrentView('lists')}
         />
       )}
       
@@ -115,6 +124,16 @@ const Index = () => {
       
       {currentView === 'statistics' && (
         <Statistics onBack={handleBackToDashboard} />
+      )}
+      
+      {currentView === 'lists' && (
+        <VocabularyLists
+          lists={lists}
+          onUploadList={uploadVocabularyList}
+          onToggleList={toggleVocabularyList}
+          onDeleteList={deleteVocabularyList}
+          onBack={handleBackToDashboard}
+        />
       )}
     </>
   );

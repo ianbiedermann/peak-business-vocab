@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { BarChart3, BookOpen, Target, Trophy, Volume2, RefreshCw } from "lucide-react";
+import { BarChart3, BookOpen, Target, Trophy, Volume2, RefreshCw, FileText } from "lucide-react";
 import { useVocabularyStore } from "../hooks/useVocabularyStore";
 
 interface DashboardProps {
@@ -8,9 +8,10 @@ interface DashboardProps {
   onStartReview: () => void;
   onViewBoxes: () => void;
   onViewStatistics: () => void;
+  onViewLists: () => void;
 }
 
-export function Dashboard({ onStartLearning, onStartReview, onViewBoxes, onViewStatistics }: DashboardProps) {
+export function Dashboard({ onStartLearning, onStartReview, onViewBoxes, onViewStatistics, onViewLists }: DashboardProps) {
   const { getAppStats, getVocabulariesForReview } = useVocabularyStore();
   const stats = getAppStats();
   const reviewCount = getVocabulariesForReview().length;
@@ -123,6 +124,15 @@ export function Dashboard({ onStartLearning, onStartReview, onViewBoxes, onViewS
               Statistiken
             </Button>
           </div>
+          
+          <Button
+            onClick={onViewLists}
+            variant="outline"
+            className="w-full h-12"
+          >
+            <FileText className="mr-2 h-4 w-4" />
+            Listen verwalten
+          </Button>
         </div>
 
         {/* Progress Bar */}
