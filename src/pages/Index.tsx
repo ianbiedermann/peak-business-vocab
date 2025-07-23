@@ -17,6 +17,14 @@ const Index = () => {
   const [sessionVocabularies, setSessionVocabularies] = useState<Vocabulary[]>([]);
   const { user, loading, isAuthenticated } = useAuth();
   const navigate = useNavigate();
+  const { 
+    lists,
+    getRandomVocabularies, 
+    getVocabulariesForReview,
+    uploadVocabularyList,
+    toggleVocabularyList,
+    deleteVocabularyList
+  } = useVocabularyStore();
 
   useEffect(() => {
     if (!loading && !isAuthenticated) {
@@ -35,14 +43,6 @@ const Index = () => {
   if (!isAuthenticated) {
     return null; // Will redirect to auth
   }
-  const { 
-    lists,
-    getRandomVocabularies, 
-    getVocabulariesForReview,
-    uploadVocabularyList,
-    toggleVocabularyList,
-    deleteVocabularyList
-  } = useVocabularyStore();
 
   const handleStartLearning = () => {
     const vocabs = getRandomVocabularies(5);
