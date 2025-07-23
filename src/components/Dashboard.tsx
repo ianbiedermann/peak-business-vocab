@@ -1,7 +1,8 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { BarChart3, BookOpen, Target, Trophy, Volume2, RefreshCw, FileText } from "lucide-react";
+import { BarChart3, BookOpen, Target, Trophy, Volume2, RefreshCw, FileText, LogOut } from "lucide-react";
 import { useVocabularyStore } from "../hooks/useVocabularyStore";
+import { useAuth } from "../hooks/useAuth";
 
 interface DashboardProps {
   onStartLearning: () => void;
@@ -13,18 +14,36 @@ interface DashboardProps {
 
 export function Dashboard({ onStartLearning, onStartReview, onViewBoxes, onViewStatistics, onViewLists }: DashboardProps) {
   const { getAppStats, getVocabulariesForReview } = useVocabularyStore();
+  const { signOut } = useAuth();
   const stats = getAppStats();
   const reviewCount = getVocabulariesForReview().length;
+
+  const handleSignOut = async () => {
+    await signOut();
+  };
 
   return (
     <div className="min-h-screen bg-background p-4">
       <div className="max-w-md mx-auto space-y-6">
         {/* Header */}
-        <div className="text-center space-y-2">
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-success bg-clip-text text-transparent">
-            PeakEnglish
-          </h1>
-          <p className="text-muted-foreground">Business Englisch meistern</p>
+        <div className="space-y-2">
+          <div className="flex justify-between items-center">
+            <div className="flex-1" />
+            <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-success bg-clip-text text-transparent text-center">
+              PeakEnglish
+            </h1>
+            <div className="flex-1 flex justify-end">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={handleSignOut}
+                className="text-muted-foreground hover:text-foreground"
+              >
+                <LogOut className="h-4 w-4" />
+              </Button>
+            </div>
+          </div>
+          <p className="text-muted-foreground text-center">Business Englisch meistern</p>
         </div>
 
         {/* Today's Progress */}

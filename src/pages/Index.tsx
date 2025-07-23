@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../hooks/useAuth';
 import { Dashboard } from '../components/Dashboard';
 import { LearningSessionComponent } from '../components/LearningSession';
 import { ReviewSession } from '../components/ReviewSession';
@@ -13,6 +15,26 @@ type AppView = 'dashboard' | 'learning' | 'review' | 'boxes' | 'statistics' | 'l
 const Index = () => {
   const [currentView, setCurrentView] = useState<AppView>('dashboard');
   const [sessionVocabularies, setSessionVocabularies] = useState<Vocabulary[]>([]);
+  const { user, loading, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!loading && !isAuthenticated) {
+      navigate('/auth');
+    }
+  }, [loading, isAuthenticated, navigate]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-lg">Lädt...</div>
+      </div>
+    );
+  }
+
+  if (!isAuthenticated) {
+    return null; // Will redirect to auth
+  }
   const { 
     lists,
     getRandomVocabularies, 
