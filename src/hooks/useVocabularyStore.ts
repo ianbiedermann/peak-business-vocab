@@ -55,8 +55,7 @@ export function useVocabularyStore() {
       const { data: vocabsData, error: vocabsError } = await supabase
         .from('vocabularies')
         .select('*')
-        .eq('user_id', user.id)
-        .order('created_at', { ascending: false });
+        .eq('user_id', user.id);
 
       if (vocabsError) throw vocabsError;
 
@@ -108,7 +107,11 @@ export function useVocabularyStore() {
 
   const getActiveVocabularies = (): Vocabulary[] => {
     const activeListIds = lists.filter(list => list.isActive).map(list => list.id);
-    return vocabularies.filter(vocab => activeListIds.includes(vocab.listId));
+    const activeVocabs = vocabularies.filter(vocab => activeListIds.includes(vocab.listId));
+    console.log('Active Lists:', activeListIds);
+    console.log('All Vocabularies:', vocabularies.length);
+    console.log('Active Vocabularies:', activeVocabs.length);
+    return activeVocabs;
   };
 
   const getRandomVocabularies = (count: number = 5): Vocabulary[] => {
