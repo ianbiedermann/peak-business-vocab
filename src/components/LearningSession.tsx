@@ -27,6 +27,7 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
   const [showHint, setShowHint] = useState(false);
   const [currentAttempt, setCurrentAttempt] = useState(0);
   const [shuffledGerman, setShuffledGerman] = useState<string[]>([]);
+  const [feedbackState, setFeedbackState] = useState<'correct' | 'incorrect' | null>(null);
 
   // Initialize shuffled German translations for matching phase
   useEffect(() => {
@@ -67,7 +68,13 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
 
   const handleMatch = (germanTranslation: string) => {
     const currentVocab = vocabularies[session.currentIndex];
-    if (currentVocab.german === germanTranslation) {
+    const isCorrect = currentVocab.german === germanTranslation;
+    
+    // Show feedback animation
+    setFeedbackState(isCorrect ? 'correct' : 'incorrect');
+    setTimeout(() => setFeedbackState(null), 500);
+
+    if (isCorrect) {
       const newMatched = new Set(session.matchedPairs);
       newMatched.add(currentVocab.id);
       
@@ -75,11 +82,15 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
       
       // Check if all pairs are matched
       if (newMatched.size === vocabularies.length) {
-        setSession(prev => ({ ...prev, currentPhase: 'writing', currentIndex: 0 }));
+        setTimeout(() => {
+          setSession(prev => ({ ...prev, currentPhase: 'writing', currentIndex: 0 }));
+        }, 600);
       } else {
         // Find next unmatched vocabulary
-        const nextIndex = vocabularies.findIndex(v => !newMatched.has(v.id));
-        setSession(prev => ({ ...prev, currentIndex: nextIndex }));
+        setTimeout(() => {
+          const nextIndex = vocabularies.findIndex(v => !newMatched.has(v.id));
+          setSession(prev => ({ ...prev, currentIndex: nextIndex }));
+        }, 600);
       }
     }
   };
@@ -88,21 +99,29 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
     const currentVocab = vocabularies[session.currentIndex];
     const correct = userInput.toLowerCase().trim() === currentVocab.english.toLowerCase();
     
+    // Show feedback animation
+    setFeedbackState(correct ? 'correct' : 'incorrect');
+    setTimeout(() => setFeedbackState(null), 500);
+    
     if (correct) {
-      if (session.currentIndex < vocabularies.length - 1) {
-        setSession(prev => ({ ...prev, currentIndex: prev.currentIndex + 1 }));
-        setUserInput('');
-        setShowHint(false);
-        setCurrentAttempt(0);
-      } else {
-        // All completed - move to box 1
-        const vocabIds = vocabularies.map(v => v.id);
-        moveVocabulariesToBox(vocabIds, 1);
-        updateDailyStats(vocabularies.length, 0);
-        setSession(prev => ({ ...prev, currentPhase: 'completed' }));
-      }
+      setTimeout(() => {
+        if (session.currentIndex < vocabularies.length - 1) {
+          setSession(prev => ({ ...prev, currentIndex: prev.currentIndex + 1 }));
+          setUserInput('');
+          setShowHint(false);
+          setCurrentAttempt(0);
+        } else {
+          // All completed - move to box 1
+          const vocabIds = vocabularies.map(v => v.id);
+          moveVocabulariesToBox(vocabIds, 1);
+          updateDailyStats(vocabularies.length, 0);
+          setSession(prev => ({ ...prev, currentPhase: 'completed' }));
+        }
+      }, 600);
     } else {
-      setCurrentAttempt(prev => prev + 1);
+      setTimeout(() => {
+        setCurrentAttempt(prev => prev + 1);
+      }, 600);
     }
   };
 
@@ -212,8 +231,25 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
       !vocabularies.find(v => v.german === german && session.matchedPairs.has(v.id))
     );
 
-    return (
-      <div className="min-h-screen bg-background p-4">
+  return (
+      <div className="min-h-screen bg-background p-4 relative">
+        {/* Feedback Overlay */}
+        {feedbackState && (
+          <div className="fixed inset-0 flex items-center justify-center pointer-events-none z-50">
+            <div className={`animate-scale-in rounded-full p-8 ${
+              feedbackState === 'correct' 
+                ? 'bg-green-500/90 text-white' 
+                : 'bg-red-500/90 text-white'
+            }`}>
+              {feedbackState === 'correct' ? (
+                <CheckCircle className="h-16 w-16" />
+              ) : (
+                <XCircle className="h-16 w-16" />
+              )}
+            </div>
+          </div>
+        )}
+
         <div className="max-w-md mx-auto space-y-6">
           <div className="flex justify-between items-center">
             <Button onClick={onBack} variant="outline" size="sm">

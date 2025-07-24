@@ -20,6 +20,7 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
   const [showHint, setShowHint] = useState(false);
   const [currentAttempt, setCurrentAttempt] = useState(0);
   const [results, setResults] = useState<Map<string, boolean>>(new Map());
+  const [feedbackState, setFeedbackState] = useState<'correct' | 'incorrect' | null>(null);
 
   if (vocabularies.length === 0) {
     return (
@@ -47,6 +48,10 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
   const checkAnswer = () => {
     const correct = userInput.toLowerCase().trim() === currentVocab.english.toLowerCase();
     
+    // Show feedback animation
+    setFeedbackState(correct ? 'correct' : 'incorrect');
+    setTimeout(() => setFeedbackState(null), 500);
+    
     setResults(prev => new Map(prev).set(currentVocab.id, correct));
     
     if (correct) {
@@ -58,18 +63,20 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
       resetVocabularyToBox1(currentVocab.id);
     }
     
-    if (isLastVocabulary) {
-      // Complete review session
-      const correctCount = Array.from(results.values()).filter(Boolean).length + (correct ? 1 : 0);
-      updateDailyStats(0, vocabularies.length);
-      onComplete();
-    } else {
-      // Move to next vocabulary
-      setCurrentIndex(prev => prev + 1);
-      setUserInput('');
-      setShowHint(false);
-      setCurrentAttempt(0);
-    }
+    setTimeout(() => {
+      if (isLastVocabulary) {
+        // Complete review session
+        const correctCount = Array.from(results.values()).filter(Boolean).length + (correct ? 1 : 0);
+        updateDailyStats(0, vocabularies.length);
+        onComplete();
+      } else {
+        // Move to next vocabulary
+        setCurrentIndex(prev => prev + 1);
+        setUserInput('');
+        setShowHint(false);
+        setCurrentAttempt(0);
+      }
+    }, 600);
   };
 
   const markAsTypo = () => {
@@ -98,7 +105,24 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
   const hasError = currentAttempt > 0 && !isCorrect && userInput.length > 0;
 
   return (
-    <div className="min-h-screen bg-background p-4">
+    <div className="min-h-screen bg-background p-4 relative">
+      {/* Feedback Overlay */}
+      {feedbackState && (
+        <div className="fixed inset-0 flex items-center justify-center pointer-events-none z-50">
+          <div className={`animate-scale-in rounded-full p-8 ${
+            feedbackState === 'correct' 
+              ? 'bg-green-500/90 text-white' 
+              : 'bg-red-500/90 text-white'
+          }`}>
+            {feedbackState === 'correct' ? (
+              <CheckCircle className="h-16 w-16" />
+            ) : (
+              <XCircle className="h-16 w-16" />
+            )}
+          </div>
+        </div>
+      )}
+
       <div className="max-w-md mx-auto space-y-6">
         <div className="flex justify-between items-center">
           <Button onClick={onBack} variant="outline" size="sm">
