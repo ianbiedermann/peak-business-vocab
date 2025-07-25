@@ -20,6 +20,7 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
   const [showHint, setShowHint] = useState(false);
   const [currentAttempt, setCurrentAttempt] = useState(0);
   const [results, setResults] = useState<Map<string, boolean>>(new Map());
+  const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
 
   if (vocabularies.length === 0) {
     return (
@@ -47,6 +48,10 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
   const checkAnswer = () => {
     const correct = userInput.toLowerCase().trim() === currentVocab.english.toLowerCase();
     
+    // Show feedback
+    setFeedback(correct ? 'correct' : 'incorrect');
+    setTimeout(() => setFeedback(null), 600);
+    
     setResults(prev => new Map(prev).set(currentVocab.id, correct));
     
     if (correct) {
@@ -58,36 +63,43 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
       resetVocabularyToBox1(currentVocab.id);
     }
     
-    if (isLastVocabulary) {
-      // Complete review session
-      const correctCount = Array.from(results.values()).filter(Boolean).length + (correct ? 1 : 0);
-      updateDailyStats(0, vocabularies.length);
-      onComplete();
-    } else {
-      // Move to next vocabulary
-      setCurrentIndex(prev => prev + 1);
-      setUserInput('');
-      setShowHint(false);
-      setCurrentAttempt(0);
-    }
+    setTimeout(() => {
+      if (isLastVocabulary) {
+        // Complete review session
+        const correctCount = Array.from(results.values()).filter(Boolean).length + (correct ? 1 : 0);
+        updateDailyStats(0, vocabularies.length);
+        onComplete();
+      } else {
+        // Move to next vocabulary
+        setCurrentIndex(prev => prev + 1);
+        setUserInput('');
+        setShowHint(false);
+        setCurrentAttempt(0);
+      }
+    }, 600);
   };
 
   const markAsTypo = () => {
     // Treat as correct answer
+    setFeedback('correct');
+    setTimeout(() => setFeedback(null), 600);
+    
     setResults(prev => new Map(prev).set(currentVocab.id, true));
     const nextBox = Math.min(currentVocab.box + 1, 6);
     moveVocabularyToBox(currentVocab.id, nextBox, true);
     
-    if (isLastVocabulary) {
-      const correctCount = Array.from(results.values()).filter(Boolean).length + 1;
-      updateDailyStats(0, vocabularies.length);
-      onComplete();
-    } else {
-      setCurrentIndex(prev => prev + 1);
-      setUserInput('');
-      setShowHint(false);
-      setCurrentAttempt(0);
-    }
+    setTimeout(() => {
+      if (isLastVocabulary) {
+        const correctCount = Array.from(results.values()).filter(Boolean).length + 1;
+        updateDailyStats(0, vocabularies.length);
+        onComplete();
+      } else {
+        setCurrentIndex(prev => prev + 1);
+        setUserInput('');
+        setShowHint(false);
+        setCurrentAttempt(0);
+      }
+    }, 600);
   };
 
   const showHintHandler = () => {
@@ -98,7 +110,10 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
   const hasError = currentAttempt > 0 && !isCorrect && userInput.length > 0;
 
   return (
-    <div className="min-h-screen bg-background p-4">
+    <div className={`min-h-screen bg-background p-4 transition-colors duration-150 ${
+      feedback === 'correct' ? 'bg-green-500/20' : 
+      feedback === 'incorrect' ? 'bg-red-500/20' : ''
+    }`}>
       <div className="max-w-md mx-auto space-y-6">
         <div className="flex justify-between items-center">
           <Button onClick={onBack} variant="outline" size="sm">

@@ -27,6 +27,7 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
   const [showHint, setShowHint] = useState(false);
   const [currentAttempt, setCurrentAttempt] = useState(0);
   const [shuffledGerman, setShuffledGerman] = useState<string[]>([]);
+  const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
 
   // Initialize shuffled German translations for matching phase
   useEffect(() => {
@@ -67,20 +68,28 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
 
   const handleMatch = (germanTranslation: string) => {
     const currentVocab = vocabularies[session.currentIndex];
-    if (currentVocab.german === germanTranslation) {
+    const isCorrect = currentVocab.german === germanTranslation;
+    
+    // Show feedback
+    setFeedback(isCorrect ? 'correct' : 'incorrect');
+    setTimeout(() => setFeedback(null), 600);
+    
+    if (isCorrect) {
       const newMatched = new Set(session.matchedPairs);
       newMatched.add(currentVocab.id);
       
-      setSession(prev => ({ ...prev, matchedPairs: newMatched }));
-      
-      // Check if all pairs are matched
-      if (newMatched.size === vocabularies.length) {
-        setSession(prev => ({ ...prev, currentPhase: 'writing', currentIndex: 0 }));
-      } else {
-        // Find next unmatched vocabulary
-        const nextIndex = vocabularies.findIndex(v => !newMatched.has(v.id));
-        setSession(prev => ({ ...prev, currentIndex: nextIndex }));
-      }
+      setTimeout(() => {
+        setSession(prev => ({ ...prev, matchedPairs: newMatched }));
+        
+        // Check if all pairs are matched
+        if (newMatched.size === vocabularies.length) {
+          setSession(prev => ({ ...prev, currentPhase: 'writing', currentIndex: 0 }));
+        } else {
+          // Find next unmatched vocabulary
+          const nextIndex = vocabularies.findIndex(v => !newMatched.has(v.id));
+          setSession(prev => ({ ...prev, currentIndex: nextIndex }));
+        }
+      }, 600);
     }
   };
 
@@ -88,19 +97,25 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
     const currentVocab = vocabularies[session.currentIndex];
     const correct = userInput.toLowerCase().trim() === currentVocab.english.toLowerCase();
     
+    // Show feedback
+    setFeedback(correct ? 'correct' : 'incorrect');
+    setTimeout(() => setFeedback(null), 600);
+    
     if (correct) {
-      if (session.currentIndex < vocabularies.length - 1) {
-        setSession(prev => ({ ...prev, currentIndex: prev.currentIndex + 1 }));
-        setUserInput('');
-        setShowHint(false);
-        setCurrentAttempt(0);
-      } else {
-        // All completed - move to box 1
-        const vocabIds = vocabularies.map(v => v.id);
-        moveVocabulariesToBox(vocabIds, 1);
-        updateDailyStats(vocabularies.length, 0);
-        setSession(prev => ({ ...prev, currentPhase: 'completed' }));
-      }
+      setTimeout(() => {
+        if (session.currentIndex < vocabularies.length - 1) {
+          setSession(prev => ({ ...prev, currentIndex: prev.currentIndex + 1 }));
+          setUserInput('');
+          setShowHint(false);
+          setCurrentAttempt(0);
+        } else {
+          // All completed - move to box 1
+          const vocabIds = vocabularies.map(v => v.id);
+          moveVocabulariesToBox(vocabIds, 1);
+          updateDailyStats(vocabularies.length, 0);
+          setSession(prev => ({ ...prev, currentPhase: 'completed' }));
+        }
+      }, 600);
     } else {
       setCurrentAttempt(prev => prev + 1);
     }
@@ -108,17 +123,22 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
 
   const markAsTypo = () => {
     // Treat as correct answer
-    if (session.currentIndex < vocabularies.length - 1) {
-      setSession(prev => ({ ...prev, currentIndex: prev.currentIndex + 1 }));
-      setUserInput('');
-      setShowHint(false);
-      setCurrentAttempt(0);
-    } else {
-      const vocabIds = vocabularies.map(v => v.id);
-      moveVocabulariesToBox(vocabIds, 1);
-      updateDailyStats(vocabularies.length, 0);
-      setSession(prev => ({ ...prev, currentPhase: 'completed' }));
-    }
+    setFeedback('correct');
+    setTimeout(() => setFeedback(null), 600);
+    
+    setTimeout(() => {
+      if (session.currentIndex < vocabularies.length - 1) {
+        setSession(prev => ({ ...prev, currentIndex: prev.currentIndex + 1 }));
+        setUserInput('');
+        setShowHint(false);
+        setCurrentAttempt(0);
+      } else {
+        const vocabIds = vocabularies.map(v => v.id);
+        moveVocabulariesToBox(vocabIds, 1);
+        updateDailyStats(vocabularies.length, 0);
+        setSession(prev => ({ ...prev, currentPhase: 'completed' }));
+      }
+    }, 600);
   };
 
   const showHintHandler = () => {
@@ -213,7 +233,10 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
     );
 
     return (
-      <div className="min-h-screen bg-background p-4">
+      <div className={`min-h-screen bg-background p-4 transition-colors duration-150 ${
+        feedback === 'correct' ? 'bg-green-500/20' : 
+        feedback === 'incorrect' ? 'bg-red-500/20' : ''
+      }`}>
         <div className="max-w-md mx-auto space-y-6">
           <div className="flex justify-between items-center">
             <Button onClick={onBack} variant="outline" size="sm">
@@ -262,7 +285,10 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
     const hasError = currentAttempt > 0 && !isCorrect && userInput.length > 0;
 
     return (
-      <div className="min-h-screen bg-background p-4">
+      <div className={`min-h-screen bg-background p-4 transition-colors duration-150 ${
+        feedback === 'correct' ? 'bg-green-500/20' : 
+        feedback === 'incorrect' ? 'bg-red-500/20' : ''
+      }`}>
         <div className="max-w-md mx-auto space-y-6">
           <div className="flex justify-between items-center">
             <Button onClick={onBack} variant="outline" size="sm">
