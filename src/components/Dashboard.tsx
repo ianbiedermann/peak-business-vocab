@@ -13,21 +13,10 @@ interface DashboardProps {
 }
 
 export function Dashboard({ onStartLearning, onStartReview, onViewBoxes, onViewStatistics, onViewLists }: DashboardProps) {
-  const { getAppStats, getVocabulariesForReview, loading } = useVocabularyStore();
+  const { getAppStats, getVocabulariesForReview } = useVocabularyStore();
   const { signOut } = useAuth();
   const stats = getAppStats();
   const reviewCount = getVocabulariesForReview().length;
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-background p-4 flex items-center justify-center">
-        <div className="text-center space-y-4">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
-          <p className="text-muted-foreground">Daten werden geladen...</p>
-        </div>
-      </div>
-    );
-  }
 
   const handleSignOut = async () => {
     await signOut();

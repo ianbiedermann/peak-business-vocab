@@ -63,15 +63,18 @@ export function VocabularyLists({ lists, onUploadList, onToggleList, onDeleteLis
         return;
       }
 
-      await onUploadList(uploadName.trim(), vocabularies);
+      onUploadList(uploadName.trim(), vocabularies);
       setUploadName('');
       event.target.value = ''; // Reset file input
       
+      toast({
+        title: "Erfolg",
+        description: `${vocabularies.length} Vokabeln erfolgreich hochgeladen.`,
+      });
     } catch (error) {
-      console.error('Upload error:', error);
       toast({
         title: "Fehler",
-        description: "Fehler beim Hochladen der Liste. Versuche es erneut.",
+        description: "Fehler beim Lesen der Excel-Datei. Überprüfe das Format.",
         variant: "destructive"
       });
     } finally {
