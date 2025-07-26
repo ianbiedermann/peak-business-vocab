@@ -1,7 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Clock, Trophy, BookOpen } from "lucide-react";
-import { useSupabaseVocabularyStore } from "../hooks/useSupabaseVocabularyStore";
+import { useVocabularyStore } from "../hooks/useVocabularyStore";
 import { BOX_INTERVALS } from "../types/vocabulary";
 
 interface BoxViewProps {
@@ -9,7 +9,7 @@ interface BoxViewProps {
 }
 
 export function BoxView({ onBack }: BoxViewProps) {
-  const { getVocabulariesByBox } = useSupabaseVocabularyStore();
+  const { getVocabulariesByBox } = useVocabularyStore();
 
   const formatTimeUntilReview = (nextReview: Date | undefined) => {
     if (!nextReview) return "Bereit zur Wiederholung";

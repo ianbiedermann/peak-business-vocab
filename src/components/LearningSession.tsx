@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Volume2, ArrowRight, CheckCircle, XCircle, Lightbulb, RotateCcw } from "lucide-react";
 import { Vocabulary, LearningSession } from '../types/vocabulary';
-import { useSupabaseVocabularyStore } from '../hooks/useSupabaseVocabularyStore';
+import { useVocabularyStore } from '../hooks/useVocabularyStore';
 
 interface LearningSessionProps {
   vocabularies: Vocabulary[];
@@ -13,7 +13,7 @@ interface LearningSessionProps {
 }
 
 export function LearningSessionComponent({ vocabularies, onComplete, onBack }: LearningSessionProps) {
-  const { moveVocabularyToBox, updateDailyStats } = useSupabaseVocabularyStore();
+  const { moveVocabulariesToBox, updateDailyStats } = useVocabularyStore();
   
   const [session, setSession] = useState<LearningSession>({
     vocabularies,
@@ -93,7 +93,7 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
     }
   };
 
-  const checkWriting = async () => {
+  const checkWriting = () => {
     const currentVocab = vocabularies[session.currentIndex];
     const correct = userInput.toLowerCase().trim() === currentVocab.english.toLowerCase();
     
@@ -102,7 +102,7 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
     setTimeout(() => setFeedback(null), 600);
     
     if (correct) {
-      setTimeout(async () => {
+      setTimeout(() => {
         if (session.currentIndex < vocabularies.length - 1) {
           setSession(prev => ({ ...prev, currentIndex: prev.currentIndex + 1 }));
           setUserInput('');
@@ -110,9 +110,9 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
           setCurrentAttempt(0);
         } else {
           // All completed - move to box 1
-          const updatePromises = vocabularies.map(vocab => moveVocabularyToBox(vocab.id, 1, true));
-          await Promise.all(updatePromises);
-          await updateDailyStats(vocabularies.length, 0);
+          const vocabIds = vocabularies.map(v => v.id);
+          moveVocabulariesToBox(vocabIds, 1);
+          updateDailyStats(vocabularies.length, 0);
           setSession(prev => ({ ...prev, currentPhase: 'completed' }));
         }
       }, 600);
@@ -121,21 +121,21 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
     }
   };
 
-  const markAsTypo = async () => {
+  const markAsTypo = () => {
     // Treat as correct answer
     setFeedback('correct');
     setTimeout(() => setFeedback(null), 600);
     
-    setTimeout(async () => {
+    setTimeout(() => {
       if (session.currentIndex < vocabularies.length - 1) {
         setSession(prev => ({ ...prev, currentIndex: prev.currentIndex + 1 }));
         setUserInput('');
         setShowHint(false);
         setCurrentAttempt(0);
       } else {
-        const updatePromises = vocabularies.map(vocab => moveVocabularyToBox(vocab.id, 1, true));
-        await Promise.all(updatePromises);
-        await updateDailyStats(vocabularies.length, 0);
+        const vocabIds = vocabularies.map(v => v.id);
+        moveVocabulariesToBox(vocabIds, 1);
+        updateDailyStats(vocabularies.length, 0);
         setSession(prev => ({ ...prev, currentPhase: 'completed' }));
       }
     }, 600);

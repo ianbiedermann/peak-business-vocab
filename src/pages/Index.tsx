@@ -7,7 +7,7 @@ import { ReviewSession } from '../components/ReviewSession';
 import { BoxView } from '../components/BoxView';
 import { Statistics } from '../components/Statistics';
 import { VocabularyLists } from '../components/VocabularyLists';
-import { useSupabaseVocabularyStore } from '../hooks/useSupabaseVocabularyStore';
+import { useVocabularyStore } from '../hooks/useVocabularyStore';
 import { Vocabulary } from '../types/vocabulary';
 
 type AppView = 'dashboard' | 'learning' | 'review' | 'boxes' | 'statistics' | 'lists' | 'continue-learning';
@@ -19,17 +19,12 @@ const Index = () => {
   const navigate = useNavigate();
   const { 
     lists,
-    isLoading,
     getRandomVocabularies, 
     getVocabulariesForReview,
-    moveVocabularyToBox,
-    updateDailyStats,
-    getAppStats,
-    getVocabulariesByBox,
     uploadVocabularyList,
     toggleVocabularyList,
     deleteVocabularyList
-  } = useSupabaseVocabularyStore();
+  } = useVocabularyStore();
 
   useEffect(() => {
     if (!loading && !isAuthenticated) {
@@ -37,7 +32,7 @@ const Index = () => {
     }
   }, [loading, isAuthenticated, navigate]);
 
-  if (loading || isLoading) {
+  if (loading) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-lg">Lädt...</div>
@@ -49,8 +44,8 @@ const Index = () => {
     return null; // Will redirect to auth
   }
 
-  const handleStartLearning = async () => {
-    const vocabs = await getRandomVocabularies(5);
+  const handleStartLearning = () => {
+    const vocabs = getRandomVocabularies(5);
     if (vocabs.length > 0) {
       setSessionVocabularies(vocabs);
       setCurrentView('learning');
@@ -69,8 +64,8 @@ const Index = () => {
     setCurrentView('continue-learning');
   };
 
-  const handleContinueLearning = async () => {
-    const vocabs = await getRandomVocabularies(5);
+  const handleContinueLearning = () => {
+    const vocabs = getRandomVocabularies(5);
     if (vocabs.length > 0) {
       setSessionVocabularies(vocabs);
       setCurrentView('learning');
@@ -100,10 +95,10 @@ const Index = () => {
             <button
               onClick={handleContinueLearning}
               className="w-full bg-gradient-to-r from-primary to-primary-hover text-primary-foreground font-medium py-4 px-6 rounded-lg text-lg transition-all hover:shadow-lg disabled:opacity-50"
-              disabled={false}
+              disabled={getRandomVocabularies(5).length === 0}
             >
               Weiterlernen
-              
+              {getRandomVocabularies(5).length === 0 && <span className="ml-2 text-sm">(Alle gelernt!)</span>}
             </button>
             <button
               onClick={handleBackToDashboard}

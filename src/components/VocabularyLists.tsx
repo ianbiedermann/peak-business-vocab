@@ -92,23 +92,55 @@ export function VocabularyLists({ lists, onUploadList, onToggleList, onDeleteLis
           <h1 className="text-2xl font-bold">Vokabellisten verwalten</h1>
         </div>
 
+        {/* Upload Section */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Upload className="h-5 w-5" />
+              Neue Liste hochladen
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="list-name">Name der Liste</Label>
+              <Input
+                id="list-name"
+                value={uploadName}
+                onChange={(e) => setUploadName(e.target.value)}
+                placeholder="z.B. Business Englisch Level 1"
+              />
+            </div>
+            
+            <div className="space-y-2">
+              <Label htmlFor="excel-file">Excel-Datei auswählen</Label>
+              <Input
+                id="excel-file"
+                type="file"
+                accept=".xlsx,.xls"
+                onChange={handleFileUpload}
+                disabled={isUploading}
+              />
+              <p className="text-sm text-muted-foreground">
+                Format: Spalte A = Englisch, Spalte B = Deutsch
+              </p>
+            </div>
+          </CardContent>
+        </Card>
 
         {/* Lists Overview */}
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <FileText className="h-5 w-5" />
-              Standard-Listen ({lists.length})
+              Deine Listen ({lists.length})
             </CardTitle>
-            <p className="text-sm text-muted-foreground">
-              Diese Listen sind für alle Nutzer verfügbar und können aktiviert/deaktiviert werden.
-            </p>
           </CardHeader>
           <CardContent>
             {lists.length === 0 ? (
               <div className="text-center py-8 text-muted-foreground">
-                <FileText className="h-12 w-12 mx-auto mb-3 opacity-50" />
-                <p>Listen werden geladen...</p>
+                <Plus className="h-12 w-12 mx-auto mb-3 opacity-50" />
+                <p>Noch keine Listen hochgeladen</p>
+                <p className="text-sm">Lade deine erste Excel-Liste hoch, um zu beginnen.</p>
               </div>
             ) : (
               <div className="space-y-3">
@@ -118,14 +150,10 @@ export function VocabularyLists({ lists, onUploadList, onToggleList, onDeleteLis
                     className="flex items-center justify-between p-4 border rounded-lg"
                   >
                     <div className="flex-1">
-                      <div className="flex items-center gap-2">
-                        <h3 className="font-medium">{list.name}</h3>
-                        <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">
-                          Standard
-                        </span>
-                      </div>
+                      <h3 className="font-medium">{list.name}</h3>
                       <p className="text-sm text-muted-foreground">
-                        {list.vocabularyCount} Vokabeln verfügbar
+                        {list.vocabularyCount} Vokabeln • 
+                        Hochgeladen am {new Date(list.uploadedAt).toLocaleDateString('de-DE')}
                       </p>
                     </div>
                     
@@ -142,6 +170,14 @@ export function VocabularyLists({ lists, onUploadList, onToggleList, onDeleteLis
                         />
                       </div>
                       
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => onDeleteList(list.id)}
+                        className="text-destructive hover:text-destructive"
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </Button>
                     </div>
                   </div>
                 ))}
