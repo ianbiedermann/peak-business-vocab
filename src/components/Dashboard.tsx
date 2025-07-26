@@ -1,7 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { BarChart3, BookOpen, Target, Trophy, Volume2, RefreshCw, FileText, LogOut } from "lucide-react";
-import { useVocabularyStore } from "../hooks/useVocabularyStore";
+import { useSupabaseVocabularyStore } from "../hooks/useSupabaseVocabularyStore";
 import { useAuth } from "../hooks/useAuth";
 
 interface DashboardProps {
@@ -13,7 +13,7 @@ interface DashboardProps {
 }
 
 export function Dashboard({ onStartLearning, onStartReview, onViewBoxes, onViewStatistics, onViewLists }: DashboardProps) {
-  const { getAppStats, getVocabulariesForReview } = useVocabularyStore();
+  const { getAppStats, getVocabulariesForReview } = useSupabaseVocabularyStore();
   const { signOut } = useAuth();
   const stats = getAppStats();
   const reviewCount = getVocabulariesForReview().length;

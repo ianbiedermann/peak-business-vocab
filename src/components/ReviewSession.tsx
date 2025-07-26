@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { CheckCircle, XCircle, Lightbulb, RotateCcw, ArrowLeft } from "lucide-react";
 import { Vocabulary } from '../types/vocabulary';
-import { useVocabularyStore } from '../hooks/useVocabularyStore';
+import { useSupabaseVocabularyStore } from '../hooks/useSupabaseVocabularyStore';
 
 interface ReviewSessionProps {
   vocabularies: Vocabulary[];
@@ -13,7 +13,7 @@ interface ReviewSessionProps {
 }
 
 export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessionProps) {
-  const { moveVocabularyToBox, resetVocabularyToBox1, updateDailyStats } = useVocabularyStore();
+  const { moveVocabularyToBox, updateDailyStats } = useSupabaseVocabularyStore();
   
   const [currentIndex, setCurrentIndex] = useState(0);
   const [userInput, setUserInput] = useState('');
@@ -60,7 +60,7 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
       moveVocabularyToBox(currentVocab.id, nextBox, true);
     } else {
       // Reset to box 1
-      resetVocabularyToBox1(currentVocab.id);
+      moveVocabularyToBox(currentVocab.id, 1, false);
     }
     
     setTimeout(() => {

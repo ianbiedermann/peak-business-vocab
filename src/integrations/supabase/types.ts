@@ -14,6 +14,95 @@ export type Database = {
   }
   public: {
     Tables: {
+      default_vocabularies: {
+        Row: {
+          created_at: string
+          english: string
+          german: string
+          id: string
+          list_id: string
+        }
+        Insert: {
+          created_at?: string
+          english: string
+          german: string
+          id?: string
+          list_id: string
+        }
+        Update: {
+          created_at?: string
+          english?: string
+          german?: string
+          id?: string
+          list_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "default_vocabularies_list_id_fkey"
+            columns: ["list_id"]
+            isOneToOne: false
+            referencedRelation: "default_vocabulary_lists"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      default_vocabulary_lists: {
+        Row: {
+          created_at: string
+          id: string
+          name: string
+          updated_at: string
+          vocabulary_count: number
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          name: string
+          updated_at?: string
+          vocabulary_count?: number
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          name?: string
+          updated_at?: string
+          vocabulary_count?: number
+        }
+        Relationships: []
+      }
+      learning_stats: {
+        Row: {
+          created_at: string
+          date: string
+          id: string
+          new_learned: number
+          reviewed: number
+          total_time: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          date: string
+          id?: string
+          new_learned?: number
+          reviewed?: number
+          total_time?: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          date?: string
+          id?: string
+          new_learned?: number
+          reviewed?: number
+          total_time?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           created_at: string
@@ -35,6 +124,129 @@ export type Database = {
           id?: string
           updated_at?: string
           username?: string
+        }
+        Relationships: []
+      }
+      user_list_preferences: {
+        Row: {
+          created_at: string
+          id: string
+          is_active: boolean
+          list_id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          list_id: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          list_id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      vocabularies: {
+        Row: {
+          box: number
+          created_at: string
+          default_vocabulary_id: string | null
+          english: string
+          german: string
+          id: string
+          last_reviewed: string | null
+          list_id: string
+          next_review: string | null
+          times_correct: number
+          times_incorrect: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          box?: number
+          created_at?: string
+          default_vocabulary_id?: string | null
+          english: string
+          german: string
+          id?: string
+          last_reviewed?: string | null
+          list_id: string
+          next_review?: string | null
+          times_correct?: number
+          times_incorrect?: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          box?: number
+          created_at?: string
+          default_vocabulary_id?: string | null
+          english?: string
+          german?: string
+          id?: string
+          last_reviewed?: string | null
+          list_id?: string
+          next_review?: string | null
+          times_correct?: number
+          times_incorrect?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "vocabularies_default_vocabulary_id_fkey"
+            columns: ["default_vocabulary_id"]
+            isOneToOne: false
+            referencedRelation: "default_vocabularies"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "vocabularies_list_id_fkey"
+            columns: ["list_id"]
+            isOneToOne: false
+            referencedRelation: "vocabulary_lists"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      vocabulary_lists: {
+        Row: {
+          created_at: string
+          id: string
+          is_active: boolean
+          name: string
+          updated_at: string
+          uploaded_at: string
+          user_id: string
+          vocabulary_count: number
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          name: string
+          updated_at?: string
+          uploaded_at?: string
+          user_id: string
+          vocabulary_count?: number
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          name?: string
+          updated_at?: string
+          uploaded_at?: string
+          user_id?: string
+          vocabulary_count?: number
         }
         Relationships: []
       }

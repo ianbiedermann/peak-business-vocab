@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, BarChart3, TrendingUp, Calendar } from "lucide-react";
-import { useVocabularyStore } from "../hooks/useVocabularyStore";
+import { useSupabaseVocabularyStore } from "../hooks/useSupabaseVocabularyStore";
 import { format, subDays, subMonths, subYears, startOfDay } from 'date-fns';
 import { de } from 'date-fns/locale';
 
@@ -13,7 +13,7 @@ interface StatisticsProps {
 type TimeRange = '7days' | '1month' | '1year' | 'all';
 
 export function Statistics({ onBack }: StatisticsProps) {
-  const { getAppStats } = useVocabularyStore();
+  const { getAppStats } = useSupabaseVocabularyStore();
   const [timeRange, setTimeRange] = useState<TimeRange>('7days');
   
   const stats = getAppStats();
