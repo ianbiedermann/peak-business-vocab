@@ -1,8 +1,9 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { BarChart3, BookOpen, Target, Trophy, Volume2, RefreshCw, FileText, LogOut } from "lucide-react";
+import { BarChart3, BookOpen, Target, Trophy, Volume2, RefreshCw, FileText, LogOut, Crown } from "lucide-react";
 import { useVocabularyStore } from "../hooks/useVocabularyStore";
 import { useAuth } from "../hooks/useAuth";
+import { SubscriptionManager } from "@/components/SubscriptionManager";
 
 interface DashboardProps {
   onStartLearning: () => void;
@@ -14,7 +15,7 @@ interface DashboardProps {
 
 export function Dashboard({ onStartLearning, onStartReview, onViewBoxes, onViewStatistics, onViewLists }: DashboardProps) {
   const { getAppStats, getVocabulariesForReview } = useVocabularyStore();
-  const { signOut } = useAuth();
+  const { signOut, subscription } = useAuth();
   const stats = getAppStats();
   const reviewCount = getVocabulariesForReview().length;
 
@@ -152,6 +153,11 @@ export function Dashboard({ onStartLearning, onStartReview, onViewBoxes, onViewS
             <FileText className="mr-2 h-4 w-4" />
             Listen verwalten
           </Button>
+        </div>
+
+        {/* Subscription Manager */}
+        <div className="flex justify-center">
+          <SubscriptionManager />
         </div>
 
         {/* Progress Bar */}
