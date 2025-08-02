@@ -64,23 +64,6 @@ export function useVocabularyStore() {
         .select('*')
         .eq('user_id', user.id);
 
-      // Alle aktiven Standard-Listen direkt laden
-      const { data: activePrefs } = await supabase
-        .from('user_list_preferences')
-        .select('list_id')
-        .eq('user_id', user.id)
-        .eq('is_active', true);
-      
-      const activeDefaultListIds = (activePrefs || []).map(pref => pref.list_id);
-      
-      console.log('Active Default List IDs from preferences:', activeDefaultListIds);
-      
-      const { data: defaultVocabs } = await supabase
-        .from('default_vocabularies')
-        .select('*')
-        .in('list_id', activeDefaultListIds);
-      
-      console.log('Default Vocabs loaded:', defaultVocabs?.length);
 
       // Lade Default-Vokabeln aus aktiven Listen, die nicht vom User stammen
       const activeDefaultListIds = combinedLists
