@@ -60,48 +60,68 @@ setLists(combinedLists);
 
 // Load user vocabularies
 const { data: userVocabs } = await supabase
-.from('vocabularies')
-.select('*')
-.eq('user_id', user.id);
+  .from('vocabularies')
+  .select('*')
+  .eq('user_id', user.id);
 
-const mappedVocabs: Vocabulary[] = (userVocabs || []).map(vocab => ({
-id: vocab.id,
-english: vocab.english,
-german: vocab.german,
-listId: vocab.list_id,
-box: vocab.box,
-nextReview: vocab.next_review ? new Date(vocab.next_review) : undefined,
-timesCorrect: vocab.times_correct,
-timesIncorrect: vocab.times_incorrect,
-lastReviewed: vocab.last_reviewed ? new Date(vocab.last_reviewed) : undefined,
-createdAt: new Date(vocab.created_at)
-}));
-
-    // Testschreiben
-// Lade Default-Vokabeln aus aktiven Listen, die nicht vom User stammen
+// Aktive Default-Listen identifizieren
 const activeDefaultListIds = combinedLists
-.filter(list => list.isActive && !(userLists || []).some(ul => ul.id === list.id))
-.map(list => list.id);
+  .filter(list => list.isActive && !(userLists || []).some(ul => ul.id === list.id))
+  .map(list => list.id);
 
+// Standard-Vokabeln laden
 const { data: defaultVocabs } = await supabase
-.from('default_vocabularies')
-.select('*')
-.in('list_id', activeDefaultListIds);
+  .from('default_vocabularies')
+  .select('*')
+  .in('list_id', activeDefaultListIds);
 
-const mappedDefaultVocabs: Vocabulary[] = (defaultVocabs || []).map(vocab => ({
-id: vocab.id,
-english: vocab.english,
-german: vocab.german,
-listId: vocab.list_id,
-box: 0,
-nextReview: undefined,
-timesCorrect: 0,
-timesIncorrect: 0,
-lastReviewed: undefined,
-createdAt: new Date(vocab.created_at)
+// User-Fortschritt für Standard-Vokabeln laden
+const defaultVocabIds = (defaultVocabs || []).map(v => v.id);
+const { data: userProgress } = await supabase
+  .from('user_vocabulary_progress')
+  .select('*')
+  .eq('user_id', user.id)
+  .in('vocabulary_id', defaultVocabIds);
+
+// User-Vokabeln mappen
+const mappedUserVocabs: Vocabulary[] = (userVocabs || []).map(vocab => ({
+  id: vocab.id,
+  english: vocab.english,
+  german: vocab.german,
+  listId: vocab.list_id,
+  box: vocab.box,
+  nextReview: vocab.next_review ? new Date(vocab.next_review) : undefined,
+  timesCorrect: vocab.times_correct,
+  timesIncorrect: vocab.times_incorrect,
+  lastReviewed: vocab.last_reviewed ? new Date(vocab.last_reviewed) : undefined,
+  createdAt: new Date(vocab.created_at),
+  isDefaultVocab: false
 }));
 
-setVocabularies([...mappedVocabs, ...mappedDefaultVocabs]);
+// Standard-Vokabeln mit User-Fortschritt kombinieren
+const mappedDefaultVocabs: Vocabulary[] = (defaultVocabs || []).map(vocab => {
+  const progress = userProgress?.find(p => p.vocabulary_id === vocab.id);
+  
+  return {
+    id: vocab.id,
+    english: vocab.english,
+    german: vocab.german,
+    listId: vocab.list_id,
+    box: progress?.box || 0,
+    nextReview: progress?.next_review ? new Date(progress.next_review) : undefined,
+    timesCorrect: progress?.times_correct || 0,
+    timesIncorrect: progress?.times_incorrect || 0,
+    lastReviewed: progress?.last_reviewed ? new Date(progress.last_reviewed) : undefined,
+    createdAt: new Date(vocab.created_at),
+    isDefaultVocab: true
+  };
+});
+
+// Alle Vokabeln kombinieren
+const allVocabs = [...mappedUserVocabs, ...mappedDefaultVocabs];
+setVocabularies(allVocabs);
+
+console.log(`Geladene Vokabeln: ${allVocabs.length} (User: ${mappedUserVocabs.length}, Standard: ${mappedDefaultVocabs.length})`);
 
 // Load learning stats
 const { data: learningStats } = await supabase
