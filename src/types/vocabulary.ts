@@ -17,6 +17,7 @@ export interface Vocabulary {
   timesIncorrect: number;
   lastReviewed?: Date;
   createdAt: Date;
+  isDefaultVocab?: boolean;
 }
 
 export interface LearningSession {
