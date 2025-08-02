@@ -64,19 +64,24 @@ export function useVocabularyStore() {
         .select('*')
         .eq('user_id', user.id);
 
-      const mappedVocabs: Vocabulary[] = (userVocabs || []).map(vocab => ({
-        id: vocab.id,
-        english: vocab.english,
-        german: vocab.german,
-        listId: vocab.list_id,
-        box: vocab.box,
-        nextReview: vocab.next_review ? new Date(vocab.next_review) : undefined,
-        timesCorrect: vocab.times_correct,
-        timesIncorrect: vocab.times_incorrect,
-        lastReviewed: vocab.last_reviewed ? new Date(vocab.last_reviewed) : undefined,
-        createdAt: new Date(vocab.created_at)
-      }));
-    // Testschreiben
+      // Alle aktiven Standard-Listen direkt laden
+      const { data: activePrefs } = await supabase
+        .from('user_list_preferences')
+        .select('list_id')
+        .eq('user_id', user.id)
+        .eq('is_active', true);
+      
+      const activeDefaultListIds = (activePrefs || []).map(pref => pref.list_id);
+      
+      console.log('Active Default List IDs from preferences:', activeDefaultListIds);
+      
+      const { data: defaultVocabs } = await supabase
+        .from('default_vocabularies')
+        .select('*')
+        .in('list_id', activeDefaultListIds);
+      
+      console.log('Default Vocabs loaded:', defaultVocabs?.length);
+
       // Lade Default-Vokabeln aus aktiven Listen, die nicht vom User stammen
       const activeDefaultListIds = combinedLists
         .filter(list => list.isActive && !(userLists || []).some(ul => ul.id === list.id))
