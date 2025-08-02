@@ -145,6 +145,74 @@ setLoading(false);
 }
 };
 
+const updateVocabularyProgress = async (vocabulary: Vocabulary, isCorrect: boolean) => {
+    if (!user) return;
+
+    const newBox = isCorrect 
+      ? Math.min(vocabulary.box + 1, BOX_INTERVALS.length - 1)
+      : Math.max(vocabulary.box - 1, 0);
+
+    const nextReviewDate = new Date();
+    nextReviewDate.setDate(nextReviewDate.getDate() + BOX_INTERVALS[newBox]);
+
+    const updatedVocab = {
+      ...vocabulary,
+      box: newBox,
+      nextReview: nextReviewDate,
+      timesCorrect: vocabulary.timesCorrect + (isCorrect ? 1 : 0),
+      timesIncorrect: vocabulary.timesIncorrect + (isCorrect ? 0 : 1),
+      lastReviewed: new Date()
+    };
+
+    try {
+      if (vocabulary.isDefaultVocab) {
+        // Für Standard-Vokabeln: in user_vocabulary_progress speichern
+        const { error } = await supabase
+          .from('user_vocabulary_progress')
+          .upsert({
+            user_id: user.id,
+            vocabulary_id: vocabulary.id,
+            box: newBox,
+            next_review: nextReviewDate.toISOString(),
+            times_correct: updatedVocab.timesCorrect,
+            times_incorrect: updatedVocab.timesIncorrect,
+            last_reviewed: new Date().toISOString(),
+            updated_at: new Date().toISOString()
+          }, {
+            onConflict: 'user_id,vocabulary_id'
+          });
+
+        if (error) throw error;
+      } else {
+        // Für User-Vokabeln: in vocabularies speichern
+        const { error } = await supabase
+          .from('vocabularies')
+          .update({
+            box: newBox,
+            next_review: nextReviewDate.toISOString(),
+            times_correct: updatedVocab.timesCorrect,
+            times_incorrect: updatedVocab.timesIncorrect,
+            last_reviewed: new Date().toISOString()
+          })
+          .eq('id', vocabulary.id)
+          .eq('user_id', user.id);
+
+        if (error) throw error;
+      }
+
+      // Lokalen State aktualisieren
+      setVocabularies(prev => 
+        prev.map(v => v.id === vocabulary.id ? updatedVocab : v)
+      );
+
+      return updatedVocab;
+    } catch (error) {
+      console.error('Error updating vocabulary progress:', error);
+      throw error;
+    }
+  };
+
+
 // Initialize data on user login
 useEffect(() => {
 if (user) {
@@ -486,6 +554,7 @@ getAppStats,
 getVocabulariesByBox,
 uploadVocabularyList,
 toggleVocabularyList,
-deleteVocabularyList
+deleteVocabularyList,
+updateVocabularyProgress
 };
 }
