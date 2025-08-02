@@ -1,63 +1,117 @@
 import { useState, useEffect } from 'react';
+import { supabase } from '@/integrations/supabase/client';
+import { useAuth } from './useAuth';
 import { Vocabulary, VocabularyList, LearningStats, AppStats, BOX_INTERVALS } from '../types/vocabulary';
-
-const STORAGE_KEY = 'peakEnglish_vocabularies';
-const STATS_KEY = 'peakEnglish_stats';
-const LISTS_KEY = 'peakEnglish_lists';
 
 export function useVocabularyStore() {
   const [vocabularies, setVocabularies] = useState<Vocabulary[]>([]);
   const [stats, setStats] = useState<LearningStats[]>([]);
   const [lists, setLists] = useState<VocabularyList[]>([]);
+  const [loading, setLoading] = useState(true);
+  const { user } = useAuth();
 
-  // Initialize data on first load
-  useEffect(() => {
-    const savedVocabs = localStorage.getItem(STORAGE_KEY);
-    const savedStats = localStorage.getItem(STATS_KEY);
-    const savedLists = localStorage.getItem(LISTS_KEY);
+  // Load data from Supabase
+  const loadData = async () => {
+    if (!user) return;
+    
+    setLoading(true);
+    try {
+      // Load user vocabulary lists
+      const { data: userLists } = await supabase
+        .from('vocabulary_lists')
+        .select('*')
+        .eq('user_id', user.id)
+        .order('created_at', { ascending: false });
 
-    if (savedVocabs) {
-      const parsed = JSON.parse(savedVocabs);
-      // Convert date strings back to Date objects
-      const vocabsWithDates = parsed.map((vocab: any) => ({
-        ...vocab,
-        nextReview: vocab.nextReview ? new Date(vocab.nextReview) : undefined,
-        lastReviewed: vocab.lastReviewed ? new Date(vocab.lastReviewed) : undefined,
-        createdAt: new Date(vocab.createdAt)
+      // Load default vocabulary lists
+      const { data: defaultLists } = await supabase
+        .from('default_vocabulary_lists')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      // Load user preferences for default lists
+      const { data: userPreferences } = await supabase
+        .from('user_list_preferences')
+        .select('*')
+        .eq('user_id', user.id);
+
+      // Combine user lists and default lists with preferences
+      const combinedLists: VocabularyList[] = [
+        ...(userLists || []).map(list => ({
+          id: list.id,
+          name: list.name,
+          isActive: list.is_active,
+          uploadedAt: new Date(list.uploaded_at),
+          vocabularyCount: list.vocabulary_count
+        })),
+        ...(defaultLists || []).map(list => {
+          const preference = userPreferences?.find(p => p.list_id === list.id);
+          return {
+            id: list.id,
+            name: list.name,
+            isActive: preference?.is_active ?? true,
+            uploadedAt: new Date(list.created_at),
+            vocabularyCount: list.vocabulary_count
+          };
+        })
+      ];
+
+      setLists(combinedLists);
+
+      // Load user vocabularies
+      const { data: userVocabs } = await supabase
+        .from('vocabularies')
+        .select('*')
+        .eq('user_id', user.id);
+
+      const mappedVocabs: Vocabulary[] = (userVocabs || []).map(vocab => ({
+        id: vocab.id,
+        english: vocab.english,
+        german: vocab.german,
+        listId: vocab.list_id,
+        box: vocab.box,
+        nextReview: vocab.next_review ? new Date(vocab.next_review) : undefined,
+        timesCorrect: vocab.times_correct,
+        timesIncorrect: vocab.times_incorrect,
+        lastReviewed: vocab.last_reviewed ? new Date(vocab.last_reviewed) : undefined,
+        createdAt: new Date(vocab.created_at)
       }));
-      setVocabularies(vocabsWithDates);
-    }
 
-    if (savedStats) {
-      setStats(JSON.parse(savedStats));
-    }
+      setVocabularies(mappedVocabs);
 
-    if (savedLists) {
-      const parsed = JSON.parse(savedLists);
-      const listsWithDates = parsed.map((list: any) => ({
-        ...list,
-        uploadedAt: new Date(list.uploadedAt)
+      // Load learning stats
+      const { data: learningStats } = await supabase
+        .from('learning_stats')
+        .select('*')
+        .eq('user_id', user.id)
+        .order('date', { ascending: false });
+
+      const mappedStats: LearningStats[] = (learningStats || []).map(stat => ({
+        date: stat.date,
+        newLearned: stat.new_learned,
+        reviewed: stat.reviewed,
+        totalTime: stat.total_time
       }));
-      setLists(listsWithDates);
+
+      setStats(mappedStats);
+    } catch (error) {
+      console.error('Error loading data:', error);
+    } finally {
+      setLoading(false);
     }
-  }, []);
+  };
 
-  // Save to localStorage whenever vocabularies change
+  // Initialize data on user login
   useEffect(() => {
-    if (vocabularies.length > 0) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(vocabularies));
+    if (user) {
+      loadData();
+    } else {
+      setVocabularies([]);
+      setStats([]);
+      setLists([]);
+      setLoading(false);
     }
-  }, [vocabularies]);
-
-  // Save stats whenever they change
-  useEffect(() => {
-    localStorage.setItem(STATS_KEY, JSON.stringify(stats));
-  }, [stats]);
-
-  // Save lists whenever they change
-  useEffect(() => {
-    localStorage.setItem(LISTS_KEY, JSON.stringify(lists));
-  }, [lists]);
+  }, [user]);
 
   const getActiveVocabularies = (): Vocabulary[] => {
     const activeListIds = lists.filter(list => list.isActive).map(list => list.id);
@@ -81,17 +135,37 @@ export function useVocabularyStore() {
     });
   };
 
-  const moveVocabularyToBox = (vocabId: string, newBox: number, isCorrect: boolean) => {
+  const moveVocabularyToBox = async (vocabId: string, newBox: number, isCorrect: boolean) => {
+    if (!user) return;
+
+    const now = new Date();
+    let nextReview: Date | undefined;
+    
+    if (newBox > 0 && newBox <= 5) {
+      const interval = BOX_INTERVALS[newBox as keyof typeof BOX_INTERVALS];
+      nextReview = new Date(now.getTime() + interval);
+    }
+
+    // Get current vocabulary to update counters correctly
+    const vocab = vocabularies.find(v => v.id === vocabId);
+    if (!vocab) return;
+
+    // Update in Supabase
+    await supabase
+      .from('vocabularies')
+      .update({
+        box: newBox,
+        times_correct: isCorrect ? vocab.timesCorrect + 1 : vocab.timesCorrect,
+        times_incorrect: !isCorrect ? vocab.timesIncorrect + 1 : vocab.timesIncorrect,
+        last_reviewed: now.toISOString(),
+        next_review: nextReview?.toISOString()
+      })
+      .eq('id', vocabId)
+      .eq('user_id', user.id);
+
+    // Update local state
     setVocabularies(prev => prev.map(vocab => {
       if (vocab.id === vocabId) {
-        const now = new Date();
-        let nextReview: Date | undefined;
-        
-        if (newBox > 0 && newBox <= 5) {
-          const interval = BOX_INTERVALS[newBox as keyof typeof BOX_INTERVALS];
-          nextReview = new Date(now.getTime() + interval);
-        }
-
         return {
           ...vocab,
           box: newBox,
@@ -113,9 +187,38 @@ export function useVocabularyStore() {
     moveVocabularyToBox(vocabId, 1, false);
   };
 
-  const updateDailyStats = (newLearned: number, reviewed: number) => {
+  const updateDailyStats = async (newLearned: number, reviewed: number) => {
+    if (!user) return;
+
     const today = new Date().toISOString().split('T')[0];
     
+    // Check if entry exists for today
+    const existingStat = stats.find(stat => stat.date === today);
+    
+    if (existingStat) {
+      // Update existing entry
+      await supabase
+        .from('learning_stats')
+        .update({
+          new_learned: existingStat.newLearned + newLearned,
+          reviewed: existingStat.reviewed + reviewed
+        })
+        .eq('user_id', user.id)
+        .eq('date', today);
+    } else {
+      // Create new entry
+      await supabase
+        .from('learning_stats')
+        .insert({
+          user_id: user.id,
+          date: today,
+          new_learned: newLearned,
+          reviewed: reviewed,
+          total_time: 0
+        });
+    }
+
+    // Update local state
     setStats(prev => {
       const existingIndex = prev.findIndex(stat => stat.date === today);
       
@@ -161,48 +264,174 @@ export function useVocabularyStore() {
     return activeVocabs.filter(v => v.box === box);
   };
 
-  const uploadVocabularyList = (name: string, vocabularyData: Array<{english: string, german: string}>) => {
-    const listId = `list_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+  const uploadVocabularyList = async (name: string, vocabularyData: Array<{english: string, german: string}>) => {
+    if (!user) throw new Error('User not authenticated');
     
-    // Create new list
-    const newList: VocabularyList = {
-      id: listId,
-      name,
-      isActive: true,
-      uploadedAt: new Date(),
-      vocabularyCount: vocabularyData.length
-    };
+    // Check if user has reached the 50 list limit (excluding default lists)
+    const userLists = lists.filter(list => !list.id.startsWith('default_'));
+    if (userLists.length >= 50) {
+      throw new Error('Maximale Anzahl von 50 Listen erreicht. Bitte lösche zuerst eine andere Liste.');
+    }
 
-    // Create vocabularies
-    const newVocabularies: Vocabulary[] = vocabularyData.map((item, index) => ({
-      id: `${listId}_vocab_${index}`,
-      english: item.english,
-      german: item.german,
-      listId,
-      box: 0,
-      timesCorrect: 0,
-      timesIncorrect: 0,
-      createdAt: new Date()
-    }));
+    try {
+      // Create new list in Supabase
+      const { data: newListData, error: listError } = await supabase
+        .from('vocabulary_lists')
+        .insert({
+          user_id: user.id,
+          name,
+          is_active: true,
+          vocabulary_count: vocabularyData.length
+        })
+        .select()
+        .single();
 
-    setLists(prev => [...prev, newList]);
-    setVocabularies(prev => [...prev, ...newVocabularies]);
+      if (listError) throw listError;
+
+      // Create vocabularies in Supabase
+      const vocabulariesToInsert = vocabularyData.map(item => ({
+        user_id: user.id,
+        list_id: newListData.id,
+        english: item.english,
+        german: item.german,
+        box: 0,
+        times_correct: 0,
+        times_incorrect: 0
+      }));
+
+      const { error: vocabError } = await supabase
+        .from('vocabularies')
+        .insert(vocabulariesToInsert);
+
+      if (vocabError) throw vocabError;
+
+      // Update local state
+      const newList: VocabularyList = {
+        id: newListData.id,
+        name: newListData.name,
+        isActive: newListData.is_active,
+        uploadedAt: new Date(newListData.uploaded_at),
+        vocabularyCount: newListData.vocabulary_count
+      };
+
+      const newVocabularies: Vocabulary[] = vocabulariesToInsert.map((item, index) => ({
+        id: `${newListData.id}_vocab_${index}`,
+        english: item.english,
+        german: item.german,
+        listId: newListData.id,
+        box: 0,
+        timesCorrect: 0,
+        timesIncorrect: 0,
+        createdAt: new Date()
+      }));
+
+      setLists(prev => [...prev, newList]);
+      setVocabularies(prev => [...prev, ...newVocabularies]);
+      
+      return newListData.id;
+    } catch (error) {
+      console.error('Error uploading list:', error);
+      throw error;
+    }
   };
 
-  const toggleVocabularyList = (listId: string, isActive: boolean) => {
-    setLists(prev => prev.map(list => 
-      list.id === listId ? { ...list, isActive } : list
-    ));
+  const toggleVocabularyList = async (listId: string, isActive: boolean) => {
+    if (!user) return;
+
+    try {
+      // Check if this is a default list or user list
+      const isDefaultList = await supabase
+        .from('default_vocabulary_lists')
+        .select('id')
+        .eq('id', listId)
+        .single();
+
+      if (isDefaultList.data) {
+        // Handle default list preference
+        const { data: existingPreference } = await supabase
+          .from('user_list_preferences')
+          .select('*')
+          .eq('user_id', user.id)
+          .eq('list_id', listId)
+          .single();
+
+        if (existingPreference) {
+          // Update existing preference
+          await supabase
+            .from('user_list_preferences')
+            .update({ is_active: isActive })
+            .eq('user_id', user.id)
+            .eq('list_id', listId);
+        } else {
+          // Create new preference
+          await supabase
+            .from('user_list_preferences')
+            .insert({
+              user_id: user.id,
+              list_id: listId,
+              is_active: isActive
+            });
+        }
+      } else {
+        // Handle user list
+        await supabase
+          .from('vocabulary_lists')
+          .update({ is_active: isActive })
+          .eq('id', listId)
+          .eq('user_id', user.id);
+      }
+
+      // Update local state
+      setLists(prev => prev.map(list => 
+        list.id === listId ? { ...list, isActive } : list
+      ));
+    } catch (error) {
+      console.error('Error toggling list:', error);
+    }
   };
 
-  const deleteVocabularyList = (listId: string) => {
-    setLists(prev => prev.filter(list => list.id !== listId));
-    setVocabularies(prev => prev.filter(vocab => vocab.listId !== listId));
+  const deleteVocabularyList = async (listId: string) => {
+    if (!user) return;
+
+    try {
+      // Check if this is a default list (cannot be deleted)
+      const isDefaultList = await supabase
+        .from('default_vocabulary_lists')
+        .select('id')
+        .eq('id', listId)
+        .single();
+
+      if (isDefaultList.data) {
+        throw new Error('Standardlisten können nicht gelöscht werden.');
+      }
+
+      // Delete user vocabularies first
+      await supabase
+        .from('vocabularies')
+        .delete()
+        .eq('list_id', listId)
+        .eq('user_id', user.id);
+
+      // Delete the list
+      await supabase
+        .from('vocabulary_lists')
+        .delete()
+        .eq('id', listId)
+        .eq('user_id', user.id);
+
+      // Update local state
+      setLists(prev => prev.filter(list => list.id !== listId));
+      setVocabularies(prev => prev.filter(vocab => vocab.listId !== listId));
+    } catch (error) {
+      console.error('Error deleting list:', error);
+      throw error;
+    }
   };
 
   return {
     vocabularies,
     lists,
+    loading,
     getRandomVocabularies,
     getVocabulariesForReview,
     moveVocabularyToBox,

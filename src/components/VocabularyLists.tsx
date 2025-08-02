@@ -11,9 +11,9 @@ import { VocabularyList } from '../types/vocabulary';
 
 interface VocabularyListsProps {
   lists: VocabularyList[];
-  onUploadList: (name: string, vocabularies: Array<{english: string, german: string}>) => void;
-  onToggleList: (listId: string, isActive: boolean) => void;
-  onDeleteList: (listId: string) => void;
+  onUploadList: (name: string, vocabularies: Array<{english: string, german: string}>) => Promise<string>;
+  onToggleList: (listId: string, isActive: boolean) => Promise<void>;
+  onDeleteList: (listId: string) => Promise<void>;
   onBack: () => void;
 }
 
@@ -63,7 +63,7 @@ export function VocabularyLists({ lists, onUploadList, onToggleList, onDeleteLis
         return;
       }
 
-      onUploadList(uploadName.trim(), vocabularies);
+      await onUploadList(uploadName.trim(), vocabularies);
       setUploadName('');
       event.target.value = ''; // Reset file input
       
@@ -72,9 +72,10 @@ export function VocabularyLists({ lists, onUploadList, onToggleList, onDeleteLis
         description: `${vocabularies.length} Vokabeln erfolgreich hochgeladen.`,
       });
     } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : "Fehler beim Hochladen der Liste.";
       toast({
         title: "Fehler",
-        description: "Fehler beim Lesen der Excel-Datei. Überprüfe das Format.",
+        description: errorMessage,
         variant: "destructive"
       });
     } finally {
@@ -173,7 +174,22 @@ export function VocabularyLists({ lists, onUploadList, onToggleList, onDeleteLis
                       <Button
                         variant="outline"
                         size="sm"
-                        onClick={() => onDeleteList(list.id)}
+                        onClick={async () => {
+                          try {
+                            await onDeleteList(list.id);
+                            toast({
+                              title: "Erfolg",
+                              description: "Liste erfolgreich gelöscht."
+                            });
+                          } catch (error) {
+                            const errorMessage = error instanceof Error ? error.message : "Fehler beim Löschen der Liste.";
+                            toast({
+                              title: "Fehler",
+                              description: errorMessage,
+                              variant: "destructive"
+                            });
+                          }
+                        }}
                         className="text-destructive hover:text-destructive"
                       >
                         <Trash2 className="h-4 w-4" />

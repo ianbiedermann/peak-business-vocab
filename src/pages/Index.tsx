@@ -19,6 +19,7 @@ const Index = () => {
   const navigate = useNavigate();
   const { 
     lists,
+    loading: storeLoading,
     getRandomVocabularies, 
     getVocabulariesForReview,
     uploadVocabularyList,
