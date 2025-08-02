@@ -77,7 +77,30 @@ export function useVocabularyStore() {
         createdAt: new Date(vocab.created_at)
       }));
 
-      setVocabularies(mappedVocabs);
+      // Lade Default-Vokabeln aus aktiven Listen, die nicht vom User stammen
+      const activeDefaultListIds = combinedLists
+        .filter(list => list.isActive && !(userLists || []).some(ul => ul.id === list.id))
+        .map(list => list.id);
+      
+      const { data: defaultVocabs } = await supabase
+        .from('default_vocabularies')
+        .select('*')
+        .in('list_id', activeDefaultListIds);
+      
+      const mappedDefaultVocabs: Vocabulary[] = (defaultVocabs || []).map(vocab => ({
+        id: vocab.id,
+        english: vocab.english,
+        german: vocab.german,
+        listId: vocab.list_id,
+        box: 0,
+        nextReview: undefined,
+        timesCorrect: 0,
+        timesIncorrect: 0,
+        lastReviewed: undefined,
+        createdAt: new Date(vocab.created_at)
+      }));
+
+      setVocabularies([...mappedVocabs, ...mappedDefaultVocabs]);
 
       // Load learning stats
       const { data: learningStats } = await supabase
