@@ -76,7 +76,7 @@ export function useVocabularyStore() {
         lastReviewed: vocab.last_reviewed ? new Date(vocab.last_reviewed) : undefined,
         createdAt: new Date(vocab.created_at)
       }));
-
+    // Testschreiben
       // Lade Default-Vokabeln aus aktiven Listen, die nicht vom User stammen
       const activeDefaultListIds = combinedLists
         .filter(list => list.isActive && !(userLists || []).some(ul => ul.id === list.id))
