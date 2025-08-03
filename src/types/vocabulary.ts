@@ -47,10 +47,12 @@ export interface AppStats {
   totalLists: number;
 }
 
-export const BOX_INTERVALS = {
-  1: 24 * 60 * 60 * 1000, // 24 hours
-  2: 48 * 60 * 60 * 1000, // 48 hours
-  3: 96 * 60 * 60 * 1000, // 96 hours
-  4: 192 * 60 * 60 * 1000, // 192 hours
-  5: 384 * 60 * 60 * 1000, // 384 hours
-};
+export const BOX_INTERVALS = [
+  0,  // Box 0: Nicht begonnen
+  1,  // Box 1: 1 Tag
+  2,  // Box 2: 2 Tage  
+  4,  // Box 3: 4 Tage
+  8,  // Box 4: 8 Tage
+  16, // Box 5: 16 Tage
+  0   // Box 6: Gelernt (keine Wiederholung)
+];
