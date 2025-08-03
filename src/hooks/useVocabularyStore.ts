@@ -511,20 +511,20 @@ throw error;
 };
 
 return {
-vocabularies,
-lists,
-loading,
-getRandomVocabularies,
-getVocabulariesForReview,
-moveVocabularyToBox,
-moveVocabulariesToBox,
-resetVocabularyToBox1,
-updateDailyStats,
-getAppStats,
-getVocabulariesByBox,
-uploadVocabularyList,
-toggleVocabularyList,
-deleteVocabularyList,
-updateVocabularyProgress
+  vocabularies,
+  lists,
+  loading,
+  getRandomVocabularies,
+  getVocabulariesForReview,
+  moveVocabularyToBox,
+  moveVocabulariesToBox,
+  resetVocabularyToBox1,
+  updateDailyStats,
+  getAppStats,
+  getVocabulariesByBox,
+  uploadVocabularyList,
+  toggleVocabularyList,
+  deleteVocabularyList
+  // updateVocabularyProgress entfernt
 };
 }
