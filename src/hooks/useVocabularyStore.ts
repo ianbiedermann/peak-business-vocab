@@ -10,7 +10,7 @@ const [lists, setLists] = useState<VocabularyList[]>([]);
 const [loading, setLoading] = useState(true);
 const { user } = useAuth();
 
-// Optimierte loadData Funktion
+// Optimierte loadData Funktion mit korrigiertem Default-Vocab Mapping
 const loadData = async () => {
   if (!user) return;
 
@@ -112,31 +112,40 @@ const loadData = async () => {
     const userVocabs = userVocabsResult.data || [];
     const defaultVocabs = defaultVocabsResult.data || [];
 
-    // Load user progress for default vocabularies
-    const defaultVocabIds = defaultVocabs.map(v => v.id);
-    const userProgressResult = defaultVocabIds.length > 0 
+    // WICHTIG: User Progress für ALLE default vocabularies laden, nicht nur die aktiven Listen
+    const allDefaultVocabIds = defaultVocabs.map(v => v.id);
+    
+    console.log('🔍 Loading user progress for vocabs:', {
+      totalDefaultVocabs: allDefaultVocabIds.length,
+      sampleIds: allDefaultVocabIds.slice(0, 5)
+    });
+
+    const userProgressResult = allDefaultVocabIds.length > 0 
       ? await supabase
           .from('user_vocabulary_progress')
           .select('*')
           .eq('user_id', user.id)
-          .in('vocabulary_id', defaultVocabIds)
+          .in('vocabulary_id', allDefaultVocabIds)
       : { data: [] };
 
     const userProgress = userProgressResult.data || [];
-    console.log('✅ User progress loaded');
+    console.log('✅ User progress loaded:', {
+      progressEntries: userProgress.length,
+      vocabsWithProgress: userProgress.filter(p => p.box > 0).length
+    });
 
-    console.log('🔍 User Progress Debug:', {
-      defaultVocabIds: defaultVocabIds.length,
-      sampleDefaultVocabIds: defaultVocabIds.slice(0, 5),
-      userProgressEntries: userProgress.length,
-      sampleUserProgress: userProgress.slice(0, 5).map(p => ({
-        vocabId: p.vocabulary_id,
-        box: p.box,
-        timesCorrect: p.times_correct
+    // Debug: Überprüfe die Verknüpfung zwischen Vocab IDs und Progress
+    const progressByVocabId = new Map(userProgress.map(p => [p.vocabulary_id, p]));
+    console.log('🔧 Progress mapping verification:', {
+      firstFiveDefaultVocabs: defaultVocabs.slice(0, 5).map(v => ({
+        vocabId: v.id,
+        english: v.english,
+        hasProgress: progressByVocabId.has(v.id),
+        progress: progressByVocabId.get(v.id)
       }))
     });
     
-    // Map vocabularies
+    // Map vocabularies - Korrigierte Verknüpfung
     const mappedUserVocabs: Vocabulary[] = userVocabs.map(vocab => ({
       id: vocab.id,
       english: vocab.english,
@@ -152,27 +161,15 @@ const loadData = async () => {
     }));
 
     const mappedDefaultVocabs: Vocabulary[] = defaultVocabs.map(vocab => {
-      const progress = userProgress.find(p => p.vocabulary_id === vocab.id);
+      // Verwende die Map für bessere Performance und korrekte Verknüpfung
+      const progress = progressByVocabId.get(vocab.id);
       
-      // Debug für die ersten 5 Vokabeln
-      if (defaultVocabs.indexOf(vocab) < 5) {
-        console.log(`🔧 Mapping vocab ${vocab.id}:`, {
-          english: vocab.english,
-          progress: progress ? {
-            box: progress.box,
-            times_correct: progress.times_correct,
-            times_incorrect: progress.times_incorrect,
-            next_review: progress.next_review
-          } : 'NO PROGRESS FOUND'
-        });
-      }
-      
-      return {
+      const result = {
         id: vocab.id,
         english: vocab.english,
         german: vocab.german,
         listId: vocab.list_id,
-        box: progress?.box ?? 0,  // Fallback auf 0 wenn kein Progress
+        box: progress?.box ?? 0,
         nextReview: progress?.next_review ? new Date(progress.next_review) : undefined,
         timesCorrect: progress?.times_correct ?? 0,
         timesIncorrect: progress?.times_incorrect ?? 0,
@@ -180,14 +177,31 @@ const loadData = async () => {
         createdAt: new Date(vocab.created_at),
         isDefaultVocab: true
       };
+
+      // Debug für problematische Vokabeln
+      if (progress && progress.box > 0) {
+        console.log(`✅ Found progress for vocab ${vocab.id}:`, {
+          english: vocab.english,
+          box: result.box,
+          timesCorrect: result.timesCorrect
+        });
+      }
+      
+      return result;
     });
     
-    // Zusätzliches Debug-Logging direkt nach dem Mapping:
-    console.log('📊 Vocabulary Mapping Summary:', {
+    // Detailliertes Debug-Logging nach dem Mapping
+    const vocabsWithProgress = mappedDefaultVocabs.filter(v => v.box > 0);
+    console.log('📊 Final Vocabulary Mapping Summary:', {
       userVocabs: mappedUserVocabs.length,
       defaultVocabs: mappedDefaultVocabs.length,
-      userProgressEntries: userProgress.length,
-      defaultVocabsWithProgress: mappedDefaultVocabs.filter(v => v.box > 0).length,
+      defaultVocabsWithProgress: vocabsWithProgress.length,
+      progressExamples: vocabsWithProgress.slice(0, 3).map(v => ({
+        id: v.id,
+        english: v.english,
+        box: v.box,
+        timesCorrect: v.timesCorrect
+      })),
       boxDistribution: {
         box0: mappedDefaultVocabs.filter(v => v.box === 0).length,
         box1: mappedDefaultVocabs.filter(v => v.box === 1).length,
@@ -197,28 +211,6 @@ const loadData = async () => {
         box5: mappedDefaultVocabs.filter(v => v.box === 5).length,
         box6: mappedDefaultVocabs.filter(v => v.box === 6).length,
       }
-    });
-
-    console.log('🔧 Default Vocabs Mapping Debug:', {
-      defaultVocabsFromDB: defaultVocabs.length,
-      userProgressEntries: userProgress.length,
-      sampleDefaultVocab: defaultVocabs[0] ? {
-        id: defaultVocabs[0].id,
-        english: defaultVocabs[0].english,
-        listId: defaultVocabs[0].list_id
-      } : 'No default vocabs',
-      sampleUserProgress: userProgress[0] ? {
-        vocabId: userProgress[0].vocabulary_id,
-        box: userProgress[0].box,
-        timesCorrect: userProgress[0].times_correct
-      } : 'No user progress',
-      mappedSample: mappedDefaultVocabs.slice(0, 3).map(v => ({
-        id: v.id,
-        english: v.english,
-        box: v.box,
-        timesCorrect: v.timesCorrect,
-        isDefault: v.isDefaultVocab
-      }))
     });
     
     // Update vocabularies (this will update the box counts)
@@ -278,9 +270,9 @@ const moveVocabularyToBox = async (vocabId: string, newBox: number, isCorrect: b
   let nextReview: Date | undefined;
 
   if (newBox > 0 && newBox <= 5) {
-    const intervalDays = BOX_INTERVALS[newBox]; // Annahme: BOX_INTERVALS enthält Tage
+    const intervalDays = BOX_INTERVALS[newBox];
     nextReview = new Date();
-    nextReview.setDate(nextReview.getDate() + intervalDays); // Richtige Methode für Tage
+    nextReview.setDate(nextReview.getDate() + intervalDays);
     
     console.log('⏰ Next review calculation:', {
       currentBox: newBox,
@@ -319,7 +311,16 @@ const moveVocabularyToBox = async (vocabId: string, newBox: number, isCorrect: b
           onConflict: 'user_id,vocabulary_id'
         });
 
-      if (error) throw error;
+      if (error) {
+        console.error('❌ Error updating default vocab progress:', error);
+        throw error;
+      }
+      
+      console.log('✅ Updated default vocab progress:', {
+        vocabId,
+        box: newBox,
+        timesCorrect: updatedVocab.timesCorrect
+      });
     } else {
       // Für User-Vokabeln: in vocabularies speichern
       const { error } = await supabase
@@ -720,7 +721,7 @@ throw error;
 
 return {
   vocabularies,
-  lists: getListsWithCorrectCounts(), // ← Hier die Änderung!
+  lists: getListsWithCorrectCounts(),
   loading,
   getRandomVocabularies,
   getVocabulariesForReview,
