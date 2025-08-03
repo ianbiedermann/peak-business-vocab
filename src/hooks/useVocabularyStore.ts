@@ -182,6 +182,23 @@ const loadData = async () => {
   }
 };
 
+// Füge diese Funktionen nach loadData hinzu
+const updateListCounts = () => {
+  setLists(prevLists => 
+    prevLists.map(list => ({
+      ...list,
+      vocabularyCount: vocabularies.filter(vocab => vocab.listId === list.id).length
+    }))
+  );
+};
+
+// useEffect um Listen-Counts zu aktualisieren wenn sich Vokabeln ändern
+useEffect(() => {
+  if (vocabularies.length > 0) {
+    updateListCounts();
+  }
+}, [vocabularies]);
+  
 // Optimierter useEffect mit Debouncing
 useEffect(() => {
   let timeoutId: NodeJS.Timeout;
@@ -394,21 +411,35 @@ totalTime: 0
 };
 
 const getAppStats = (): AppStats => {
-const today = new Date().toISOString().split('T')[0];
-const todayStats = stats.find(s => s.date === today);
-const activeVocabs = getActiveVocabularies();
+  const today = new Date().toISOString().split('T')[0];
+  const todayStats = stats.find(s => s.date === today);
+  const activeVocabs = getActiveVocabularies();
 
-return {
-totalVocabularies: activeVocabs.length,
-notStarted: activeVocabs.filter(v => v.box === 0).length,
-inProgress: activeVocabs.filter(v => v.box >= 1 && v.box <= 5).length,
-mastered: activeVocabs.filter(v => v.box === 6).length,
-dailyStats: stats,
-todayLearned: todayStats?.newLearned || 0,
-todayReviewed: todayStats?.reviewed || 0,
-activeLists: lists.filter(l => l.isActive).length,
-totalLists: lists.length
+  return {
+    totalVocabularies: activeVocabs.length,
+    notStarted: activeVocabs.filter(v => v.box === 0).length,
+    inProgress: activeVocabs.filter(v => v.box >= 1 && v.box <= 5).length,
+    mastered: activeVocabs.filter(v => v.box === 6).length,
+    dailyStats: stats,
+    todayLearned: todayStats?.newLearned || 0,
+    todayReviewed: todayStats?.reviewed || 0,
+    activeLists: lists.filter(l => l.isActive).length,
+    totalLists: lists.length
+  };
 };
+
+const getBoxStatsForActiveVocabularies = () => {
+  const activeVocabs = getActiveVocabularies();
+  
+  return {
+    box0: activeVocabs.filter(v => v.box === 0).length,
+    box1: activeVocabs.filter(v => v.box === 1).length,
+    box2: activeVocabs.filter(v => v.box === 2).length,
+    box3: activeVocabs.filter(v => v.box === 3).length,
+    box4: activeVocabs.filter(v => v.box === 4).length,
+    box5: activeVocabs.filter(v => v.box === 5).length,
+    box6: activeVocabs.filter(v => v.box === 6).length,
+  };
 };
 
 const getVocabulariesByBox = (box: number): Vocabulary[] => {
@@ -592,9 +623,9 @@ return {
   updateDailyStats,
   getAppStats,
   getVocabulariesByBox,
+  getBoxStatsForActiveVocabularies,
   uploadVocabularyList,
   toggleVocabularyList,
   deleteVocabularyList
-  // updateVocabularyProgress entfernt
 };
 }
