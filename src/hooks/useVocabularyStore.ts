@@ -85,11 +85,11 @@ const loadData = async () => {
     setLists(combinedLists);
     console.log('✅ Lists updated in UI');
 
-    // Identify active default lists
-    const activeDefaultListIds = combinedLists
-      .filter(list => list.isActive && !userLists.some(ul => ul.id === list.id))
+    // Load ALL default lists (not just active ones) so counts are correct
+    const allDefaultListIds = combinedLists
+      .filter(list => !userLists.some(ul => ul.id === list.id))
       .map(list => list.id);
-
+    
     // Parallel loading of vocabularies
     const [userVocabsResult, defaultVocabsResult] = await Promise.all([
       // Load user vocabularies
@@ -98,12 +98,12 @@ const loadData = async () => {
         .select('*')
         .eq('user_id', user.id),
       
-      // Load default vocabularies only for active lists
-      activeDefaultListIds.length > 0 
+      // Load ALL default vocabularies (so we can show correct counts)
+      allDefaultListIds.length > 0 
         ? supabase
             .from('default_vocabularies')
             .select('*')
-            .in('list_id', activeDefaultListIds)
+            .in('list_id', allDefaultListIds)
         : Promise.resolve({ data: [] })
     ]);
 
