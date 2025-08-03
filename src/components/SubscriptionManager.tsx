@@ -8,7 +8,7 @@ import { useToast } from '@/hooks/use-toast';
 import { Loader2, Crown, Settings } from 'lucide-react';
 
 export function SubscriptionManager() {
-  const { subscription, session, checkSubscription } = useAuth();
+  const { subscription, session } = useAuth(); // Removed checkSubscription
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
 
@@ -66,24 +66,7 @@ export function SubscriptionManager() {
     }
   };
 
-  const handleRefreshSubscription = async () => {
-    setLoading(true);
-    try {
-      await checkSubscription();
-      toast({
-        title: "Success",
-        description: "Subscription status refreshed.",
-      });
-    } catch (error) {
-      toast({
-        title: "Error",
-        description: "Failed to refresh subscription status.",
-        variant: "destructive",
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
+  // Remove the handleRefreshSubscription function entirely
 
   return (
     <Card className="w-full max-w-md">
@@ -136,15 +119,7 @@ export function SubscriptionManager() {
             </Button>
           )}
           
-          <Button 
-            onClick={handleRefreshSubscription} 
-            disabled={loading}
-            variant="ghost"
-            size="sm"
-          >
-            {loading && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}
-            Refresh Status
-          </Button>
+          {/* Remove this entire Button block */}
         </div>
       </CardContent>
     </Card>
