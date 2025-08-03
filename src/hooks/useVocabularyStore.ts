@@ -182,22 +182,6 @@ const loadData = async () => {
   }
 };
 
-// Füge diese Funktionen nach loadData hinzu
-const updateListCounts = () => {
-  setLists(prevLists => 
-    prevLists.map(list => ({
-      ...list,
-      vocabularyCount: vocabularies.filter(vocab => vocab.listId === list.id).length
-    }))
-  );
-};
-
-// useEffect um Listen-Counts zu aktualisieren wenn sich Vokabeln ändern
-useEffect(() => {
-  if (vocabularies.length > 0) {
-    updateListCounts();
-  }
-}, [vocabularies]);
   
 // Optimierter useEffect mit Debouncing
 useEffect(() => {
@@ -326,8 +310,22 @@ useEffect(() => {
 }, [user]);
 
 const getActiveVocabularies = (): Vocabulary[] => {
-const activeListIds = lists.filter(list => list.isActive).map(list => list.id);
-return vocabularies.filter(vocab => activeListIds.includes(vocab.listId));
+  const activeListIds = lists.filter(list => list.isActive).map(list => list.id);
+  const activeVocabs = vocabularies.filter(vocab => activeListIds.includes(vocab.listId));
+  
+  console.log('🔍 getActiveVocabularies Debug:', {
+    totalLists: lists.length,
+    activeLists: activeListIds.length,
+    activeListIds,
+    totalVocabs: vocabularies.length,
+    activeVocabs: activeVocabs.length,
+    vocabsByList: activeListIds.map(listId => ({
+      listId,
+      count: vocabularies.filter(v => v.listId === listId).length
+    }))
+  });
+  
+  return activeVocabs;
 };
 
 const getRandomVocabularies = (count: number = 5): Vocabulary[] => {
@@ -347,7 +345,16 @@ return vocab.nextReview <= now;
 });
 };
 
-
+const getListsWithCorrectCounts = (): VocabularyList[] => {
+  return lists.map(list => {
+    const vocabsInList = vocabularies.filter(vocab => vocab.listId === list.id);
+    return {
+      ...list,
+      vocabularyCount: vocabsInList.length
+    };
+  });
+};
+  
 const moveVocabulariesToBox = (vocabIds: string[], newBox: number) => {
 vocabIds.forEach(id => moveVocabularyToBox(id, newBox, true));
 };
@@ -613,10 +620,11 @@ throw error;
 
 return {
   vocabularies,
-  lists,
+  lists: getListsWithCorrectCounts(), // ← Hier die Änderung!
   loading,
   getRandomVocabularies,
   getVocabulariesForReview,
+  getActiveVocabularies,
   moveVocabularyToBox,
   moveVocabulariesToBox,
   resetVocabularyToBox1,
