@@ -159,12 +159,6 @@ export function useAuth() {
     return { error };
   };
 
-  // Manuelle Subscription-Refresh Funktion (für den Refresh Button)
-  const refreshSubscription = useCallback(async () => {
-    console.log('🔄 Manual subscription refresh requested');
-    setSubscriptionChecked(false); // Reset damit die Prüfung neu ausgeführt wird
-    await checkSubscription();
-  }, [checkSubscription]);
 
   return {
     user,
@@ -175,6 +169,5 @@ export function useAuth() {
     subscription,
     subscriptionLoading,
     subscriptionChecked,
-    checkSubscription: refreshSubscription // Für manuelle Refreshes
   };
 }
