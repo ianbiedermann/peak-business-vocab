@@ -157,6 +157,28 @@ const loadData = async () => {
       };
     });
 
+    console.log('🔧 Default Vocabs Mapping Debug:', {
+      defaultVocabsFromDB: defaultVocabs.length,
+      userProgressEntries: userProgress.length,
+      sampleDefaultVocab: defaultVocabs[0] ? {
+        id: defaultVocabs[0].id,
+        english: defaultVocabs[0].english,
+        listId: defaultVocabs[0].list_id
+      } : 'No default vocabs',
+      sampleUserProgress: userProgress[0] ? {
+        vocabId: userProgress[0].vocabulary_id,
+        box: userProgress[0].box,
+        timesCorrect: userProgress[0].times_correct
+      } : 'No user progress',
+      mappedSample: mappedDefaultVocabs.slice(0, 3).map(v => ({
+        id: v.id,
+        english: v.english,
+        box: v.box,
+        timesCorrect: v.timesCorrect,
+        isDefault: v.isDefaultVocab
+      }))
+    });
+    
     // Update vocabularies (this will update the box counts)
     const allVocabs = [...mappedUserVocabs, ...mappedDefaultVocabs];
     setVocabularies(allVocabs);
@@ -309,20 +331,56 @@ useEffect(() => {
   };
 }, [user]);
 
+// Erweitere getActiveVocabularies um detaillierteres Logging:
 const getActiveVocabularies = (): Vocabulary[] => {
   const activeListIds = lists.filter(list => list.isActive).map(list => list.id);
   const activeVocabs = vocabularies.filter(vocab => activeListIds.includes(vocab.listId));
   
-  console.log('🔍 getActiveVocabularies Debug:', {
+  // Detaillierte Box-Analyse für aktive Vokabeln
+  const boxDistribution = {
+    box0: activeVocabs.filter(v => v.box === 0).length,
+    box1: activeVocabs.filter(v => v.box === 1).length,
+    box2: activeVocabs.filter(v => v.box === 2).length,
+    box3: activeVocabs.filter(v => v.box === 3).length,
+    box4: activeVocabs.filter(v => v.box === 4).length,
+    box5: activeVocabs.filter(v => v.box === 5).length,
+    box6: activeVocabs.filter(v => v.box === 6).length,
+  };
+
+  // Sample der ersten 10 aktiven Vokabeln für Detail-Debug
+  const sampleVocabs = activeVocabs.slice(0, 10).map(v => ({
+    id: v.id,
+    english: v.english,
+    box: v.box,
+    isDefault: v.isDefaultVocab,
+    listId: v.listId,
+    timesCorrect: v.timesCorrect
+  }));
+
+  console.log('🔍 getActiveVocabularies DETAILED Debug:', {
     totalLists: lists.length,
     activeLists: activeListIds.length,
     activeListIds,
     totalVocabs: vocabularies.length,
     activeVocabs: activeVocabs.length,
-    vocabsByList: activeListIds.map(listId => ({
-      listId,
-      count: vocabularies.filter(v => v.listId === listId).length
-    }))
+    boxDistribution,
+    sampleVocabs,
+    vocabsByList: activeListIds.map(listId => {
+      const listVocabs = vocabularies.filter(v => v.listId === listId);
+      return {
+        listId,
+        totalCount: listVocabs.length,
+        boxDistribution: {
+          box0: listVocabs.filter(v => v.box === 0).length,
+          box1: listVocabs.filter(v => v.box === 1).length,
+          box2: listVocabs.filter(v => v.box === 2).length,
+          box3: listVocabs.filter(v => v.box === 3).length,
+          box4: listVocabs.filter(v => v.box === 4).length,
+          box5: listVocabs.filter(v => v.box === 5).length,
+          box6: listVocabs.filter(v => v.box === 6).length,
+        }
+      };
+    })
   });
   
   return activeVocabs;
