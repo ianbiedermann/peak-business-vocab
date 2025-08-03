@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { User, Session } from '@supabase/supabase-js';
 import { supabase } from '@/integrations/supabase/client';
 
@@ -13,14 +13,22 @@ export function useAuth() {
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
   const [subscription, setSubscription] = useState<SubscriptionData>({ subscribed: false });
+  const [subscriptionLoading, setSubscriptionLoading] = useState(false);
+  const [subscriptionChecked, setSubscriptionChecked] = useState(false);
 
-  // Einfache Subscription-Abfrage direkt aus Supabase
-  const checkSubscription = async () => {
+  // Memoized subscription check function
+  const checkSubscription = useCallback(async () => {
     if (!user) {
       console.log('❌ No user available for subscription check');
       return;
     }
+
+    if (subscriptionLoading) {
+      console.log('⏳ Subscription check already in progress, skipping...');
+      return;
+    }
     
+    setSubscriptionLoading(true);
     console.log('🔄 Checking subscription status from database...');
     
     try {
@@ -40,6 +48,7 @@ export function useAuth() {
           console.error('❌ Database error:', error.message);
           setSubscription({ subscribed: false });
         }
+        setSubscriptionChecked(true);
         return;
       }
 
@@ -66,16 +75,38 @@ export function useAuth() {
         });
         
         setSubscription(subscriptionData);
+        setSubscriptionChecked(true);
       } else {
         console.log('ℹ️ No subscription data found');
         setSubscription({ subscribed: false });
+        setSubscriptionChecked(true);
       }
     } catch (error) {
       console.error('❌ Error checking subscription:', error);
       // Bei Fehler auf false setzen
       setSubscription({ subscribed: false });
+      setSubscriptionChecked(true);
+    } finally {
+      setSubscriptionLoading(false);
     }
-  };
+  }, [user, subscriptionLoading]);
+
+  // Nur einmalige Subscription-Prüfung nach Login
+  useEffect(() => {
+    // Nur prüfen wenn:
+    // 1. User ist eingeloggt
+    // 2. Subscription wurde noch nicht geprüft
+    // 3. Gerade kein Check läuft
+    if (user && !subscriptionChecked && !subscriptionLoading) {
+      console.log('👤 User available and subscription not checked yet, checking now...');
+      // Kleine Verzögerung um andere Auth-Prozesse abzuwarten
+      const timeoutId = setTimeout(() => {
+        checkSubscription();
+      }, 1500);
+
+      return () => clearTimeout(timeoutId);
+    }
+  }, [user, subscriptionChecked, subscriptionLoading, checkSubscription]);
 
   useEffect(() => {
     console.log('🚀 Initializing auth...');
@@ -89,16 +120,17 @@ export function useAuth() {
         setUser(session?.user ?? null);
         setLoading(false);
         
-        if (event === 'SIGNED_IN' && session?.user) {
-          // Nur bei SIGNED_IN Event, nicht bei jedem Update
-          console.log('👤 User signed in, checking subscription...');
-          setTimeout(async () => {
-            await checkSubscription();
-          }, 1000); // Längere Verzögerung um andere Lade-Prozesse nicht zu stören
-        } else if (event === 'SIGNED_OUT') {
-          // User logged out
+        if (event === 'SIGNED_OUT') {
+          // User logged out - reset everything
           console.log('👋 User signed out');
           setSubscription({ subscribed: false });
+          setSubscriptionChecked(false);
+          setSubscriptionLoading(false);
+        } else if (event === 'SIGNED_IN') {
+          // User signed in - reset subscription state
+          console.log('👋 User signed in - resetting subscription state');
+          setSubscriptionChecked(false);
+          setSubscriptionLoading(false);
         }
       }
     );
@@ -110,18 +142,10 @@ export function useAuth() {
       setSession(session);
       setUser(session?.user ?? null);
       setLoading(false);
-      
-      if (session?.user) {
-        // Für bestehende Session, lade Subscription nach einer Verzögerung
-        console.log('📊 Existing session found, will check subscription...');
-        setTimeout(async () => {
-          await checkSubscription();
-        }, 2000); // Noch längere Verzögerung für bestehende Sessions
-      }
     });
 
     return () => authSubscription.unsubscribe();
-  }, []); // ← KEINE Abhängigkeiten! Läuft nur einmal beim Mount
+  }, []); // Läuft nur einmal beim Mount
 
   const signOut = async () => {
     const { error } = await supabase.auth.signOut();
@@ -129,9 +153,18 @@ export function useAuth() {
       setUser(null);
       setSession(null);
       setSubscription({ subscribed: false });
+      setSubscriptionChecked(false);
+      setSubscriptionLoading(false);
     }
     return { error };
   };
+
+  // Manuelle Subscription-Refresh Funktion (für den Refresh Button)
+  const refreshSubscription = useCallback(async () => {
+    console.log('🔄 Manual subscription refresh requested');
+    setSubscriptionChecked(false); // Reset damit die Prüfung neu ausgeführt wird
+    await checkSubscription();
+  }, [checkSubscription]);
 
   return {
     user,
@@ -140,6 +173,8 @@ export function useAuth() {
     signOut,
     isAuthenticated: !!user,
     subscription,
-    checkSubscription
+    subscriptionLoading,
+    subscriptionChecked,
+    checkSubscription: refreshSubscription // Für manuelle Refreshes
   };
 }
