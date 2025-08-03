@@ -145,73 +145,86 @@ setLoading(false);
 }
 };
 
-const updateVocabularyProgress = async (vocabulary: Vocabulary, isCorrect: boolean) => {
-    if (!user) return;
 
-    const newBox = isCorrect 
-      ? Math.min(vocabulary.box + 1, BOX_INTERVALS.length - 1)
-      : Math.max(vocabulary.box - 1, 0);
+const moveVocabularyToBox = async (vocabId: string, newBox: number, isCorrect: boolean) => {
+  if (!user) return;
 
-    const nextReviewDate = new Date();
-    nextReviewDate.setDate(nextReviewDate.getDate() + BOX_INTERVALS[newBox]);
+  const now = new Date();
+  let nextReview: Date | undefined;
 
-    const updatedVocab = {
-      ...vocabulary,
-      box: newBox,
-      nextReview: nextReviewDate,
-      timesCorrect: vocabulary.timesCorrect + (isCorrect ? 1 : 0),
-      timesIncorrect: vocabulary.timesIncorrect + (isCorrect ? 0 : 1),
-      lastReviewed: new Date()
-    };
+  if (newBox > 0 && newBox <= 5) {
+    const intervalDays = BOX_INTERVALS[newBox]; // Annahme: BOX_INTERVALS enthält Tage
+    nextReview = new Date();
+    nextReview.setDate(nextReview.getDate() + intervalDays); // Richtige Methode für Tage
+    
+    console.log('⏰ Next review calculation:', {
+      currentBox: newBox,
+      intervalDays,
+      nextReview: nextReview.toISOString()
+    });
+  }
 
-    try {
-      if (vocabulary.isDefaultVocab) {
-        // Für Standard-Vokabeln: in user_vocabulary_progress speichern
-        const { error } = await supabase
-          .from('user_vocabulary_progress')
-          .upsert({
-            user_id: user.id,
-            vocabulary_id: vocabulary.id,
-            box: newBox,
-            next_review: nextReviewDate.toISOString(),
-            times_correct: updatedVocab.timesCorrect,
-            times_incorrect: updatedVocab.timesIncorrect,
-            last_reviewed: new Date().toISOString(),
-            updated_at: new Date().toISOString()
-          }, {
-            onConflict: 'user_id,vocabulary_id'
-          });
+  const vocab = vocabularies.find(v => v.id === vocabId);
+  if (!vocab) return;
 
-        if (error) throw error;
-      } else {
-        // Für User-Vokabeln: in vocabularies speichern
-        const { error } = await supabase
-          .from('vocabularies')
-          .update({
-            box: newBox,
-            next_review: nextReviewDate.toISOString(),
-            times_correct: updatedVocab.timesCorrect,
-            times_incorrect: updatedVocab.timesIncorrect,
-            last_reviewed: new Date().toISOString()
-          })
-          .eq('id', vocabulary.id)
-          .eq('user_id', user.id);
-
-        if (error) throw error;
-      }
-
-      // Lokalen State aktualisieren
-      setVocabularies(prev => 
-        prev.map(v => v.id === vocabulary.id ? updatedVocab : v)
-      );
-
-      return updatedVocab;
-    } catch (error) {
-      console.error('Error updating vocabulary progress:', error);
-      throw error;
-    }
+  const updatedVocab = {
+    ...vocab,
+    box: newBox,
+    timesCorrect: isCorrect ? vocab.timesCorrect + 1 : vocab.timesCorrect,
+    timesIncorrect: !isCorrect ? vocab.timesIncorrect + 1 : vocab.timesIncorrect,
+    lastReviewed: now,
+    nextReview
   };
 
+  try {
+    if (vocab.isDefaultVocab) {
+      // Für Standard-Vokabeln: in user_vocabulary_progress speichern
+      const { error } = await supabase
+        .from('user_vocabulary_progress')
+        .upsert({
+          user_id: user.id,
+          vocabulary_id: vocabId,
+          box: newBox,
+          next_review: nextReview?.toISOString(),
+          times_correct: updatedVocab.timesCorrect,
+          times_incorrect: updatedVocab.timesIncorrect,
+          last_reviewed: now.toISOString(),
+          updated_at: now.toISOString()
+        }, {
+          onConflict: 'user_id,vocabulary_id'
+        });
+
+      if (error) throw error;
+    } else {
+      // Für User-Vokabeln: in vocabularies speichern
+      const { error } = await supabase
+        .from('vocabularies')
+        .update({
+          box: newBox,
+          times_correct: updatedVocab.timesCorrect,
+          times_incorrect: updatedVocab.timesIncorrect,
+          last_reviewed: now.toISOString(),
+          next_review: nextReview?.toISOString()
+        })
+        .eq('id', vocabId)
+        .eq('user_id', user.id);
+
+      if (error) throw error;
+    }
+
+    // Update local state
+    setVocabularies(prev => prev.map(vocabulary => {
+      if (vocabulary.id === vocabId) {
+        return updatedVocab;
+      }
+      return vocabulary;
+    }));
+
+  } catch (error) {
+    console.error('Error updating vocabulary:', error);
+    throw error;
+  }
+};
 
 // Initialize data on user login
 useEffect(() => {
