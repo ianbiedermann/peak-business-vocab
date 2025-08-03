@@ -89,14 +89,15 @@ export function useAuth() {
         setUser(session?.user ?? null);
         setLoading(false);
         
-        if (session?.user) {
-          // Lade Subscription-Status sobald User verfügbar ist
-          // Kurze Verzögerung damit User State gesetzt ist
+        if (event === 'SIGNED_IN' && session?.user) {
+          // Nur bei SIGNED_IN Event, nicht bei jedem Update
+          console.log('👤 User signed in, checking subscription...');
           setTimeout(async () => {
             await checkSubscription();
-          }, 100);
-        } else {
+          }, 1000); // Längere Verzögerung um andere Lade-Prozesse nicht zu stören
+        } else if (event === 'SIGNED_OUT') {
           // User logged out
+          console.log('👋 User signed out');
           setSubscription({ subscribed: false });
         }
       }
@@ -111,15 +112,16 @@ export function useAuth() {
       setLoading(false);
       
       if (session?.user) {
-        // Lade Subscription-Status für bestehende Session
+        // Für bestehende Session, lade Subscription nach einer Verzögerung
+        console.log('📊 Existing session found, will check subscription...');
         setTimeout(async () => {
           await checkSubscription();
-        }, 100);
+        }, 2000); // Noch längere Verzögerung für bestehende Sessions
       }
     });
 
     return () => authSubscription.unsubscribe();
-  }, [user]); // Abhängigkeit von user hinzufügen
+  }, []); // ← KEINE Abhängigkeiten! Läuft nur einmal beim Mount
 
   const signOut = async () => {
     const { error } = await supabase.auth.signOut();
