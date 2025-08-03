@@ -20,8 +20,7 @@ supabase
     name: list.name,
     isActive: preference?.is_active ?? true,
     uploadedAt: new Date(list.created_at),
-    vocabularyCount: list.vocabulary_count,
-    premiumRequired: list.premium_required || false
+    vocabularyCount: list.vocabulary_count
   };
 })
 
