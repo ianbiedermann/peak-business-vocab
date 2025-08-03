@@ -120,15 +120,52 @@ const loadData = async () => {
       sampleIds: allDefaultVocabIds.slice(0, 5)
     });
 
-    const userProgressResult = allDefaultVocabIds.length > 0 
-      ? await supabase
-          .from('user_vocabulary_progress')
-          .select('*')
-          .eq('user_id', user.id)
-          .in('vocabulary_id', allDefaultVocabIds)
-      : { data: [] };
+    // CORS-Fix: Lade Progress-Daten in kleineren Batches um große URLs zu vermeiden
+    let userProgress: any[] = [];
+    
+    if (allDefaultVocabIds.length > 0) {
+      try {
+        // Split IDs into smaller chunks to avoid URL length limits and CORS issues
+        const BATCH_SIZE = 100; // Reduzierte Batch-Größe
+        const batches = [];
+        
+        for (let i = 0; i < allDefaultVocabIds.length; i += BATCH_SIZE) {
+          batches.push(allDefaultVocabIds.slice(i, i + BATCH_SIZE));
+        }
+        
+        console.log(`🔄 Loading progress in ${batches.length} batches of max ${BATCH_SIZE} items each`);
+        
+        // Load all batches in parallel
+        const batchResults = await Promise.all(
+          batches.map(async (batch, index) => {
+            console.log(`📦 Loading batch ${index + 1}/${batches.length} with ${batch.length} items`);
+            
+            const result = await supabase
+              .from('user_vocabulary_progress')
+              .select('*')
+              .eq('user_id', user.id)
+              .in('vocabulary_id', batch);
+              
+            if (result.error) {
+              console.error(`❌ Error in batch ${index + 1}:`, result.error);
+              return [];
+            }
+            
+            console.log(`✅ Batch ${index + 1} loaded: ${result.data?.length || 0} progress entries`);
+            return result.data || [];
+          })
+        );
+        
+        // Combine all batch results
+        userProgress = batchResults.flat();
+        console.log(`🎯 Total progress entries loaded: ${userProgress.length}`);
+        
+      } catch (error) {
+        console.error('❌ Error loading user progress in batches:', error);
+        userProgress = [];
+      }
+    }
 
-    const userProgress = userProgressResult.data || [];
     console.log('✅ User progress loaded:', {
       progressEntries: userProgress.length,
       vocabsWithProgress: userProgress.filter(p => p.box > 0).length
