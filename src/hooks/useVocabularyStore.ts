@@ -10,140 +10,200 @@ const [lists, setLists] = useState<VocabularyList[]>([]);
 const [loading, setLoading] = useState(true);
 const { user } = useAuth();
 
-// Load data from Supabase
+// Optimierte loadData Funktion
 const loadData = async () => {
-if (!user) return;
+  if (!user) return;
 
-setLoading(true);
-try {
-// Load user vocabulary lists
-const { data: userLists } = await supabase
-.from('vocabulary_lists')
-.select('*')
-.eq('user_id', user.id)
-.order('created_at', { ascending: false });
+  // Prevent multiple simultaneous loads
+  if (loading) {
+    console.log('⚠️ loadData already running, skipping...');
+    return;
+  }
 
-// Load default vocabulary lists
-const { data: defaultLists } = await supabase
-.from('default_vocabulary_lists')
-.select('*')
-.order('created_at', { ascending: false });
-
-// Load user preferences for default lists
-const { data: userPreferences } = await supabase
-.from('user_list_preferences')
-.select('*')
-.eq('user_id', user.id);
-
-// Combine user lists and default lists with preferences
-const combinedLists: VocabularyList[] = [
-...(userLists || []).map(list => ({
-id: list.id,
-name: list.name,
-isActive: list.is_active,
-uploadedAt: new Date(list.uploaded_at),
-vocabularyCount: list.vocabulary_count
-})),
-...(defaultLists || []).map(list => {
-const preference = userPreferences?.find(p => p.list_id === list.id);
-return {
-id: list.id,
-name: list.name,
-isActive: preference?.is_active ?? true,
-uploadedAt: new Date(list.created_at),
-vocabularyCount: list.vocabulary_count
-};
-})
-];
-
-setLists(combinedLists);
-
-// Load user vocabularies
-const { data: userVocabs } = await supabase
-  .from('vocabularies')
-  .select('*')
-  .eq('user_id', user.id);
-
-// Aktive Default-Listen identifizieren
-const activeDefaultListIds = combinedLists
-  .filter(list => list.isActive && !(userLists || []).some(ul => ul.id === list.id))
-  .map(list => list.id);
-
-// Standard-Vokabeln laden
-const { data: defaultVocabs } = await supabase
-  .from('default_vocabularies')
-  .select('*')
-  .in('list_id', activeDefaultListIds);
-
-// User-Fortschritt für Standard-Vokabeln laden
-const defaultVocabIds = (defaultVocabs || []).map(v => v.id);
-const { data: userProgress } = await supabase
-  .from('user_vocabulary_progress')
-  .select('*')
-  .eq('user_id', user.id)
-  .in('vocabulary_id', defaultVocabIds);
-
-// User-Vokabeln mappen
-const mappedUserVocabs: Vocabulary[] = (userVocabs || []).map(vocab => ({
-  id: vocab.id,
-  english: vocab.english,
-  german: vocab.german,
-  listId: vocab.list_id,
-  box: vocab.box,
-  nextReview: vocab.next_review ? new Date(vocab.next_review) : undefined,
-  timesCorrect: vocab.times_correct,
-  timesIncorrect: vocab.times_incorrect,
-  lastReviewed: vocab.last_reviewed ? new Date(vocab.last_reviewed) : undefined,
-  createdAt: new Date(vocab.created_at),
-  isDefaultVocab: false
-}));
-
-// Standard-Vokabeln mit User-Fortschritt kombinieren
-const mappedDefaultVocabs: Vocabulary[] = (defaultVocabs || []).map(vocab => {
-  const progress = userProgress?.find(p => p.vocabulary_id === vocab.id);
+  setLoading(true);
+  console.log('🔄 Starting loadData...');
   
-  return {
-    id: vocab.id,
-    english: vocab.english,
-    german: vocab.german,
-    listId: vocab.list_id,
-    box: progress?.box || 0,
-    nextReview: progress?.next_review ? new Date(progress.next_review) : undefined,
-    timesCorrect: progress?.times_correct || 0,
-    timesIncorrect: progress?.times_incorrect || 0,
-    lastReviewed: progress?.last_reviewed ? new Date(progress.last_reviewed) : undefined,
-    createdAt: new Date(vocab.created_at),
-    isDefaultVocab: true
-  };
-});
+  try {
+    // Parallel loading of all basic data
+    const [userListsResult, defaultListsResult, userPreferencesResult, learningStatsResult] = await Promise.all([
+      // Load user vocabulary lists
+      supabase
+        .from('vocabulary_lists')
+        .select('*')
+        .eq('user_id', user.id)
+        .order('created_at', { ascending: false }),
+      
+      // Load default vocabulary lists
+      supabase
+        .from('default_vocabulary_lists')
+        .select('*')
+        .order('created_at', { ascending: false }),
+      
+      // Load user preferences for default lists
+      supabase
+        .from('user_list_preferences')
+        .select('*')
+        .eq('user_id', user.id),
+      
+      // Load learning stats
+      supabase
+        .from('learning_stats')
+        .select('*')
+        .eq('user_id', user.id)
+        .order('date', { ascending: false })
+    ]);
 
-// Alle Vokabeln kombinieren
-const allVocabs = [...mappedUserVocabs, ...mappedDefaultVocabs];
-setVocabularies(allVocabs);
+    console.log('✅ Basic data loaded');
 
-console.log(`Geladene Vokabeln: ${allVocabs.length} (User: ${mappedUserVocabs.length}, Standard: ${mappedDefaultVocabs.length})`);
+    // Process lists immediately
+    const userLists = userListsResult.data || [];
+    const defaultLists = defaultListsResult.data || [];
+    const userPreferences = userPreferencesResult.data || [];
 
-// Load learning stats
-const { data: learningStats } = await supabase
-.from('learning_stats')
-.select('*')
-.eq('user_id', user.id)
-.order('date', { ascending: false });
+    // Combine lists
+    const combinedLists: VocabularyList[] = [
+      ...userLists.map(list => ({
+        id: list.id,
+        name: list.name,
+        isActive: list.is_active,
+        uploadedAt: new Date(list.uploaded_at),
+        vocabularyCount: list.vocabulary_count
+      })),
+      ...defaultLists.map(list => {
+        const preference = userPreferences.find(p => p.list_id === list.id);
+        return {
+          id: list.id,
+          name: list.name,
+          isActive: preference?.is_active ?? true,
+          uploadedAt: new Date(list.created_at),
+          vocabularyCount: list.vocabulary_count
+        };
+      })
+    ];
 
-const mappedStats: LearningStats[] = (learningStats || []).map(stat => ({
-date: stat.date,
-newLearned: stat.new_learned,
-reviewed: stat.reviewed,
-totalTime: stat.total_time
-}));
+    // Update lists first (so UI shows correct list counts immediately)
+    setLists(combinedLists);
+    console.log('✅ Lists updated in UI');
 
-setStats(mappedStats);
-} catch (error) {
-console.error('Error loading data:', error);
-} finally {
-setLoading(false);
-}
+    // Identify active default lists
+    const activeDefaultListIds = combinedLists
+      .filter(list => list.isActive && !userLists.some(ul => ul.id === list.id))
+      .map(list => list.id);
+
+    // Parallel loading of vocabularies
+    const [userVocabsResult, defaultVocabsResult] = await Promise.all([
+      // Load user vocabularies
+      supabase
+        .from('vocabularies')
+        .select('*')
+        .eq('user_id', user.id),
+      
+      // Load default vocabularies only for active lists
+      activeDefaultListIds.length > 0 
+        ? supabase
+            .from('default_vocabularies')
+            .select('*')
+            .in('list_id', activeDefaultListIds)
+        : Promise.resolve({ data: [] })
+    ]);
+
+    console.log('✅ Vocabularies loaded');
+
+    const userVocabs = userVocabsResult.data || [];
+    const defaultVocabs = defaultVocabsResult.data || [];
+
+    // Load user progress for default vocabularies
+    const defaultVocabIds = defaultVocabs.map(v => v.id);
+    const userProgressResult = defaultVocabIds.length > 0 
+      ? await supabase
+          .from('user_vocabulary_progress')
+          .select('*')
+          .eq('user_id', user.id)
+          .in('vocabulary_id', defaultVocabIds)
+      : { data: [] };
+
+    const userProgress = userProgressResult.data || [];
+    console.log('✅ User progress loaded');
+
+    // Map vocabularies
+    const mappedUserVocabs: Vocabulary[] = userVocabs.map(vocab => ({
+      id: vocab.id,
+      english: vocab.english,
+      german: vocab.german,
+      listId: vocab.list_id,
+      box: vocab.box,
+      nextReview: vocab.next_review ? new Date(vocab.next_review) : undefined,
+      timesCorrect: vocab.times_correct,
+      timesIncorrect: vocab.times_incorrect,
+      lastReviewed: vocab.last_reviewed ? new Date(vocab.last_reviewed) : undefined,
+      createdAt: new Date(vocab.created_at),
+      isDefaultVocab: false
+    }));
+
+    const mappedDefaultVocabs: Vocabulary[] = defaultVocabs.map(vocab => {
+      const progress = userProgress.find(p => p.vocabulary_id === vocab.id);
+      return {
+        id: vocab.id,
+        english: vocab.english,
+        german: vocab.german,
+        listId: vocab.list_id,
+        box: progress?.box || 0,
+        nextReview: progress?.next_review ? new Date(progress.next_review) : undefined,
+        timesCorrect: progress?.times_correct || 0,
+        timesIncorrect: progress?.times_incorrect || 0,
+        lastReviewed: progress?.last_reviewed ? new Date(progress.last_reviewed) : undefined,
+        createdAt: new Date(vocab.created_at),
+        isDefaultVocab: true
+      };
+    });
+
+    // Update vocabularies (this will update the box counts)
+    const allVocabs = [...mappedUserVocabs, ...mappedDefaultVocabs];
+    setVocabularies(allVocabs);
+
+    console.log(`✅ Final update: ${allVocabs.length} vocabularies (User: ${mappedUserVocabs.length}, Default: ${mappedDefaultVocabs.length})`);
+
+    // Update stats
+    const mappedStats: LearningStats[] = (learningStatsResult.data || []).map(stat => ({
+      date: stat.date,
+      newLearned: stat.new_learned,
+      reviewed: stat.reviewed,
+      totalTime: stat.total_time
+    }));
+
+    setStats(mappedStats);
+    console.log('✅ Stats updated');
+
+  } catch (error) {
+    console.error('❌ Error loading data:', error);
+  } finally {
+    setLoading(false);
+    console.log('✅ loadData completed');
+  }
 };
+
+// Optimierter useEffect mit Debouncing
+useEffect(() => {
+  let timeoutId: NodeJS.Timeout;
+  
+  if (user) {
+    // Debounce to prevent multiple rapid calls
+    timeoutId = setTimeout(() => {
+      loadData();
+    }, 100);
+  } else {
+    setVocabularies([]);
+    setStats([]);
+    setLists([]);
+    setLoading(false);
+  }
+
+  return () => {
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+  };
+}, [user]);
 
 
 const moveVocabularyToBox = async (vocabId: string, newBox: number, isCorrect: boolean) => {
@@ -228,14 +288,24 @@ const moveVocabularyToBox = async (vocabId: string, newBox: number, isCorrect: b
 
 // Initialize data on user login
 useEffect(() => {
-if (user) {
-loadData();
-} else {
-setVocabularies([]);
-setStats([]);
-setLists([]);
-setLoading(false);
-}
+  let timeoutId: NodeJS.Timeout;
+  
+  if (user) {
+    timeoutId = setTimeout(() => {
+      loadData();
+    }, 100);
+  } else {
+    setVocabularies([]);
+    setStats([]);
+    setLists([]);
+    setLoading(false);
+  }
+
+  return () => {
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+  };
 }, [user]);
 
 const getActiveVocabularies = (): Vocabulary[] => {
