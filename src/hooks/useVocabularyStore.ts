@@ -248,47 +248,76 @@ return vocab.nextReview <= now;
 };
 
 const moveVocabularyToBox = async (vocabId: string, newBox: number, isCorrect: boolean) => {
-if (!user) return;
+  if (!user) return;
 
-const now = new Date();
-let nextReview: Date | undefined;
+  const now = new Date();
+  let nextReview: Date | undefined;
 
-if (newBox > 0 && newBox <= 5) {
-const interval = BOX_INTERVALS[newBox as keyof typeof BOX_INTERVALS];
-nextReview = new Date(now.getTime() + interval);
-}
+  if (newBox > 0 && newBox <= 5) {
+    const interval = BOX_INTERVALS[newBox];
+    nextReview = new Date(now.getTime() + interval * 24 * 60 * 60 * 1000); 
+  }
 
-// Get current vocabulary to update counters correctly
-const vocab = vocabularies.find(v => v.id === vocabId);
-if (!vocab) return;
+  const vocab = vocabularies.find(v => v.id === vocabId);
+  if (!vocab) return;
 
-// Update in Supabase
-await supabase
-.from('vocabularies')
-.update({
-box: newBox,
-times_correct: isCorrect ? vocab.timesCorrect + 1 : vocab.timesCorrect,
-times_incorrect: !isCorrect ? vocab.timesIncorrect + 1 : vocab.timesIncorrect,
-last_reviewed: now.toISOString(),
-next_review: nextReview?.toISOString()
-})
-.eq('id', vocabId)
-.eq('user_id', user.id);
+  const updatedVocab = {
+    ...vocab,
+    box: newBox,
+    timesCorrect: isCorrect ? vocab.timesCorrect + 1 : vocab.timesCorrect,
+    timesIncorrect: !isCorrect ? vocab.timesIncorrect + 1 : vocab.timesIncorrect,
+    lastReviewed: now,
+    nextReview
+  };
 
-// Update local state
-setVocabularies(prev => prev.map(vocab => {
-if (vocab.id === vocabId) {
-return {
-...vocab,
-box: newBox,
-timesCorrect: isCorrect ? vocab.timesCorrect + 1 : vocab.timesCorrect,
-timesIncorrect: !isCorrect ? vocab.timesIncorrect + 1 : vocab.timesIncorrect,
-lastReviewed: now,
-nextReview
-};
-}
-return vocab;
-}));
+  try {
+    if (vocab.isDefaultVocab) {
+      // Für Standard-Vokabeln: in user_vocabulary_progress speichern
+      const { error } = await supabase
+        .from('user_vocabulary_progress')
+        .upsert({
+          user_id: user.id,
+          vocabulary_id: vocabId,
+          box: newBox,
+          next_review: nextReview?.toISOString(),
+          times_correct: updatedVocab.timesCorrect,
+          times_incorrect: updatedVocab.timesIncorrect,
+          last_reviewed: now.toISOString(),
+          updated_at: now.toISOString()
+        }, {
+          onConflict: 'user_id,vocabulary_id'
+        });
+
+      if (error) throw error;
+    } else {
+      // Für User-Vokabeln: in vocabularies speichern
+      const { error } = await supabase
+        .from('vocabularies')
+        .update({
+          box: newBox,
+          times_correct: updatedVocab.timesCorrect,
+          times_incorrect: updatedVocab.timesIncorrect,
+          last_reviewed: now.toISOString(),
+          next_review: nextReview?.toISOString()
+        })
+        .eq('id', vocabId)
+        .eq('user_id', user.id);
+
+      if (error) throw error;
+    }
+
+    // Update local state
+    setVocabularies(prev => prev.map(vocabulary => {
+      if (vocabulary.id === vocabId) {
+        return updatedVocab;
+      }
+      return vocabulary;
+    }));
+
+  } catch (error) {
+    console.error('Error updating vocabulary:', error);
+    throw error;
+  }
 };
 
 const moveVocabulariesToBox = (vocabIds: string[], newBox: number) => {
