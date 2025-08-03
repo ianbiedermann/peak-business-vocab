@@ -125,6 +125,17 @@ const loadData = async () => {
     const userProgress = userProgressResult.data || [];
     console.log('✅ User progress loaded');
 
+    console.log('🔍 User Progress Debug:', {
+      defaultVocabIds: defaultVocabIds.length,
+      sampleDefaultVocabIds: defaultVocabIds.slice(0, 5),
+      userProgressEntries: userProgress.length,
+      sampleUserProgress: userProgress.slice(0, 5).map(p => ({
+        vocabId: p.vocabulary_id,
+        box: p.box,
+        timesCorrect: p.times_correct
+      }))
+    });
+    
     // Map vocabularies
     const mappedUserVocabs: Vocabulary[] = userVocabs.map(vocab => ({
       id: vocab.id,
@@ -142,19 +153,50 @@ const loadData = async () => {
 
     const mappedDefaultVocabs: Vocabulary[] = defaultVocabs.map(vocab => {
       const progress = userProgress.find(p => p.vocabulary_id === vocab.id);
+      
+      // Debug für die ersten 5 Vokabeln
+      if (defaultVocabs.indexOf(vocab) < 5) {
+        console.log(`🔧 Mapping vocab ${vocab.id}:`, {
+          english: vocab.english,
+          progress: progress ? {
+            box: progress.box,
+            times_correct: progress.times_correct,
+            times_incorrect: progress.times_incorrect,
+            next_review: progress.next_review
+          } : 'NO PROGRESS FOUND'
+        });
+      }
+      
       return {
         id: vocab.id,
         english: vocab.english,
         german: vocab.german,
         listId: vocab.list_id,
-        box: progress?.box || 0,
+        box: progress?.box ?? 0,  // Fallback auf 0 wenn kein Progress
         nextReview: progress?.next_review ? new Date(progress.next_review) : undefined,
-        timesCorrect: progress?.times_correct || 0,
-        timesIncorrect: progress?.times_incorrect || 0,
+        timesCorrect: progress?.times_correct ?? 0,
+        timesIncorrect: progress?.times_incorrect ?? 0,
         lastReviewed: progress?.last_reviewed ? new Date(progress.last_reviewed) : undefined,
         createdAt: new Date(vocab.created_at),
         isDefaultVocab: true
       };
+    });
+    
+    // Zusätzliches Debug-Logging direkt nach dem Mapping:
+    console.log('📊 Vocabulary Mapping Summary:', {
+      userVocabs: mappedUserVocabs.length,
+      defaultVocabs: mappedDefaultVocabs.length,
+      userProgressEntries: userProgress.length,
+      defaultVocabsWithProgress: mappedDefaultVocabs.filter(v => v.box > 0).length,
+      boxDistribution: {
+        box0: mappedDefaultVocabs.filter(v => v.box === 0).length,
+        box1: mappedDefaultVocabs.filter(v => v.box === 1).length,
+        box2: mappedDefaultVocabs.filter(v => v.box === 2).length,
+        box3: mappedDefaultVocabs.filter(v => v.box === 3).length,
+        box4: mappedDefaultVocabs.filter(v => v.box === 4).length,
+        box5: mappedDefaultVocabs.filter(v => v.box === 5).length,
+        box6: mappedDefaultVocabs.filter(v => v.box === 6).length,
+      }
     });
 
     console.log('🔧 Default Vocabs Mapping Debug:', {
