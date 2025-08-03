@@ -112,68 +112,34 @@ const loadData = async () => {
     const userVocabs = userVocabsResult.data || [];
     const defaultVocabs = defaultVocabsResult.data || [];
 
-    // WICHTIG: User Progress für ALLE default vocabularies laden, nicht nur die aktiven Listen
-    const allDefaultVocabIds = defaultVocabs.map(v => v.id);
+    // OPTIMIERT: Lade nur existierende Progress-Daten für diesen User
+    // Das ist viel schneller als 9000 IDs zu durchsuchen!
+    console.log('🔍 Loading user progress (optimized approach)...');
     
-    console.log('🔍 Loading user progress for vocabs:', {
-      totalDefaultVocabs: allDefaultVocabIds.length,
-      sampleIds: allDefaultVocabIds.slice(0, 5)
-    });
+    const userProgressResult = await supabase
+      .from('user_vocabulary_progress')
+      .select('*')
+      .eq('user_id', user.id);
 
-    // CORS-Fix: Lade Progress-Daten in kleineren Batches um große URLs zu vermeiden
-    let userProgress: any[] = [];
+    const userProgress = userProgressResult.data || [];
     
-    if (allDefaultVocabIds.length > 0) {
-      try {
-        // Split IDs into smaller chunks to avoid URL length limits and CORS issues
-        const BATCH_SIZE = 100; // Reduzierte Batch-Größe
-        const batches = [];
-        
-        for (let i = 0; i < allDefaultVocabIds.length; i += BATCH_SIZE) {
-          batches.push(allDefaultVocabIds.slice(i, i + BATCH_SIZE));
-        }
-        
-        console.log(`🔄 Loading progress in ${batches.length} batches of max ${BATCH_SIZE} items each`);
-        
-        // Load all batches in parallel
-        const batchResults = await Promise.all(
-          batches.map(async (batch, index) => {
-            console.log(`📦 Loading batch ${index + 1}/${batches.length} with ${batch.length} items`);
-            
-            const result = await supabase
-              .from('user_vocabulary_progress')
-              .select('*')
-              .eq('user_id', user.id)
-              .in('vocabulary_id', batch);
-              
-            if (result.error) {
-              console.error(`❌ Error in batch ${index + 1}:`, result.error);
-              return [];
-            }
-            
-            console.log(`✅ Batch ${index + 1} loaded: ${result.data?.length || 0} progress entries`);
-            return result.data || [];
-          })
-        );
-        
-        // Combine all batch results
-        userProgress = batchResults.flat();
-        console.log(`🎯 Total progress entries loaded: ${userProgress.length}`);
-        
-      } catch (error) {
-        console.error('❌ Error loading user progress in batches:', error);
-        userProgress = [];
-      }
-    }
+    // Erstelle Set der default vocab IDs für schnelle Lookups
+    const defaultVocabIdSet = new Set(defaultVocabs.map(v => v.id));
+    
+    // Filtere Progress-Daten nur für default vocabularies (nicht für user vocabs)
+    const defaultVocabProgress = userProgress.filter(p => defaultVocabIdSet.has(p.vocabulary_id));
 
-    console.log('✅ User progress loaded:', {
-      progressEntries: userProgress.length,
-      vocabsWithProgress: userProgress.filter(p => p.box > 0).length
+    console.log('✅ User progress loaded (optimized):', {
+      totalProgressEntries: userProgress.length,
+      defaultVocabProgressEntries: defaultVocabProgress.length,
+      vocabsWithProgress: defaultVocabProgress.filter(p => p.box > 0).length
     });
 
     // Debug: Überprüfe die Verknüpfung zwischen Vocab IDs und Progress
-    const progressByVocabId = new Map(userProgress.map(p => [p.vocabulary_id, p]));
-    console.log('🔧 Progress mapping verification:', {
+    const progressByVocabId = new Map(defaultVocabProgress.map(p => [p.vocabulary_id, p]));
+    console.log('🔧 Progress mapping verification (optimized):', {
+      totalDefaultVocabs: defaultVocabs.length,
+      progressEntriesFound: progressByVocabId.size,
       firstFiveDefaultVocabs: defaultVocabs.slice(0, 5).map(v => ({
         vocabId: v.id,
         english: v.english,
