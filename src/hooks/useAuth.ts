@@ -13,86 +13,73 @@ export function useAuth() {
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
   const [subscription, setSubscription] = useState<SubscriptionData>({ subscribed: false });
-  const [subscriptionLoading, setSubscriptionLoading] = useState(false);
 
-  // Lade Subscription-Status aus localStorage beim Start
-  const loadSubscriptionFromStorage = () => {
+  // Einfache Subscription-Abfrage direkt aus Supabase
+  const checkSubscription = async () => {
+    if (!user) {
+      console.log('❌ No user available for subscription check');
+      return;
+    }
+    
+    console.log('🔄 Checking subscription status from database...');
+    
     try {
-      const stored = localStorage.getItem('subscription_data');
-      if (stored) {
-        const parsed = JSON.parse(stored);
-        // Prüfe ob die Daten nicht zu alt sind (max 1 Stunde)
-        if (parsed.timestamp && Date.now() - parsed.timestamp < 3600000) {
-          setSubscription(parsed.data);
-          console.log('📦 Loaded subscription from storage:', parsed.data);
-          return true;
+      // Abfrage der subscribers-Tabelle mit user_id
+      const { data, error } = await supabase
+        .from('subscribers')
+        .select('*')
+        .eq('user_id', user.id)
+        .single();
+
+      if (error) {
+        if (error.code === 'PGRST116') {
+          // Kein Eintrag gefunden - User ist nicht Premium
+          console.log('ℹ️ No subscription found - user is free tier');
+          setSubscription({ subscribed: false });
+        } else {
+          console.error('❌ Database error:', error.message);
+          setSubscription({ subscribed: false });
         }
+        return;
       }
-    } catch (error) {
-      console.error('Error loading subscription from storage:', error);
-    }
-    return false;
-  };
 
-  // Speichere Subscription-Status in localStorage
-  const saveSubscriptionToStorage = (data: SubscriptionData) => {
-    try {
-      const toStore = {
-        data,
-        timestamp: Date.now()
-      };
-      localStorage.setItem('subscription_data', JSON.stringify(toStore));
-      console.log('💾 Saved subscription to storage:', data);
-    } catch (error) {
-      console.error('Error saving subscription to storage:', error);
-    }
-  };
+      if (data) {
+        // Prüfe ob Subscription noch aktiv ist
+        const now = new Date();
+        const endDate = data.subscription_end ? new Date(data.subscription_end) : null;
+        
+        // Wenn kein end_date gesetzt ist, oder das end_date in der Zukunft liegt
+        const isActive = !endDate || endDate > now;
 
-  const checkSubscription = async (forceCheck: boolean = false) => {
-    if (!session) {
-      console.log('❌ No session available for subscription check');
-      return;
-    }
-    
-    // Verhindere mehrfache gleichzeitige Calls
-    if (subscriptionLoading && !forceCheck) {
-      console.log('⚠️ Subscription check already in progress, skipping...');
-      return;
-    }
+        const subscriptionData: SubscriptionData = {
+          subscribed: isActive && (data.subscribed === true), // Prüfe auch das subscribed-Feld
+          subscription_tier: data.subscription_tier || 'Premium',
+          subscription_end: data.subscription_end
+        };
 
-    setSubscriptionLoading(true);
-    console.log('🔄 Checking subscription status...');
-    
-    try {
-      const { data, error } = await supabase.functions.invoke('check-subscription', {
-        headers: {
-          Authorization: `Bearer ${session.access_token}`,
-        },
-      });
-
-      if (!error && data) {
-        console.log('✅ Subscription check successful:', data);
-        setSubscription(data);
-        saveSubscriptionToStorage(data);
+        console.log('✅ Subscription status loaded:', {
+          user_id: user.id,
+          subscribed: subscriptionData.subscribed,
+          tier: subscriptionData.subscription_tier,
+          end_date: subscriptionData.subscription_end,
+          raw_data: data
+        });
+        
+        setSubscription(subscriptionData);
       } else {
-        console.error('❌ Subscription check failed:', error);
-        // Bei Fehler, behalte den aktuellen Status
+        console.log('ℹ️ No subscription data found');
+        setSubscription({ subscribed: false });
       }
     } catch (error) {
       console.error('❌ Error checking subscription:', error);
-      // Bei Fehler, behalte den aktuellen Status
-    } finally {
-      setSubscriptionLoading(false);
+      // Bei Fehler auf false setzen
+      setSubscription({ subscribed: false });
     }
   };
 
-  // Initialer Load beim App-Start
   useEffect(() => {
     console.log('🚀 Initializing auth...');
     
-    // Lade Subscription aus localStorage als Fallback
-    const hasStoredSubscription = loadSubscriptionFromStorage();
-
     // Set up auth state listener
     const { data: { subscription: authSubscription } } = supabase.auth.onAuthStateChange(
       async (event, session) => {
@@ -103,14 +90,14 @@ export function useAuth() {
         setLoading(false);
         
         if (session?.user) {
-          // Warte kurz, damit Session vollständig initialisiert ist
+          // Lade Subscription-Status sobald User verfügbar ist
+          // Kurze Verzögerung damit User State gesetzt ist
           setTimeout(async () => {
             await checkSubscription();
-          }, 500);
+          }, 100);
         } else {
           // User logged out
           setSubscription({ subscribed: false });
-          localStorage.removeItem('subscription_data');
         }
       }
     );
@@ -124,36 +111,15 @@ export function useAuth() {
       setLoading(false);
       
       if (session?.user) {
-        // Prüfe Subscription Status
-        // Falls wir bereits cached data haben, lade trotzdem fresh data im Hintergrund
-        if (hasStoredSubscription) {
-          // Background refresh
-          setTimeout(async () => {
-            await checkSubscription();
-          }, 1000);
-        } else {
-          // Sofortige Prüfung wenn keine cached data
-          setTimeout(async () => {
-            await checkSubscription();
-          }, 500);
-        }
+        // Lade Subscription-Status für bestehende Session
+        setTimeout(async () => {
+          await checkSubscription();
+        }, 100);
       }
     });
 
     return () => authSubscription.unsubscribe();
-  }, []);
-
-  // Automatische Überprüfung alle 5 Minuten (nur wenn User eingeloggt ist)
-  useEffect(() => {
-    if (!user) return;
-
-    const interval = setInterval(async () => {
-      console.log('🔄 Automatic subscription check...');
-      await checkSubscription();
-    }, 5 * 60 * 1000); // 5 Minuten
-
-    return () => clearInterval(interval);
-  }, [user]);
+  }, [user]); // Abhängigkeit von user hinzufügen
 
   const signOut = async () => {
     const { error } = await supabase.auth.signOut();
@@ -161,14 +127,8 @@ export function useAuth() {
       setUser(null);
       setSession(null);
       setSubscription({ subscribed: false });
-      localStorage.removeItem('subscription_data');
     }
     return { error };
-  };
-
-  // Erweiterte checkSubscription Funktion für manuelle Aufrufe
-  const refreshSubscription = async () => {
-    return await checkSubscription(true); // Force check
   };
 
   return {
@@ -178,7 +138,6 @@ export function useAuth() {
     signOut,
     isAuthenticated: !!user,
     subscription,
-    checkSubscription: refreshSubscription, // Verwende die force-version für manuelle Aufrufe
-    subscriptionLoading
+    checkSubscription
   };
 }
