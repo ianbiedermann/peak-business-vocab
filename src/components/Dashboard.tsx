@@ -159,22 +159,7 @@ export function Dashboard({ onStartLearning, onStartReview, onViewBoxes, onViewS
         <div className="flex justify-center">
           <SubscriptionManager />
         </div>
-
-        {/* Progress Bar */}
-        <Card className="p-4">
-          <div className="space-y-2">
-            <div className="flex justify-between text-sm">
-              <span>Fortschritt</span>
-              <span>{Math.round((stats.mastered / stats.totalVocabularies) * 100)}%</span>
-            </div>
-            <div className="w-full bg-muted rounded-full h-2">
-              <div 
-                className="bg-gradient-to-r from-primary to-success h-2 rounded-full transition-all duration-300"
-                style={{ width: `${(stats.mastered / stats.totalVocabularies) * 100}%` }}
-              />
-            </div>
-          </div>
-        </Card>
+        {/* Fortschrittsanzeige entfernt */}
       </div>
     </div>
   );
