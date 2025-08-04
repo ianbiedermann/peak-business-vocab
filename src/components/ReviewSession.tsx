@@ -57,8 +57,13 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
     if (correct) {
       const nextBox = Math.min(currentVocab.box + 1, 6);
       moveVocabularyToBox(currentVocab.id, nextBox, true);
+      // Automatisch weiter nach kurzer Verzögerung
+      setTimeout(() => {
+        goToNext();
+      }, 600);
     } else {
       resetVocabularyToBox1(currentVocab.id);
+      // Kein automatischer Wechsel, Anzeige von "Weiter"-Button
     }
   };
 
@@ -179,7 +184,8 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
                 War nur ein Tippfehler
               </Button>
             )}
-            {answered && (
+            {/* Weiter-Button nur bei falscher Antwort */}
+            {answered && !isCorrect && (
               <Button onClick={goToNext} className="w-full">
                 Weiter
               </Button>
