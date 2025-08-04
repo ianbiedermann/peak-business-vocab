@@ -4,9 +4,6 @@ export interface VocabularyList {
   isActive: boolean;
   uploadedAt: Date;
   vocabularyCount: number;
-  isDefault?: boolean;
-  isPremium?: boolean;
-  isUserUploaded?: boolean;
 }
 
 export interface Vocabulary {

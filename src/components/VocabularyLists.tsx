@@ -1,12 +1,11 @@
 import { useState } from 'react';
-import { Upload, FileText, Trash2, Eye, EyeOff, Plus, Crown, Star, User } from 'lucide-react';
+import { Upload, FileText, Trash2, Eye, EyeOff, Plus } from 'lucide-react';
 import * as XLSX from 'xlsx';
 import { Button } from './ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { Switch } from './ui/switch';
-import { Badge } from './ui/badge';
 import { useToast } from '../hooks/use-toast';
 import { VocabularyList } from '../types/vocabulary';
 
@@ -152,27 +151,7 @@ export function VocabularyLists({ lists, onUploadList, onToggleList, onDeleteLis
                     className="flex items-center justify-between p-4 border rounded-lg"
                   >
                     <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        <h3 className="font-medium">{list.name}</h3>
-                        {list.isPremium && (
-                          <Badge variant="secondary" className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white">
-                            <Crown className="h-3 w-3 mr-1" />
-                            Premium
-                          </Badge>
-                        )}
-                        {list.isDefault && !list.isPremium && (
-                          <Badge variant="outline" className="border-green-500 text-green-600">
-                            <Star className="h-3 w-3 mr-1" />
-                            Free
-                          </Badge>
-                        )}
-                        {list.isUserUploaded && (
-                          <Badge variant="outline" className="border-blue-500 text-blue-600">
-                            <User className="h-3 w-3 mr-1" />
-                            Eigene Liste
-                          </Badge>
-                        )}
-                      </div>
+                      <h3 className="font-medium">{list.name}</h3>
                       <p className="text-sm text-muted-foreground">
                         {list.vocabularyCount} Vokabeln • 
                         Hochgeladen am {new Date(list.uploadedAt).toLocaleDateString('de-DE')}
@@ -188,46 +167,33 @@ export function VocabularyLists({ lists, onUploadList, onToggleList, onDeleteLis
                         )}
                         <Switch
                           checked={list.isActive}
-                          onCheckedChange={async (checked) => {
-                            try {
-                              await onToggleList(list.id, checked);
-                            } catch (error) {
-                              const errorMessage = error instanceof Error ? error.message : "Fehler beim Aktivieren der Liste.";
-                              toast({
-                                title: "Fehler",
-                                description: errorMessage,
-                                variant: "destructive"
-                              });
-                            }
-                          }}
+                          onCheckedChange={(checked) => onToggleList(list.id, checked)}
                         />
                       </div>
                       
-                      {!list.isDefault && (
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={async () => {
-                            try {
-                              await onDeleteList(list.id);
-                              toast({
-                                title: "Erfolg",
-                                description: "Liste erfolgreich gelöscht."
-                              });
-                            } catch (error) {
-                              const errorMessage = error instanceof Error ? error.message : "Fehler beim Löschen der Liste.";
-                              toast({
-                                title: "Fehler",
-                                description: errorMessage,
-                                variant: "destructive"
-                              });
-                            }
-                          }}
-                          className="text-destructive hover:text-destructive"
-                        >
-                          <Trash2 className="h-4 w-4" />
-                        </Button>
-                      )}
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={async () => {
+                          try {
+                            await onDeleteList(list.id);
+                            toast({
+                              title: "Erfolg",
+                              description: "Liste erfolgreich gelöscht."
+                            });
+                          } catch (error) {
+                            const errorMessage = error instanceof Error ? error.message : "Fehler beim Löschen der Liste.";
+                            toast({
+                              title: "Fehler",
+                              description: errorMessage,
+                              variant: "destructive"
+                            });
+                          }
+                        }}
+                        className="text-destructive hover:text-destructive"
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </Button>
                     </div>
                   </div>
                 ))}
