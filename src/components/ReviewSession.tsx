@@ -21,6 +21,7 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
   const [currentAttempt, setCurrentAttempt] = useState(0);
   const [results, setResults] = useState<Map<string, boolean>>(new Map());
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
+  const [answered, setAnswered] = useState(false);
 
   if (vocabularies.length === 0) {
     return (
@@ -33,7 +34,6 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
               Komme später wieder, um deine Vokabeln zu wiederholen!
             </p>
           </div>
-          
           <Button onClick={onBack} className="w-full">
             Zurück zur Startseite
           </Button>
@@ -45,69 +45,50 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
   const currentVocab = vocabularies[currentIndex];
   const isLastVocabulary = currentIndex === vocabularies.length - 1;
 
+  const isCorrect = userInput.toLowerCase().trim() === currentVocab.english.toLowerCase();
+  const hasError = answered && !isCorrect;
+
   const checkAnswer = () => {
     const correct = userInput.toLowerCase().trim() === currentVocab.english.toLowerCase();
-    
-    // Show feedback
     setFeedback(correct ? 'correct' : 'incorrect');
-    setTimeout(() => setFeedback(null), 600);
-    
     setResults(prev => new Map(prev).set(currentVocab.id, correct));
-    
+    setAnswered(true);
+
     if (correct) {
-      // Move to next box
       const nextBox = Math.min(currentVocab.box + 1, 6);
       moveVocabularyToBox(currentVocab.id, nextBox, true);
     } else {
-      // Reset to box 1
       resetVocabularyToBox1(currentVocab.id);
     }
-    
-    setTimeout(() => {
-      if (isLastVocabulary) {
-        // Complete review session
-        const correctCount = Array.from(results.values()).filter(Boolean).length + (correct ? 1 : 0);
-        updateDailyStats(0, vocabularies.length);
-        onComplete();
-      } else {
-        // Move to next vocabulary
-        setCurrentIndex(prev => prev + 1);
-        setUserInput('');
-        setShowHint(false);
-        setCurrentAttempt(0);
-      }
-    }, 600);
+  };
+
+  const goToNext = () => {
+    setAnswered(false);
+    setFeedback(null);
+    setUserInput('');
+    setShowHint(false);
+    setCurrentAttempt(0);
+
+    if (isLastVocabulary) {
+      updateDailyStats(0, vocabularies.length);
+      onComplete();
+    } else {
+      setCurrentIndex(prev => prev + 1);
+    }
   };
 
   const markAsTypo = () => {
-    // Treat as correct answer
     setFeedback('correct');
-    setTimeout(() => setFeedback(null), 600);
-    
-    setResults(prev => new Map(prev).set(currentVocab.id, true));
     const nextBox = Math.min(currentVocab.box + 1, 6);
     moveVocabularyToBox(currentVocab.id, nextBox, true);
-    
     setTimeout(() => {
-      if (isLastVocabulary) {
-        const correctCount = Array.from(results.values()).filter(Boolean).length + 1;
-        updateDailyStats(0, vocabularies.length);
-        onComplete();
-      } else {
-        setCurrentIndex(prev => prev + 1);
-        setUserInput('');
-        setShowHint(false);
-        setCurrentAttempt(0);
-      }
+      goToNext();
     }, 600);
   };
 
   const showHintHandler = () => {
     setShowHint(true);
   };
-
-  const isCorrect = userInput.toLowerCase().trim() === currentVocab.english.toLowerCase();
-  const hasError = currentAttempt > 0 && !isCorrect && userInput.length > 0;
 
   return (
     <div className={`min-h-screen bg-background p-4 transition-colors duration-150 ${
@@ -147,22 +128,21 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
                 placeholder="Englische Übersetzung..."
                 className={`text-lg h-12 ${hasError ? 'border-destructive' : ''}`}
                 onKeyPress={(e) => {
-                  if (e.key === 'Enter') {
+                  if (e.key === 'Enter' && !answered) {
                     if (userInput.trim()) {
                       setCurrentAttempt(prev => prev + 1);
                       checkAnswer();
                     }
                   }
                 }}
+                disabled={answered}
               />
-              
               {showHint && (
                 <div className="flex items-center gap-2 text-warning">
                   <Lightbulb className="h-4 w-4" />
                   <span>Tipp: Beginnt mit "{currentVocab.english[0].toUpperCase()}"</span>
                 </div>
               )}
-              
               {hasError && (
                 <div className="flex items-center gap-2 text-destructive">
                   <XCircle className="h-4 w-4" />
@@ -174,30 +154,34 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
             <div className="grid grid-cols-2 gap-3">
               <Button 
                 onClick={() => {
-                  if (userInput.trim()) {
+                  if (userInput.trim() && !answered) {
                     setCurrentAttempt(prev => prev + 1);
                     checkAnswer();
                   }
                 }} 
                 className="gap-2"
-                disabled={!userInput.trim()}
+                disabled={!userInput.trim() || answered}
               >
                 <CheckCircle className="h-4 w-4" />
                 Prüfen
               </Button>
-              
               {!showHint && (
-                <Button onClick={showHintHandler} variant="outline" className="gap-2">
+                <Button onClick={showHintHandler} variant="outline" className="gap-2" disabled={answered}>
                   <Lightbulb className="h-4 w-4" />
                   Tipp
                 </Button>
               )}
             </div>
 
-            {hasError && (
+            {answered && !isCorrect && (
               <Button onClick={markAsTypo} variant="outline" className="w-full gap-2">
                 <RotateCcw className="h-4 w-4" />
                 War nur ein Tippfehler
+              </Button>
+            )}
+            {answered && (
+              <Button onClick={goToNext} className="w-full">
+                Weiter
               </Button>
             )}
           </div>
