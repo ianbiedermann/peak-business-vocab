@@ -25,7 +25,7 @@ const loadData = async () => {
   
   try {
     // Parallel loading of all basic data
-    const [userListsResult, defaultListsResult, userPreferencesResult, learningStatsResult] = await Promise.all([
+    const [userListsResult, defaultListsResult, userPreferencesResult, learningStatsResult, subscriptionResult] = await Promise.all([
       // Load user vocabulary lists
       supabase
         .from('vocabulary_lists')
@@ -39,18 +39,25 @@ const loadData = async () => {
         .select('*')
         .order('created_at', { ascending: false }),
       
-      // Load user preferences for default lists
-      supabase
-        .from('user_list_preferences')
-        .select('*')
-        .eq('user_id', user.id),
-      
-      // Load learning stats
-      supabase
-        .from('learning_stats')
-        .select('*')
-        .eq('user_id', user.id)
-        .order('date', { ascending: false })
+    // Load user preferences for default lists
+    supabase
+      .from('user_list_preferences')
+      .select('*')
+      .eq('user_id', user.id),
+    
+    // Load learning stats
+    supabase
+      .from('learning_stats')
+      .select('*')
+      .eq('user_id', user.id)
+      .order('date', { ascending: false }),
+    
+    // Load subscription status
+    supabase
+      .from('subscribers')
+      .select('subscribed')
+      .eq('email', user.email)
+      .maybeSingle()
     ]);
 
     console.log('✅ Basic data loaded');
@@ -59,6 +66,7 @@ const loadData = async () => {
     const userLists = userListsResult.data || [];
     const defaultLists = defaultListsResult.data || [];
     const userPreferences = userPreferencesResult.data || [];
+    const isSubscribed = subscriptionResult.data?.subscribed || false;
 
     // Combine lists
     const combinedLists: VocabularyList[] = [
@@ -67,7 +75,10 @@ const loadData = async () => {
         name: list.name,
         isActive: list.is_active,
         uploadedAt: new Date(list.uploaded_at),
-        vocabularyCount: list.vocabulary_count
+        vocabularyCount: list.vocabulary_count,
+        isDefault: false,
+        isPremium: false,
+        isUserUploaded: true
       })),
       ...defaultLists.map(list => {
         const preference = userPreferences.find(p => p.list_id === list.id);
@@ -76,7 +87,10 @@ const loadData = async () => {
           name: list.name,
           isActive: preference?.is_active ?? true,
           uploadedAt: new Date(list.created_at),
-          vocabularyCount: list.vocabulary_count
+          vocabularyCount: list.vocabulary_count,
+          isDefault: true,
+          isPremium: (list as any).premium_required || false,
+          isUserUploaded: false
         };
       })
     ];
@@ -112,11 +126,10 @@ const loadData = async () => {
     const userVocabs = userVocabsResult.data || [];
     const defaultVocabs = defaultVocabsResult.data || [];
 
-    // OPTIMIERT: Lade nur existierende Progress-Daten für diesen User
-    // Das ist viel schneller als 9000 IDs zu durchsuchen!
-    console.log('🔍 Loading user progress (optimized approach)...');
+    // Load user progress for default vocabularies
+    console.log('🔍 Loading user progress...');
     
-    const userProgressResult = await supabase
+    const userProgressResult = await (supabase as any)
       .from('user_vocabulary_progress')
       .select('*')
       .eq('user_id', user.id);
@@ -127,16 +140,16 @@ const loadData = async () => {
     const defaultVocabIdSet = new Set(defaultVocabs.map(v => v.id));
     
     // Filtere Progress-Daten nur für default vocabularies (nicht für user vocabs)
-    const defaultVocabProgress = userProgress.filter(p => defaultVocabIdSet.has(p.vocabulary_id));
+    const defaultVocabProgress = userProgress.filter((p: any) => defaultVocabIdSet.has(p.vocabulary_id));
 
     console.log('✅ User progress loaded (optimized):', {
       totalProgressEntries: userProgress.length,
       defaultVocabProgressEntries: defaultVocabProgress.length,
-      vocabsWithProgress: defaultVocabProgress.filter(p => p.box > 0).length
+      vocabsWithProgress: defaultVocabProgress.filter((p: any) => p.box > 0).length
     });
 
     // Debug: Überprüfe die Verknüpfung zwischen Vocab IDs und Progress
-    const progressByVocabId = new Map(defaultVocabProgress.map(p => [p.vocabulary_id, p]));
+    const progressByVocabId = new Map(defaultVocabProgress.map((p: any) => [p.vocabulary_id, p]));
     console.log('🔧 Progress mapping verification (optimized):', {
       totalDefaultVocabs: defaultVocabs.length,
       progressEntriesFound: progressByVocabId.size,
@@ -172,17 +185,17 @@ const loadData = async () => {
         english: vocab.english,
         german: vocab.german,
         listId: vocab.list_id,
-        box: progress?.box ?? 0,
-        nextReview: progress?.next_review ? new Date(progress.next_review) : undefined,
-        timesCorrect: progress?.times_correct ?? 0,
-        timesIncorrect: progress?.times_incorrect ?? 0,
-        lastReviewed: progress?.last_reviewed ? new Date(progress.last_reviewed) : undefined,
+        box: (progress as any)?.box ?? 0,
+        nextReview: (progress as any)?.next_review ? new Date((progress as any).next_review) : undefined,
+        timesCorrect: (progress as any)?.times_correct ?? 0,
+        timesIncorrect: (progress as any)?.times_incorrect ?? 0,
+        lastReviewed: (progress as any)?.last_reviewed ? new Date((progress as any).last_reviewed) : undefined,
         createdAt: new Date(vocab.created_at),
         isDefaultVocab: true
       };
 
       // Debug für problematische Vokabeln
-      if (progress && progress.box > 0) {
+      if (progress && (progress as any).box > 0) {
         console.log(`✅ Found progress for vocab ${vocab.id}:`, {
           english: vocab.english,
           box: result.box,
@@ -299,7 +312,7 @@ const moveVocabularyToBox = async (vocabId: string, newBox: number, isCorrect: b
   try {
     if (vocab.isDefaultVocab) {
       // Für Standard-Vokabeln: in user_vocabulary_progress speichern
-      const { error } = await supabase
+      const { error } = await (supabase as any)
         .from('user_vocabulary_progress')
         .upsert({
           user_id: user.id,
@@ -633,12 +646,27 @@ const toggleVocabularyList = async (listId: string, isActive: boolean) => {
 if (!user) return;
 
 try {
+// Check if this is a premium list and user is not subscribed
+const list = lists.find(l => l.id === listId);
+if (list?.isPremium && isActive) {
+  const subscriptionResult = await supabase
+    .from('subscribers')
+    .select('subscribed')
+    .eq('email', user.email)
+    .maybeSingle();
+  
+  const isSubscribed = subscriptionResult.data?.subscribed || false;
+  if (!isSubscribed) {
+    throw new Error('Diese Liste ist nur für Premium-Mitglieder verfügbar.');
+  }
+}
+
 // Check if this is a default list or user list
 const isDefaultList = await supabase
 .from('default_vocabulary_lists')
 .select('id')
 .eq('id', listId)
-.single();
+.maybeSingle();
 
 if (isDefaultList.data) {
 // Handle default list preference
@@ -647,7 +675,7 @@ const { data: existingPreference } = await supabase
 .select('*')
 .eq('user_id', user.id)
 .eq('list_id', listId)
-.single();
+.maybeSingle();
 
 if (existingPreference) {
 // Update existing preference
@@ -681,6 +709,7 @@ list.id === listId ? { ...list, isActive } : list
 ));
 } catch (error) {
 console.error('Error toggling list:', error);
+throw error;
 }
 };
 
@@ -689,13 +718,8 @@ if (!user) return;
 
 try {
 // Check if this is a default list (cannot be deleted)
-const isDefaultList = await supabase
-.from('default_vocabulary_lists')
-.select('id')
-.eq('id', listId)
-.single();
-
-if (isDefaultList.data) {
+const list = lists.find(l => l.id === listId);
+if (list?.isDefault) {
 throw new Error('Standardlisten können nicht gelöscht werden.');
 }
 
