@@ -76,7 +76,10 @@ export function SubscriptionManager() {
           Subscription Status
         </CardTitle>
         <CardDescription>
-          Manage your premium subscription
+          {subscription.subscribed 
+            ? "Monatliches Premium-Abo - jederzeit kündbar" 
+            : "Upgrade zu Premium für alle Features"
+          }
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
@@ -107,16 +110,21 @@ export function SubscriptionManager() {
               Subscribe to Premium
             </Button>
           ) : (
-            <Button 
-              onClick={handleManageSubscription} 
-              disabled={loading}
-              variant="outline"
-              className="w-full"
-            >
-              {loading && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}
-              <Settings className="h-4 w-4 mr-2" />
-              Manage Subscription
-            </Button>
+            <>
+              <Button 
+                onClick={handleManageSubscription} 
+                disabled={loading}
+                variant="outline"
+                className="w-full"
+              >
+                {loading && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}
+                <Settings className="h-4 w-4 mr-2" />
+                Abo verwalten & kündigen
+              </Button>
+              <p className="text-xs text-muted-foreground text-center">
+                Bei Kündigung bleibt Premium bis zum Monatsende aktiv
+              </p>
+            </>
           )}
           
           {/* Remove this entire Button block */}
