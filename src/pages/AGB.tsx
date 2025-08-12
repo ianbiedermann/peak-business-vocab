@@ -24,7 +24,7 @@ const AGB = () => {
         </div>
 
         <Card className="p-6">
-          <div className="prose prose-slate dark:prose-invert max-w-none">
+          <div className="prose prose-slate prose-lg dark:prose-invert max-w-none">
             <h1>Allgemeine Geschäftsbedingungen (AGB) der App PeakEnglish</h1>
 
             <h2>1. Geltungsbereich</h2>
