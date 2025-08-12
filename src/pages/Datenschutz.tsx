@@ -31,9 +31,11 @@ const Datenschutz = () => {
               aufklären, welche Arten Ihrer personenbezogenen Daten (nachfolgend
               auch kurz als &quot;Daten&quot; bezeichnet) wir zu welchen Zwecken
               und in welchem Umfang im Rahmen der Bereitstellung unserer
-              Applikation verarbeiten. <br />
+              Applikation verarbeiten.
             </p>
-            <p>Die verwendeten Begriffe sind nicht geschlechtsspezifisch. <br /></p>
+            <br />
+            <p>Die verwendeten Begriffe sind nicht geschlechtsspezifisch.</p>
+            <br />
             <p>Stand: 12. August 2025</p>
 
             <h2>Inhaltsübersicht</h2>
@@ -64,8 +66,8 @@ const Datenschutz = () => {
               <a href="mailto:ian.biedermann@gmail.com">
                 ian.biedermann@gmail.com
               </a>
-              <br />
             </p>
+            <br />
 
             <h2 id="mOverview">Übersicht der Verarbeitungen</h2><p>Die nachfolgende Übersicht fasst die Arten der verarbeiteten Daten und die Zwecke ihrer Verarbeitung zusammen und verweist auf die betroffenen Personen.</p><h3>Arten der verarbeiteten Daten</h3>
 <ul><li>Bestandsdaten.</li><li>Zahlungsdaten.</li><li>Kontaktdaten.</li><li>Inhaltsdaten.</li><li>Vertragsdaten.</li><li>Nutzungsdaten.</li><li>Meta-, Kommunikations- und Verfahrensdaten.</li><li>Protokolldaten.</li></ul><h3>Kategorien betroffener Personen</h3><ul><li>Leistungsempfänger und Auftraggeber.</li><li>Interessenten.</li><li>Kommunikationspartner.</li><li>Nutzer.</li><li>Geschäfts- und Vertragspartner.</li><li>Kunden.</li></ul><h3>Zwecke der Verarbeitung</h3><ul><li>Erbringung vertraglicher Leistungen und Erfüllung vertraglicher Pflichten.</li><li>Sicherheitsmaßnahmen.</li><li>Büro- und Organisationsverfahren.</li><li>Organisations- und Verwaltungsverfahren.</li><li>Bereitstellung unseres Onlineangebotes und Nutzerfreundlichkeit.</li><li>Informationstechnische Infrastruktur.</li><li>Geschäftsprozesse und betriebswirtschaftliche Verfahren.</li></ul><h2 id="m2427">Maßgebliche Rechtsgrundlagen</h2><p><strong>Maßgebliche Rechtsgrundlagen nach der DSGVO: </strong>Im Folgenden erhalten Sie eine Übersicht der Rechtsgrundlagen der DSGVO, auf deren Basis wir personenbezogene Daten verarbeiten. Bitte nehmen Sie zur Kenntnis, dass neben den Regelungen der DSGVO nationale Datenschutzvorgaben in Ihrem bzw. unserem Wohn- oder Sitzland gelten können. Sollten ferner im Einzelfall speziellere Rechtsgrundlagen maßgeblich sein, teilen wir Ihnen diese in der Datenschutzerklärung mit.</p>
