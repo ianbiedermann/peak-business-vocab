@@ -25,15 +25,15 @@ const Datenschutz = () => {
 
         <Card className="p-6 overflow-x-auto">
           <div className="prose prose-slate dark:prose-invert max-w-none">
-            <h2 id="m4158">Präambel</h2>
+            <h2 id="m4158">Präambel</h2> <br />
             <p>
               Mit der folgenden Datenschutzerklärung möchten wir Sie darüber
               aufklären, welche Arten Ihrer personenbezogenen Daten (nachfolgend
               auch kurz als &quot;Daten&quot; bezeichnet) wir zu welchen Zwecken
               und in welchem Umfang im Rahmen der Bereitstellung unserer
-              Applikation verarbeiten.
+              Applikation verarbeiten. <br />
             </p>
-            <p>Die verwendeten Begriffe sind nicht geschlechtsspezifisch.</p>
+            <p>Die verwendeten Begriffe sind nicht geschlechtsspezifisch. <br /></p>
             <p>Stand: 12. August 2025</p>
 
             <h2>Inhaltsübersicht</h2>
@@ -64,6 +64,7 @@ const Datenschutz = () => {
               <a href="mailto:ian.biedermann@gmail.com">
                 ian.biedermann@gmail.com
               </a>
+              <br />
             </p>
 
             <h2 id="mOverview">Übersicht der Verarbeitungen</h2><p>Die nachfolgende Übersicht fasst die Arten der verarbeiteten Daten und die Zwecke ihrer Verarbeitung zusammen und verweist auf die betroffenen Personen.</p><h3>Arten der verarbeiteten Daten</h3>
