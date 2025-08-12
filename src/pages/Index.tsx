@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import { Dashboard } from '../components/Dashboard';
 import { LearningSessionComponent } from '../components/LearningSession';
@@ -114,51 +114,73 @@ const Index = () => {
   }
 
   return (
-    <>
+    <div className="min-h-screen flex flex-col">
+      <div className="flex-1">
+        {currentView === 'dashboard' && (
+          <Dashboard
+            onStartLearning={handleStartLearning}
+            onStartReview={handleStartReview}
+            onViewBoxes={() => setCurrentView('boxes')}
+            onViewStatistics={() => setCurrentView('statistics')}
+            onViewLists={() => setCurrentView('lists')}
+          />
+        )}
+        
+        {currentView === 'learning' && (
+          <LearningSessionComponent
+            vocabularies={sessionVocabularies}
+            onComplete={handleLearningComplete}
+            onBack={handleBackToDashboard}
+          />
+        )}
+        
+        {currentView === 'review' && (
+          <ReviewSession
+            vocabularies={sessionVocabularies}
+            onComplete={handleBackToDashboard}
+            onBack={handleBackToDashboard}
+          />
+        )}
+        
+        {currentView === 'boxes' && (
+          <BoxView onBack={handleBackToDashboard} />
+        )}
+        
+        {currentView === 'statistics' && (
+          <Statistics onBack={handleBackToDashboard} />
+        )}
+        
+        {currentView === 'lists' && (
+          <VocabularyLists
+            lists={lists}
+            onUploadList={uploadVocabularyList}
+            onToggleList={toggleVocabularyList}
+            onDeleteList={deleteVocabularyList}
+            onBack={handleBackToDashboard}
+          />
+        )}
+      </div>
+      
+      {/* Footer - nur auf der Dashboard-Ansicht sichtbar */}
       {currentView === 'dashboard' && (
-        <Dashboard
-          onStartLearning={handleStartLearning}
-          onStartReview={handleStartReview}
-          onViewBoxes={() => setCurrentView('boxes')}
-          onViewStatistics={() => setCurrentView('statistics')}
-          onViewLists={() => setCurrentView('lists')}
-        />
+        <footer className="border-t border-border bg-background/50 backdrop-blur-sm p-4">
+          <div className="max-w-7xl mx-auto flex justify-center gap-6">
+            <Link 
+              to="/agb" 
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              AGB
+            </Link>
+            <Link 
+              to="/datenschutz" 
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Datenschutzerklärung
+            </Link>
+          </div>
+        </footer>
       )}
-      
-      {currentView === 'learning' && (
-        <LearningSessionComponent
-          vocabularies={sessionVocabularies}
-          onComplete={handleLearningComplete}
-          onBack={handleBackToDashboard}
-        />
-      )}
-      
-      {currentView === 'review' && (
-        <ReviewSession
-          vocabularies={sessionVocabularies}
-          onComplete={handleBackToDashboard}
-          onBack={handleBackToDashboard}
-        />
-      )}
-      
-      {currentView === 'boxes' && (
-        <BoxView onBack={handleBackToDashboard} />
-      )}
-      
-      {currentView === 'statistics' && (
-        <Statistics onBack={handleBackToDashboard} />
-      )}
-      
-      {currentView === 'lists' && (
-        <VocabularyLists
-          lists={lists}
-          onUploadList={uploadVocabularyList}
-          onToggleList={toggleVocabularyList}
-          onDeleteList={deleteVocabularyList}
-          onBack={handleBackToDashboard}
-        />
-      )}
-    </>
+    </div>
   );
 };
 
