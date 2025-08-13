@@ -149,9 +149,15 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
                 </div>
               )}
               {hasError && (
-                <div className="flex items-center gap-2 text-destructive">
-                  <XCircle className="h-4 w-4" />
-                  <span>Nicht korrekt. Versuche es nochmal!</span>
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2 text-destructive">
+                    <XCircle className="h-4 w-4" />
+                    <span>Nicht korrekt. Versuche es nochmal!</span>
+                  </div>
+                  <div className="p-3 bg-muted/50 rounded-lg border border-muted-foreground/20">
+                    <div className="text-sm text-muted-foreground mb-1">Richtige Antwort:</div>
+                    <div className="font-semibold text-foreground">{currentVocab.english}</div>
+                  </div>
                 </div>
               )}
             </div>
