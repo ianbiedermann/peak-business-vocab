@@ -202,25 +202,6 @@ export function Statistics({ onBack }: StatisticsProps) {
           </div>
         </Card>
 
-        {/* Overall Progress */}
-        <Card className="p-6">
-          <h3 className="text-lg font-semibold mb-4">Gesamtfortschritt</h3>
-          <div className="space-y-4">
-            <div className="flex justify-between">
-              <span>Gelernte Vokabeln</span>
-              <span className="font-medium">{stats.mastered} / {stats.totalVocabularies}</span>
-            </div>
-            <div className="w-full bg-muted rounded-full h-3">
-              <div 
-                className="bg-gradient-to-r from-primary to-success h-3 rounded-full transition-all duration-300"
-                style={{ width: `${(stats.mastered / stats.totalVocabularies) * 100}%` }}
-              />
-            </div>
-            <div className="text-center text-sm text-muted-foreground">
-              {Math.round((stats.mastered / stats.totalVocabularies) * 100)}% abgeschlossen
-            </div>
-          </div>
-        </Card>
       </div>
     </div>
   );
