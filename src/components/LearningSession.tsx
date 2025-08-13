@@ -113,7 +113,7 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
           const vocabIds = vocabularies.map(v => v.id);
           moveVocabulariesToBox(vocabIds, 1);
           updateDailyStats(vocabularies.length, 0);
-          setSession(prev => ({ ...prev, currentPhase: 'completed' }));
+          onComplete(); // Direkt zum Parent
         }
       }, 600);
     } else {
@@ -136,7 +136,7 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
         const vocabIds = vocabularies.map(v => v.id);
         moveVocabulariesToBox(vocabIds, 1);
         updateDailyStats(vocabularies.length, 0);
-        setSession(prev => ({ ...prev, currentPhase: 'completed' }));
+        onComplete(); // Direkt zum Parent
       }
     }, 600);
   };
@@ -145,30 +145,6 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
     setShowHint(true);
   };
 
-  if (session.currentPhase === 'completed') {
-    return (
-      <div className="min-h-screen bg-background p-4 flex items-center justify-center">
-        <Card className="p-8 max-w-md mx-auto text-center space-y-6">
-          <div className="space-y-4">
-            <CheckCircle className="h-16 w-16 text-success mx-auto" />
-            <h2 className="text-2xl font-bold text-success">Glückwunsch!</h2>
-            <p className="text-muted-foreground">
-              Du hast {vocabularies.length} neue Vokabeln erfolgreich gelernt!
-            </p>
-          </div>
-          
-          <div className="space-y-3">
-            <Button onClick={onComplete} className="w-full">
-              Weiterlernen
-            </Button>
-            <Button onClick={onBack} variant="outline" className="w-full">
-              Zur Startseite
-            </Button>
-          </div>
-        </Card>
-      </div>
-    );
-  }
 
   const currentVocab = vocabularies[session.currentIndex];
 
