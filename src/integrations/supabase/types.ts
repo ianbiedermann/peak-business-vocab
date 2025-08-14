@@ -7,7 +7,7 @@ export type Json =
   | Json[]
 
 export type Database = {
-  // Allows to automatically instanciate createClient with right options
+  // Allows to automatically instantiate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
     PostgrestVersion: "12.2.12 (cd3cf9e)"
@@ -49,22 +49,28 @@ export type Database = {
       default_vocabulary_lists: {
         Row: {
           created_at: string
+          description: string | null
           id: string
           name: string
+          premium_required: boolean | null
           updated_at: string
           vocabulary_count: number
         }
         Insert: {
           created_at?: string
+          description?: string | null
           id?: string
           name: string
+          premium_required?: boolean | null
           updated_at?: string
           vocabulary_count?: number
         }
         Update: {
           created_at?: string
+          description?: string | null
           id?: string
           name?: string
+          premium_required?: boolean | null
           updated_at?: string
           vocabulary_count?: number
         }
@@ -163,6 +169,41 @@ export type Database = {
         }
         Relationships: []
       }
+      user_default_lists: {
+        Row: {
+          created_at: string
+          default_list_id: string
+          id: string
+          is_active: boolean
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          default_list_id: string
+          id?: string
+          is_active?: boolean
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          default_list_id?: string
+          id?: string
+          is_active?: boolean
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_default_lists_default_list_id_fkey"
+            columns: ["default_list_id"]
+            isOneToOne: false
+            referencedRelation: "default_vocabulary_lists"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       user_list_preferences: {
         Row: {
           created_at: string
@@ -189,6 +230,53 @@ export type Database = {
           user_id?: string
         }
         Relationships: []
+      }
+      user_vocabulary_progress: {
+        Row: {
+          box: number | null
+          created_at: string | null
+          id: string
+          last_reviewed: string | null
+          next_review: string | null
+          times_correct: number | null
+          times_incorrect: number | null
+          updated_at: string | null
+          user_id: string | null
+          vocabulary_id: string | null
+        }
+        Insert: {
+          box?: number | null
+          created_at?: string | null
+          id?: string
+          last_reviewed?: string | null
+          next_review?: string | null
+          times_correct?: number | null
+          times_incorrect?: number | null
+          updated_at?: string | null
+          user_id?: string | null
+          vocabulary_id?: string | null
+        }
+        Update: {
+          box?: number | null
+          created_at?: string | null
+          id?: string
+          last_reviewed?: string | null
+          next_review?: string | null
+          times_correct?: number | null
+          times_incorrect?: number | null
+          updated_at?: string | null
+          user_id?: string | null
+          vocabulary_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_vocabulary_progress_vocabulary_id_fkey"
+            columns: ["vocabulary_id"]
+            isOneToOne: false
+            referencedRelation: "default_vocabularies"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       vocabularies: {
         Row: {
