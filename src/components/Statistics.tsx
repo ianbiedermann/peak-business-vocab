@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useState } from 'react';
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, BarChart3, TrendingUp, Calendar } from "lucide-react";
 import { useVocabularyStore } from "../hooks/useVocabularyStore";
+import { format, subDays, subMonths, subYears, startOfDay } from 'date-fns';
+import { de } from 'date-fns/locale';
 
 interface StatisticsProps {
   onBack?: () => void;
