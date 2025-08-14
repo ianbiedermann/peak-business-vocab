@@ -7,117 +7,93 @@ import { format, subDays, subMonths, subYears, startOfDay } from 'date-fns';
 import { de } from 'date-fns/locale';
 
 interface StatisticsProps {
-  onBack?: () => void;
+  onBack: () => void;
 }
 
-type TimeRange = "7days" | "1month" | "1year" | "all";
+type TimeRange = '7days' | '1month' | '1year' | 'all';
 
-export default function Statistics({ onBack }: StatisticsProps) {
+export function Statistics({ onBack }: StatisticsProps) {
   const { getAppStats } = useVocabularyStore();
-  const [timeRange, setTimeRange] = useState<TimeRange>("7days");
-
-  // Echte Daten aus Store holen
+  const [timeRange, setTimeRange] = useState<TimeRange>('7days');
+  
   const stats = getAppStats();
-  const dailyStats = stats?.dailyStats ?? [];
-
+  
   const getFilteredStats = () => {
     const now = new Date();
-    let daysBack: number;
-
+    let startDate: Date;
+    
     switch (timeRange) {
-      case "7days":
-        daysBack = 7;
+      case '7days':
+        startDate = subDays(now, 7);
         break;
-      case "1month":
-        daysBack = 30;
+      case '1month':
+        startDate = subMonths(now, 1);
         break;
-      case "1year":
-        daysBack = 365;
+      case '1year':
+        startDate = subYears(now, 1);
         break;
-      case "all":
-        return dailyStats;
+      case 'all':
+        return stats.dailyStats;
       default:
-        daysBack = 7;
+        startDate = subDays(now, 7);
     }
-
-    return dailyStats.slice(0, daysBack);
+    
+    return stats.dailyStats.filter(stat => new Date(stat.date) >= startDate);
   };
 
-  const filteredStats = (getFilteredStats() ?? []).reverse(); // Absicherung + Chronologie
-
-  const totalLearned = filteredStats.reduce(
-    (sum, stat) => sum + (stat?.newLearned ?? 0),
-    0
-  );
-  const totalReviewed = filteredStats.reduce(
-    (sum, stat) => sum + (stat?.reviewed ?? 0),
-    0
-  );
-
+  const filteredStats = getFilteredStats();
+  
+  const totalLearned = filteredStats.reduce((sum, stat) => sum + stat.newLearned, 0);
+  const totalReviewed = filteredStats.reduce((sum, stat) => sum + stat.reviewed, 0);
+  const maxDaily = Math.max(...filteredStats.map(stat => stat.newLearned + stat.reviewed), 1);
+  
   const getTimeRangeLabel = () => {
     switch (timeRange) {
-      case "7days":
-        return "Letzte 7 Tage";
-      case "1month":
-        return "Letzter Monat";
-      case "1year":
-        return "Letztes Jahr";
-      case "all":
-        return "Gesamt";
+      case '7days': return 'Letzte 7 Tage';
+      case '1month': return 'Letzter Monat';
+      case '1year': return 'Letztes Jahr';
+      case 'all': return 'Gesamt';
     }
-  };
-
-  const formatDate = (dateStr: string) => {
-    const date = new Date(dateStr);
-    if (isNaN(date.getTime())) return "";
-    return `${date.getDate()}.${date.getMonth() + 1}`;
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
-      <div className="max-w-4xl mx-auto space-y-6">
+    <div className="min-h-screen bg-background p-4">
+      <div className="max-w-md mx-auto space-y-6">
         {/* Header */}
         <div className="flex items-center gap-4">
-          {onBack && (
-            <Button
-              onClick={onBack}
-              variant="outline"
-              size="sm"
-              className="bg-white/70 backdrop-blur"
-            >
-              <ArrowLeft className="h-4 w-4" />
-            </Button>
-          )}
-          <h1 className="text-3xl font-bold text-gray-800">Lernstatistiken</h1>
+          <Button onClick={onBack} variant="outline" size="sm">
+            <ArrowLeft className="h-4 w-4" />
+          </Button>
+          <h1 className="text-2xl font-bold">Statistiken</h1>
         </div>
 
         {/* Time Range Selector */}
-        <Card className="p-4 bg-white/80 backdrop-blur shadow-lg">
-          <div className="grid grid-cols-4 gap-2">
+        <Card className="p-4">
+          <div className="grid grid-cols-2 gap-2">
             <Button
-              onClick={() => setTimeRange("7days")}
-              variant={timeRange === "7days" ? "default" : "outline"}
+              onClick={() => setTimeRange('7days')}
+              variant={timeRange === '7days' ? 'default' : 'outline'}
               size="sm"
             >
               7 Tage
             </Button>
             <Button
-              onClick={() => setTimeRange("1month")}
-              variant={timeRange === "1month" ? "default" : "outline"}
+              onClick={() => setTimeRange('1month')}
+              variant={timeRange === '1month' ? 'default' : 'outline'}
               size="sm"
             >
               1 Monat
             </Button>
             <Button
-              onClick={() => setTimeRange("1year")}
-              variant={timeRange === "1year" ? "default" : "outline"}
+              onClick={() => setTimeRange('1year')}
+              variant={timeRange === '1year' ? 'default' : 'outline'}
               size="sm"
             >
               1 Jahr
             </Button>
             <Button
-              onClick={() => setTimeRange("all")}
-              variant={timeRange === "all" ? "default" : "outline"}
+              onClick={() => setTimeRange('all')}
+              variant={timeRange === 'all' ? 'default' : 'outline'}
               size="sm"
             >
               Alles
@@ -126,85 +102,85 @@ export default function Statistics({ onBack }: StatisticsProps) {
         </Card>
 
         {/* Summary Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <Card className="p-6 bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-lg">
-            <div className="flex items-center gap-3 mb-2">
-              <TrendingUp className="h-6 w-6" />
-              <span className="text-blue-100">Neu gelernt</span>
+        <div className="grid grid-cols-2 gap-4">
+          <Card className="p-4 bg-primary/5">
+            <div className="flex items-center gap-2 mb-2">
+              <TrendingUp className="h-4 w-4 text-primary" />
+              <span className="text-sm text-muted-foreground">Neu gelernt</span>
             </div>
-            <div className="text-3xl font-bold">{totalLearned}</div>
-            <div className="text-blue-100 text-sm mt-1">{getTimeRangeLabel()}</div>
+            <div className="text-2xl font-bold text-primary">{totalLearned}</div>
+            <div className="text-xs text-muted-foreground">{getTimeRangeLabel()}</div>
           </Card>
-
-          <Card className="p-6 bg-gradient-to-r from-green-500 to-green-600 text-white shadow-lg">
-            <div className="flex items-center gap-3 mb-2">
-              <BarChart3 className="h-6 w-6" />
-              <span className="text-green-100">Wiederholt</span>
+          
+          <Card className="p-4 bg-success/5">
+            <div className="flex items-center gap-2 mb-2">
+              <BarChart3 className="h-4 w-4 text-success" />
+              <span className="text-sm text-muted-foreground">Wiederholt</span>
             </div>
-            <div className="text-3xl font-bold">{totalReviewed}</div>
-            <div className="text-green-100 text-sm mt-1">{getTimeRangeLabel()}</div>
-          </Card>
-
-          <Card className="p-6 bg-gradient-to-r from-purple-500 to-purple-600 text-white shadow-lg">
-            <div className="flex items-center gap-3 mb-2">
-              <Calendar className="h-6 w-6" />
-              <span className="text-purple-100">Gesamt</span>
-            </div>
-            <div className="text-3xl font-bold">
-              {totalLearned + totalReviewed}
-            </div>
-            <div className="text-purple-100 text-sm mt-1">
-              Vokabeln bearbeitet
-            </div>
+            <div className="text-2xl font-bold text-success">{totalReviewed}</div>
+            <div className="text-xs text-muted-foreground">{getTimeRangeLabel()}</div>
           </Card>
         </div>
 
         {/* Chart */}
-        <Card className="p-6 bg-white/90 backdrop-blur shadow-lg">
-          <h3 className="text-xl font-semibold mb-6 flex items-center gap-3 text-gray-800">
-            <BarChart3 className="h-6 w-6 text-blue-600" />
-            Tägliche Aktivität - {getTimeRangeLabel()}
+        <Card className="p-6">
+          <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+            <BarChart3 className="h-5 w-5" />
+            Aktivität - {getTimeRangeLabel()}
           </h3>
-
+          
           {filteredStats.length === 0 ? (
-            <div className="text-center py-12 text-gray-500">
-              <Calendar className="h-16 w-16 mx-auto mb-4 opacity-30" />
-              <p className="text-lg">Keine Daten für diesen Zeitraum</p>
+            <div className="text-center py-8 text-muted-foreground">
+              <Calendar className="h-12 w-12 mx-auto mb-2 opacity-50" />
+              <p>Keine Daten für diesen Zeitraum</p>
             </div>
           ) : (
-            <div className="flex gap-2 overflow-x-auto">
-              {filteredStats.map((stat) => {
-                const total = (stat?.newLearned ?? 0) + (stat?.reviewed ?? 0);
-                const maxTotal = Math.max(
-                  ...filteredStats.map(
-                    (s) => (s?.newLearned ?? 0) + (s?.reviewed ?? 0)
-                  ),
-                  1
-                );
-                const totalHeight = (total / maxTotal) * 200;
-                const reviewedHeight = ((stat?.reviewed ?? 0) / maxTotal) * 200;
-                const learnedHeight = ((stat?.newLearned ?? 0) / maxTotal) * 200;
-
+            <div className="space-y-3">
+              {filteredStats.map((stat, index) => {
+                const total = stat.newLearned + stat.reviewed;
+                const percentage = maxDaily > 0 ? (total / maxDaily) * 100 : 0;
+                
                 return (
-                  <div
-                    key={stat.date}
-                    className="flex flex-col items-center"
-                    style={{ minWidth: "30px" }}
-                  >
-                    <div
-                      className="flex flex-col w-5 rounded overflow-hidden"
-                      style={{ height: `${totalHeight}px` }}
-                    >
-                      <div
-                        className="bg-green-500"
-                        style={{ height: `${reviewedHeight}px` }}
-                      ></div>
-                      <div
-                        className="bg-blue-500"
-                        style={{ height: `${learnedHeight}px` }}
-                      ></div>
+                  <div key={stat.date} className="space-y-2">
+                    <div className="flex justify-between text-sm">
+                      <span className="text-muted-foreground">
+                        {format(new Date(stat.date), 'EEE, dd.MM', { locale: de })}
+                      </span>
+                      <span className="font-medium">{total}</span>
                     </div>
-                    <span className="text-xs mt-1">{formatDate(stat.date)}</span>
+                    
+                    <div className="relative h-6 bg-muted rounded-full overflow-hidden">
+                      {stat.newLearned > 0 && (
+                        <div
+                          className="absolute left-0 top-0 h-full bg-primary rounded-full"
+                          style={{ width: `${(stat.newLearned / maxDaily) * 100}%` }}
+                        />
+                      )}
+                      {stat.reviewed > 0 && (
+                        <div
+                          className="absolute left-0 top-0 h-full bg-success rounded-full"
+                          style={{ 
+                            left: `${(stat.newLearned / maxDaily) * 100}%`,
+                            width: `${(stat.reviewed / maxDaily) * 100}%` 
+                          }}
+                        />
+                      )}
+                    </div>
+                    
+                    {total > 0 && (
+                      <div className="flex justify-between text-xs text-muted-foreground">
+                        {stat.newLearned > 0 && (
+                          <span className="text-primary">
+                            {stat.newLearned} neu
+                          </span>
+                        )}
+                        {stat.reviewed > 0 && (
+                          <span className="text-success">
+                            {stat.reviewed} wiederholt
+                          </span>
+                        )}
+                      </div>
+                    )}
                   </div>
                 );
               })}
@@ -212,20 +188,17 @@ export default function Statistics({ onBack }: StatisticsProps) {
           )}
         </Card>
 
-        {/* Legend */}
-        <Card className="p-4 bg-white/80 backdrop-blur shadow-lg">
-          <div className="flex items-center justify-center gap-8 text-sm">
-            <div className="flex items-center gap-3">
-              <div className="w-4 h-4 bg-gradient-to-t from-green-500 to-green-400 rounded shadow-sm" />
-              <span className="font-medium text-gray-700">Wiederholt (unten)</span>
+        {/* Legende */}
+        <Card className="p-4 bg-muted/30">
+          <div className="flex items-center justify-center gap-6 text-sm">
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-3 bg-primary rounded-full" />
+              <span>Neu gelernt</span>
             </div>
-            <div className="flex items-center gap-3">
-              <div className="w-4 h-4 bg-gradient-to-t from-blue-600 to-blue-500 rounded shadow-sm" />
-              <span className="font-medium text-gray-700">Neu gelernt (oben)</span>
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-3 bg-success rounded-full" />
+              <span>Wiederholt</span>
             </div>
-          </div>
-          <div className="text-center text-xs text-gray-500 mt-2">
-            Die Balken sind horizontal scrollbar bei vielen Datenpunkten
           </div>
         </Card>
 
