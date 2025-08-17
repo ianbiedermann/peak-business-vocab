@@ -22,7 +22,6 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
   const [results, setResults] = useState<Map<string, boolean>>(new Map());
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
   const [answered, setAnswered] = useState(false);
-  const [saving, setSaving] = useState(false);
 
   if (vocabularies.length === 0) {
     return (
@@ -56,7 +55,6 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
     setAnswered(true);
 
     if (correct) {
-      setSaving(true);
       try {
         // Erst die Vokabel in die nächste Box verschieben (warten bis fertig)
         const nextBox = Math.min(currentVocab.box + 1, 6);
@@ -67,25 +65,20 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
         
         // Automatisch weiter nach kurzer Verzögerung
         setTimeout(() => {
-          setSaving(false);
           goToNext();
         }, 600);
       } catch (error) {
         console.error('Error moving vocabulary to box:', error);
-        setSaving(false);
         // Bei Fehler trotzdem weitermachen, aber keine Statistik aktualisieren
         setTimeout(() => {
           goToNext();
         }, 600);
       }
     } else {
-      setSaving(true);
       try {
         await resetVocabularyToBox1(currentVocab.id);
-        setSaving(false);
       } catch (error) {
         console.error('Error resetting vocabulary to box 1:', error);
-        setSaving(false);
       }
       // Kein automatischer Wechsel, Anzeige von "Weiter"-Button
       // Keine Statistik-Aktualisierung bei falscher Antwort
@@ -109,7 +102,6 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
 
   const markAsTypo = async () => {
     setFeedback('correct');
-    setSaving(true);
     
     try {
       // Erst die Vokabel in die nächste Box verschieben (warten bis fertig)
@@ -120,12 +112,10 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
       updateDailyStats(0, 1);
       
       setTimeout(() => {
-        setSaving(false);
         goToNext();
       }, 600);
     } catch (error) {
       console.error('Error marking as typo:', error);
-      setSaving(false);
       // Bei Fehler trotzdem weitermachen
       setTimeout(() => {
         goToNext();
@@ -144,7 +134,7 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
     }`}>
       <div className="max-w-md mx-auto space-y-6">
         <div className="flex justify-between items-center">
-          <Button onClick={onBack} variant="outline" size="sm" disabled={saving}>
+          <Button onClick={onBack} variant="outline" size="sm">
             <ArrowLeft className="h-4 w-4" />
           </Button>
           <span className="text-sm text-muted-foreground">
