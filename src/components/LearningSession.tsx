@@ -28,6 +28,7 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
   const [currentAttempt, setCurrentAttempt] = useState(0);
   const [shuffledGerman, setShuffledGerman] = useState<string[]>([]);
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
+  const [answered, setAnswered] = useState(false);
 
   // Initialize shuffled German translations for matching phase
   useEffect(() => {
@@ -99,52 +100,47 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
     
     // Show feedback
     setFeedback(correct ? 'correct' : 'incorrect');
-    setTimeout(() => setFeedback(null), 600);
+    setAnswered(true);
     
     if (correct) {
       setTimeout(() => {
-        if (session.currentIndex < vocabularies.length - 1) {
-          setSession(prev => ({ ...prev, currentIndex: prev.currentIndex + 1 }));
-          setUserInput('');
-          setShowHint(false);
-          setCurrentAttempt(0);
-        } else {
-          // All completed - move to box 1
-          const vocabIds = vocabularies.map(v => v.id);
-          moveVocabulariesToBox(vocabIds, 1);
-          updateDailyStats(vocabularies.length, 0);
-          onComplete(); // Direkt zum Parent
-        }
+        goToNext();
       }, 600);
     } else {
       setCurrentAttempt(prev => prev + 1);
     }
   };
 
+  const goToNext = () => {
+    setAnswered(false);
+    setFeedback(null);
+    
+    if (session.currentIndex < vocabularies.length - 1) {
+      setSession(prev => ({ ...prev, currentIndex: prev.currentIndex + 1 }));
+      setUserInput('');
+      setShowHint(false);
+      setCurrentAttempt(0);
+    } else {
+      // All completed - move to box 1
+      const vocabIds = vocabularies.map(v => v.id);
+      moveVocabulariesToBox(vocabIds, 1);
+      updateDailyStats(vocabularies.length, 0);
+      onComplete(); // Direkt zum Parent
+    }
+  };
+
   const markAsTypo = () => {
     // Treat as correct answer
     setFeedback('correct');
-    setTimeout(() => setFeedback(null), 600);
     
     setTimeout(() => {
-      if (session.currentIndex < vocabularies.length - 1) {
-        setSession(prev => ({ ...prev, currentIndex: prev.currentIndex + 1 }));
-        setUserInput('');
-        setShowHint(false);
-        setCurrentAttempt(0);
-      } else {
-        const vocabIds = vocabularies.map(v => v.id);
-        moveVocabulariesToBox(vocabIds, 1);
-        updateDailyStats(vocabularies.length, 0);
-        onComplete(); // Direkt zum Parent
-      }
+      goToNext();
     }, 600);
   };
 
   const showHintHandler = () => {
     setShowHint(true);
   };
-
 
   const currentVocab = vocabularies[session.currentIndex];
 
@@ -258,7 +254,7 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
 
   if (session.currentPhase === 'writing') {
     const isCorrect = userInput.toLowerCase().trim() === currentVocab.english.toLowerCase();
-    const hasError = currentAttempt > 0 && !isCorrect && userInput.length > 0;
+    const hasError = answered && !isCorrect;
 
     return (
       <div className={`min-h-screen bg-background p-4 transition-colors duration-150 ${
@@ -292,7 +288,14 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
                   onChange={(e) => setUserInput(e.target.value)}
                   placeholder="Englische Übersetzung..."
                   className={`text-lg h-12 ${hasError ? 'border-destructive' : ''}`}
-                  onKeyPress={(e) => e.key === 'Enter' && checkWriting()}
+                  onKeyPress={(e) => {
+                    if (e.key === 'Enter' && !answered) {
+                      if (userInput.trim()) {
+                        checkWriting();
+                      }
+                    }
+                  }}
+                  disabled={answered}
                 />
                 
                 {showHint && (
@@ -316,26 +319,51 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
                 )}
               </div>
 
+              {/* Button Grid - verbesserte Anordnung wie bei ReviewSession */}
               <div className="grid grid-cols-2 gap-3">
-                <Button onClick={checkWriting} className="gap-2">
-                  <CheckCircle className="h-4 w-4" />
-                  Prüfen
-                </Button>
-                
-                {!showHint && (
-                  <Button onClick={showHintHandler} variant="outline" className="gap-2">
-                    <Lightbulb className="h-4 w-4" />
-                    Tipp
-                  </Button>
+                {!answered ? (
+                  <>
+                    {/* Prüfen Button (links) - für bessere Daumen-Erreichbarkeit */}
+                    <Button 
+                      onClick={() => {
+                        if (userInput.trim()) {
+                          checkWriting();
+                        }
+                      }} 
+                      className="gap-2"
+                      disabled={!userInput.trim()}
+                    >
+                      <CheckCircle className="h-4 w-4" />
+                      Prüfen
+                    </Button>
+                    
+                    {/* Tipp Button (rechts) */}
+                    {!showHint && (
+                      <Button onClick={showHintHandler} variant="outline" className="gap-2">
+                        <Lightbulb className="h-4 w-4" />
+                        Tipp
+                      </Button>
+                    )}
+                    {showHint && <div></div>} {/* Platzhalter wenn Tipp bereits angezeigt */}
+                  </>
+                ) : (
+                  // Nach der Antwort - nur bei falscher Antwort - ersetzen die vorherigen Buttons
+                  !isCorrect && (
+                    <>
+                      {/* War nur ein Tippfehler Button (links) - an der Stelle des Prüfen-Buttons */}
+                      <Button onClick={markAsTypo} variant="outline" className="gap-2">
+                        <RotateCcw className="h-4 w-4" />
+                        Tippfehler
+                      </Button>
+                      
+                      {/* Weiter Button (rechts) - an der Stelle des Tipp-Buttons */}
+                      <Button onClick={goToNext} className="gap-2">
+                        Weiter
+                      </Button>
+                    </>
+                  )
                 )}
               </div>
-
-              {hasError && (
-                <Button onClick={markAsTypo} variant="outline" className="w-full gap-2">
-                  <RotateCcw className="h-4 w-4" />
-                  War nur ein Tippfehler
-                </Button>
-              )}
             </div>
           </Card>
         </div>
