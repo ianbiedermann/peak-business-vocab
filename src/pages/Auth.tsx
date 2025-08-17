@@ -13,8 +13,10 @@ export default function Auth() {
   const [isSignUp, setIsSignUp] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState(''); // Neu hinzugefügt
   const [username, setUsername] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false); // Neu hinzugefügt
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
@@ -53,6 +55,19 @@ export default function Auth() {
       return;
     }
 
+    // Passwort-Validierung hinzugefügt
+    if (password.length < 6) {
+      setError('Passwort muss mindestens 6 Zeichen lang sein');
+      setLoading(false);
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setError('Passwörter stimmen nicht überein');
+      setLoading(false);
+      return;
+    }
+
     const { error } = await supabase.auth.signUp({
       email,
       password,
@@ -73,6 +88,11 @@ export default function Auth() {
     } else {
       setMessage('Registrierung erfolgreich! Sie können sich jetzt anmelden.');
       setIsSignUp(false);
+      // Felder nach erfolgreicher Registrierung zurücksetzen
+      setPassword('');
+      setConfirmPassword('');
+      setUsername('');
+      setEmail('');
     }
     setLoading(false);
   };
@@ -97,6 +117,10 @@ export default function Auth() {
     }
     setLoading(false);
   };
+
+  // Hilfsfunktion für Passwort-Matching-Anzeige
+  const isPasswordMatch = password && confirmPassword && password === confirmPassword;
+  const isPasswordMismatch = password && confirmPassword && password !== confirmPassword;
 
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
@@ -180,6 +204,51 @@ export default function Auth() {
                 </Button>
               </div>
             </div>
+
+            {/* Passwort-Bestätigung - nur bei Registrierung anzeigen */}
+            {isSignUp && (
+              <div className="space-y-2">
+                <Label htmlFor="confirmPassword">Passwort bestätigen</Label>
+                <div className="relative">
+                  <Input
+                    id="confirmPassword"
+                    type={showConfirmPassword ? "text" : "password"}
+                    placeholder="Passwort wiederholen"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    required={isSignUp}
+                    className={`${
+                      isPasswordMismatch ? 'border-red-500' : 
+                      isPasswordMatch ? 'border-green-500' : ''
+                    }`}
+                  />
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="sm"
+                    className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  >
+                    {showConfirmPassword ? (
+                      <EyeOff className="h-4 w-4" />
+                    ) : (
+                      <Eye className="h-4 w-4" />
+                    )}
+                  </Button>
+                </div>
+                {/* Visuelles Feedback für Passwort-Matching */}
+                {isPasswordMatch && (
+                  <p className="text-sm text-green-600 flex items-center gap-1">
+                    ✓ Passwörter stimmen überein
+                  </p>
+                )}
+                {isPasswordMismatch && (
+                  <p className="text-sm text-red-600">
+                    Passwörter stimmen nicht überein
+                  </p>
+                )}
+              </div>
+            )}
             
             <Button type="submit" className="w-full" disabled={loading}>
               {loading ? 'Lädt...' : (isSignUp ? 'Registrieren' : 'Anmelden')}
@@ -193,6 +262,9 @@ export default function Auth() {
                 setIsSignUp(!isSignUp);
                 setError(null);
                 setMessage(null);
+                // Felder beim Wechseln zwischen Anmelden/Registrieren zurücksetzen
+                setPassword('');
+                setConfirmPassword('');
               }}
               className="text-sm"
             >
