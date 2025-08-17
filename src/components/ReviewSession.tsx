@@ -229,14 +229,6 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
               )}
             </div>
 
-            {/* Speicher-Indikator */}
-            {saving && (
-              <div className="flex items-center justify-center gap-2 text-muted-foreground">
-                <div className="animate-spin h-4 w-4 border-2 border-current border-t-transparent rounded-full"></div>
-                <span className="text-sm">Speichere...</span>
-              </div>
-            )}
-
             {/* Button Grid */}
             <div className="grid grid-cols-2 gap-3">
               {!answered ? (
