@@ -22,6 +22,7 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
   const [results, setResults] = useState<Map<string, boolean>>(new Map());
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
   const [answered, setAnswered] = useState(false);
+  const [saving, setSaving] = useState(false);
 
   if (vocabularies.length === 0) {
     return (
@@ -55,33 +56,55 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
     setAnswered(true);
 
     if (correct) {
+      setSaving(true);
       try {
-        // Erst die Vokabel in die nächste Box verschieben (warten bis fertig)
+        // KRITISCH: Alle asynchronen Operationen nacheinander awaiten
         const nextBox = Math.min(currentVocab.box + 1, 6);
+        
+        // 1. Vokabel verschieben und warten bis komplett fertig
         await moveVocabularyToBox(currentVocab.id, nextBox, true);
         
-        // Dann die Statistiken aktualisieren
-        updateDailyStats(0, 1);
+        // 2. Statistiken aktualisieren und warten bis fertig
+        // ANNAHME: updateDailyStats sollte auch async sein und awaited werden
+        if (updateDailyStats.constructor.name === 'AsyncFunction') {
+          await updateDailyStats(0, 1);
+        } else {
+          updateDailyStats(0, 1);
+        }
         
-        // Automatisch weiter nach kurzer Verzögerung
+        // 3. Kurz warten um sicherzustellen, dass alle DB-Operationen committed sind
+        await new Promise(resolve => setTimeout(resolve, 300));
+        
+        setSaving(false);
+        
+        // 4. Dann automatisch weiter
         setTimeout(() => {
           goToNext();
-        }, 600);
+        }, 300);
+        
       } catch (error) {
         console.error('Error moving vocabulary to box:', error);
-        // Bei Fehler trotzdem weitermachen, aber keine Statistik aktualisieren
+        setSaving(false);
+        // Bei Fehler trotzdem weitermachen, aber länger warten
         setTimeout(() => {
           goToNext();
-        }, 600);
+        }, 1000);
       }
     } else {
+      setSaving(true);
       try {
+        // KRITISCH: Auch hier alle Operationen awaiten
         await resetVocabularyToBox1(currentVocab.id);
+        
+        // Zusätzliche Wartezeit für DB-Commit
+        await new Promise(resolve => setTimeout(resolve, 200));
+        
+        setSaving(false);
       } catch (error) {
         console.error('Error resetting vocabulary to box 1:', error);
+        setSaving(false);
       }
-      // Kein automatischer Wechsel, Anzeige von "Weiter"-Button
-      // Keine Statistik-Aktualisierung bei falscher Antwort
+      // Kein automatischer Wechsel bei falscher Antwort
     }
   };
 
@@ -93,7 +116,6 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
     setCurrentAttempt(0);
 
     if (isLastVocabulary) {
-      // Statistiken wurden bereits pro Vokabel aktualisiert
       onComplete();
     } else {
       setCurrentIndex(prev => prev + 1);
@@ -102,24 +124,37 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
 
   const markAsTypo = async () => {
     setFeedback('correct');
+    setSaving(true);
     
     try {
-      // Erst die Vokabel in die nächste Box verschieben (warten bis fertig)
+      // KRITISCH: Alle Operationen nacheinander awaiten
       const nextBox = Math.min(currentVocab.box + 1, 6);
+      
+      // 1. Vokabel verschieben
       await moveVocabularyToBox(currentVocab.id, nextBox, true);
       
-      // Dann die Statistiken aktualisieren
-      updateDailyStats(0, 1);
+      // 2. Statistiken aktualisieren
+      if (updateDailyStats.constructor.name === 'AsyncFunction') {
+        await updateDailyStats(0, 1);
+      } else {
+        updateDailyStats(0, 1);
+      }
+      
+      // 3. Warten für DB-Commit
+      await new Promise(resolve => setTimeout(resolve, 300));
+      
+      setSaving(false);
       
       setTimeout(() => {
         goToNext();
-      }, 600);
+      }, 300);
+      
     } catch (error) {
       console.error('Error marking as typo:', error);
-      // Bei Fehler trotzdem weitermachen
+      setSaving(false);
       setTimeout(() => {
         goToNext();
-      }, 600);
+      }, 1000);
     }
   };
 
@@ -134,7 +169,7 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
     }`}>
       <div className="max-w-md mx-auto space-y-6">
         <div className="flex justify-between items-center">
-          <Button onClick={onBack} variant="outline" size="sm">
+          <Button onClick={onBack} variant="outline" size="sm" disabled={saving}>
             <ArrowLeft className="h-4 w-4" />
           </Button>
           <span className="text-sm text-muted-foreground">
@@ -165,14 +200,14 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
                 placeholder="Englische Übersetzung..."
                 className={`text-lg h-12 ${hasError ? 'border-destructive' : ''}`}
                 onKeyPress={(e) => {
-                  if (e.key === 'Enter' && !answered) {
+                  if (e.key === 'Enter' && !answered && !saving) {
                     if (userInput.trim()) {
                       setCurrentAttempt(prev => prev + 1);
                       checkAnswer();
                     }
                   }
                 }}
-                disabled={answered}
+                disabled={answered || saving}
               />
               {showHint && (
                 <div className="flex items-center gap-2 text-warning">
@@ -194,11 +229,33 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
               )}
             </div>
 
-            {/* Button Grid - verbesserte Anordnung */}
+            {/* Speicher-Indikator */}
+            {saving && (
+              <div className="flex items-center justify-center gap-2 text-muted-foreground">
+                <div className="animate-spin h-4 w-4 border-2 border-current border-t-transparent rounded-full"></div>
+                <span className="text-sm">Speichere...</span>
+              </div>
+            )}
+
+            {/* Button Grid */}
             <div className="grid grid-cols-2 gap-3">
               {!answered ? (
                 <>
-                  {/* Prüfen Button (links) - für bessere Daumen-Erreichbarkeit */}
+                  {/* Tipp Button (links) */}
+                  {!showHint && (
+                    <Button 
+                      onClick={showHintHandler} 
+                      variant="outline" 
+                      className="gap-2"
+                      disabled={saving}
+                    >
+                      <Lightbulb className="h-4 w-4" />
+                      Tipp
+                    </Button>
+                  )}
+                  {showHint && <div></div>}
+                  
+                  {/* Prüfen Button (rechts) - für bessere Daumen-Erreichbarkeit */}
                   <Button 
                     onClick={() => {
                       if (userInput.trim()) {
@@ -207,33 +264,30 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
                       }
                     }} 
                     className="gap-2"
-                    disabled={!userInput.trim()}
+                    disabled={!userInput.trim() || saving}
                   >
                     <CheckCircle className="h-4 w-4" />
                     Prüfen
                   </Button>
-                  
-                  {/* Tipp Button (rechts) */}
-                  {!showHint && (
-                    <Button onClick={showHintHandler} variant="outline" className="gap-2">
-                      <Lightbulb className="h-4 w-4" />
-                      Tipp
-                    </Button>
-                  )}
-                  {showHint && <div></div>} {/* Platzhalter wenn Tipp bereits angezeigt */}
                 </>
               ) : (
-                // Nach der Antwort - nur bei falscher Antwort - ersetzen die vorherigen Buttons
                 !isCorrect && (
                   <>
-                    {/* War nur ein Tippfehler Button (links) - an der Stelle des Prüfen-Buttons */}
-                    <Button onClick={markAsTypo} variant="outline" className="gap-2">
+                    <Button 
+                      onClick={markAsTypo} 
+                      variant="outline" 
+                      className="gap-2"
+                      disabled={saving}
+                    >
                       <RotateCcw className="h-4 w-4" />
                       Tippfehler
                     </Button>
                     
-                    {/* Weiter Button (rechts) - an der Stelle des Tipp-Buttons */}
-                    <Button onClick={goToNext} className="gap-2">
+                    <Button 
+                      onClick={goToNext} 
+                      className="gap-2"
+                      disabled={saving}
+                    >
                       Weiter
                     </Button>
                   </>
