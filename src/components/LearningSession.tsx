@@ -319,11 +319,20 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
                 )}
               </div>
 
-              {/* Button Grid - verbesserte Anordnung wie bei ReviewSession */}
+              {/* Button Grid - Tipp links, Prüfen rechts */}
               <div className="grid grid-cols-2 gap-3">
                 {!answered ? (
                   <>
-                    {/* Prüfen Button (links) - für bessere Daumen-Erreichbarkeit */}
+                    {/* Tipp Button (links) */}
+                    {!showHint && (
+                      <Button onClick={showHintHandler} variant="outline" className="gap-2">
+                        <Lightbulb className="h-4 w-4" />
+                        Tipp
+                      </Button>
+                    )}
+                    {showHint && <div></div>} {/* Platzhalter wenn Tipp bereits angezeigt */}
+                    
+                    {/* Prüfen Button (rechts) - für bessere Daumen-Erreichbarkeit */}
                     <Button 
                       onClick={() => {
                         if (userInput.trim()) {
@@ -336,27 +345,18 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
                       <CheckCircle className="h-4 w-4" />
                       Prüfen
                     </Button>
-                    
-                    {/* Tipp Button (rechts) */}
-                    {!showHint && (
-                      <Button onClick={showHintHandler} variant="outline" className="gap-2">
-                        <Lightbulb className="h-4 w-4" />
-                        Tipp
-                      </Button>
-                    )}
-                    {showHint && <div></div>} {/* Platzhalter wenn Tipp bereits angezeigt */}
                   </>
                 ) : (
-                  // Nach der Antwort - nur bei falscher Antwort - ersetzen die vorherigen Buttons
+                  // Nach der Antwort - nur bei falscher Antwort
                   !isCorrect && (
                     <>
-                      {/* War nur ein Tippfehler Button (links) - an der Stelle des Prüfen-Buttons */}
+                      {/* War nur ein Tippfehler Button (links) */}
                       <Button onClick={markAsTypo} variant="outline" className="gap-2">
                         <RotateCcw className="h-4 w-4" />
                         Tippfehler
                       </Button>
                       
-                      {/* Weiter Button (rechts) - an der Stelle des Tipp-Buttons */}
+                      {/* Weiter Button (rechts) */}
                       <Button onClick={goToNext} className="gap-2">
                         Weiter
                       </Button>
