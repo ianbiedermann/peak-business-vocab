@@ -162,40 +162,52 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
               )}
             </div>
 
+            {/* Button Grid - zeigt verschiedene Buttons je nach Zustand */}
             <div className="grid grid-cols-2 gap-3">
-              <Button 
-                onClick={() => {
-                  if (userInput.trim() && !answered) {
-                    setCurrentAttempt(prev => prev + 1);
-                    checkAnswer();
-                  }
-                }} 
-                className="gap-2"
-                disabled={!userInput.trim() || answered}
-              >
-                <CheckCircle className="h-4 w-4" />
-                Prüfen
-              </Button>
-              {!showHint && (
-                <Button onClick={showHintHandler} variant="outline" className="gap-2" disabled={answered}>
-                  <Lightbulb className="h-4 w-4" />
-                  Tipp
-                </Button>
+              {!answered ? (
+                <>
+                  {/* Tipp Button (links) */}
+                  {!showHint && (
+                    <Button onClick={showHintHandler} variant="outline" className="gap-2">
+                      <Lightbulb className="h-4 w-4" />
+                      Tipp
+                    </Button>
+                  )}
+                  {showHint && <div></div>} {/* Platzhalter wenn Tipp bereits angezeigt */}
+                  
+                  {/* Prüfen Button (rechts) */}
+                  <Button 
+                    onClick={() => {
+                      if (userInput.trim()) {
+                        setCurrentAttempt(prev => prev + 1);
+                        checkAnswer();
+                      }
+                    }} 
+                    className="gap-2"
+                    disabled={!userInput.trim()}
+                  >
+                    <CheckCircle className="h-4 w-4" />
+                    Prüfen
+                  </Button>
+                </>
+              ) : (
+                // Nach der Antwort - nur bei falscher Antwort
+                !isCorrect && (
+                  <>
+                    {/* War nur ein Tippfehler Button (links) */}
+                    <Button onClick={markAsTypo} variant="outline" className="gap-2">
+                      <RotateCcw className="h-4 w-4" />
+                      Tippfehler
+                    </Button>
+                    
+                    {/* Weiter Button (rechts) */}
+                    <Button onClick={goToNext} className="gap-2">
+                      Weiter
+                    </Button>
+                  </>
+                )
               )}
             </div>
-
-            {answered && !isCorrect && (
-              <Button onClick={markAsTypo} variant="outline" className="w-full gap-2">
-                <RotateCcw className="h-4 w-4" />
-                War nur ein Tippfehler
-              </Button>
-            )}
-            {/* Weiter-Button nur bei falscher Antwort */}
-            {answered && !isCorrect && (
-              <Button onClick={goToNext} className="w-full">
-                Weiter
-              </Button>
-            )}
           </div>
 
           {/* Progress indicator */}
