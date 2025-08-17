@@ -160,7 +160,7 @@ export function Statistics({ onBack }: StatisticsProps) {
         </div>
 
         {/* Chart */}
-        <Card className="p-6 bg-white/90 backdrop-blur shadow-lg">
+        <Card className="p-6 bg-white/90 backdrop-blur shadow-lg overflow-hidden">
           <h3 className="text-xl font-semibold mb-6 flex items-center gap-3 text-gray-800">
             <BarChart3 className="h-6 w-6 text-blue-600" />
             Tägliche Aktivität - {getTimeRangeLabel()}
@@ -183,7 +183,7 @@ export function Statistics({ onBack }: StatisticsProps) {
               </div>
               
               {/* Chart Area with Horizontal Scroll */}
-              <div className="ml-12 overflow-x-auto">
+              <div className="ml-12 overflow-x-auto touch-pan-x" style={{ scrollbarWidth: 'thin' }}>
                 <div 
                   className="relative"
                   style={{ minWidth: `${filteredStats.length * 35}px` }}
