@@ -48,22 +48,40 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
   const isCorrect = userInput.toLowerCase().trim() === currentVocab.english.toLowerCase();
   const hasError = answered && !isCorrect;
 
-  const checkAnswer = () => {
+  const checkAnswer = async () => {
     const correct = userInput.toLowerCase().trim() === currentVocab.english.toLowerCase();
     setFeedback(correct ? 'correct' : 'incorrect');
     setResults(prev => new Map(prev).set(currentVocab.id, correct));
     setAnswered(true);
 
     if (correct) {
-      const nextBox = Math.min(currentVocab.box + 1, 6);
-      moveVocabularyToBox(currentVocab.id, nextBox, true);
-      // Automatisch weiter nach kurzer Verzögerung
-      setTimeout(() => {
-        goToNext();
-      }, 600);
+      try {
+        // Erst die Vokabel in die nächste Box verschieben (warten bis fertig)
+        const nextBox = Math.min(currentVocab.box + 1, 6);
+        await moveVocabularyToBox(currentVocab.id, nextBox, true);
+        
+        // Dann die Statistiken aktualisieren
+        updateDailyStats(0, 1);
+        
+        // Automatisch weiter nach kurzer Verzögerung
+        setTimeout(() => {
+          goToNext();
+        }, 600);
+      } catch (error) {
+        console.error('Error moving vocabulary to box:', error);
+        // Bei Fehler trotzdem weitermachen, aber keine Statistik aktualisieren
+        setTimeout(() => {
+          goToNext();
+        }, 600);
+      }
     } else {
-      resetVocabularyToBox1(currentVocab.id);
+      try {
+        await resetVocabularyToBox1(currentVocab.id);
+      } catch (error) {
+        console.error('Error resetting vocabulary to box 1:', error);
+      }
       // Kein automatischer Wechsel, Anzeige von "Weiter"-Button
+      // Keine Statistik-Aktualisierung bei falscher Antwort
     }
   };
 
@@ -75,20 +93,34 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
     setCurrentAttempt(0);
 
     if (isLastVocabulary) {
-      updateDailyStats(0, vocabularies.length);
+      // Statistiken wurden bereits pro Vokabel aktualisiert
       onComplete();
     } else {
       setCurrentIndex(prev => prev + 1);
     }
   };
 
-  const markAsTypo = () => {
+  const markAsTypo = async () => {
     setFeedback('correct');
-    const nextBox = Math.min(currentVocab.box + 1, 6);
-    moveVocabularyToBox(currentVocab.id, nextBox, true);
-    setTimeout(() => {
-      goToNext();
-    }, 600);
+    
+    try {
+      // Erst die Vokabel in die nächste Box verschieben (warten bis fertig)
+      const nextBox = Math.min(currentVocab.box + 1, 6);
+      await moveVocabularyToBox(currentVocab.id, nextBox, true);
+      
+      // Dann die Statistiken aktualisieren
+      updateDailyStats(0, 1);
+      
+      setTimeout(() => {
+        goToNext();
+      }, 600);
+    } catch (error) {
+      console.error('Error marking as typo:', error);
+      // Bei Fehler trotzdem weitermachen
+      setTimeout(() => {
+        goToNext();
+      }, 600);
+    }
   };
 
   const showHintHandler = () => {
@@ -162,20 +194,11 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
               )}
             </div>
 
-            {/* Button Grid - zeigt verschiedene Buttons je nach Zustand */}
+            {/* Button Grid - verbesserte Anordnung */}
             <div className="grid grid-cols-2 gap-3">
               {!answered ? (
                 <>
-                  {/* Tipp Button (links) */}
-                  {!showHint && (
-                    <Button onClick={showHintHandler} variant="outline" className="gap-2">
-                      <Lightbulb className="h-4 w-4" />
-                      Tipp
-                    </Button>
-                  )}
-                  {showHint && <div></div>} {/* Platzhalter wenn Tipp bereits angezeigt */}
-                  
-                  {/* Prüfen Button (rechts) */}
+                  {/* Prüfen Button (links) - für bessere Daumen-Erreichbarkeit */}
                   <Button 
                     onClick={() => {
                       if (userInput.trim()) {
@@ -189,18 +212,27 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
                     <CheckCircle className="h-4 w-4" />
                     Prüfen
                   </Button>
+                  
+                  {/* Tipp Button (rechts) */}
+                  {!showHint && (
+                    <Button onClick={showHintHandler} variant="outline" className="gap-2">
+                      <Lightbulb className="h-4 w-4" />
+                      Tipp
+                    </Button>
+                  )}
+                  {showHint && <div></div>} {/* Platzhalter wenn Tipp bereits angezeigt */}
                 </>
               ) : (
-                // Nach der Antwort - nur bei falscher Antwort
+                // Nach der Antwort - nur bei falscher Antwort - ersetzen die vorherigen Buttons
                 !isCorrect && (
                   <>
-                    {/* War nur ein Tippfehler Button (links) */}
+                    {/* War nur ein Tippfehler Button (links) - an der Stelle des Prüfen-Buttons */}
                     <Button onClick={markAsTypo} variant="outline" className="gap-2">
                       <RotateCcw className="h-4 w-4" />
                       Tippfehler
                     </Button>
                     
-                    {/* Weiter Button (rechts) */}
+                    {/* Weiter Button (rechts) - an der Stelle des Tipp-Buttons */}
                     <Button onClick={goToNext} className="gap-2">
                       Weiter
                     </Button>
