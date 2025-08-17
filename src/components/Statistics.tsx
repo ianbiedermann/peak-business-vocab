@@ -21,27 +21,45 @@ export function Statistics({ onBack }: StatisticsProps) {
   const getFilteredStats = () => {
     const now = new Date();
     let startDate: Date;
+    let daysToShow: number;
     
     switch (timeRange) {
       case '7days':
-        startDate = subDays(now, 7);
+        startDate = subDays(now, 6); // 7 Tage inklusive heute
+        daysToShow = 7;
         break;
       case '1month':
         startDate = subMonths(now, 1);
+        daysToShow = 30;
         break;
       case '1year':
         startDate = subYears(now, 1);
+        daysToShow = 365;
         break;
       case 'all':
         return stats.dailyStats.slice().reverse(); // Chronologische Reihenfolge für Chart
       default:
-        startDate = subDays(now, 7);
+        startDate = subDays(now, 6);
+        daysToShow = 7;
     }
     
-    return stats.dailyStats
-      .filter(stat => new Date(stat.date) >= startDate)
-      .slice()
-      .reverse(); // Chronologische Reihenfolge für Chart
+    // Erstelle Array mit allen Tagen im Zeitraum
+    const allDays = [];
+    for (let i = 0; i < daysToShow; i++) {
+      const date = subDays(now, daysToShow - 1 - i);
+      const dateStr = date.toISOString().split('T')[0];
+      
+      // Suche nach existierenden Daten für dieses Datum
+      const existingStat = stats.dailyStats.find(stat => stat.date === dateStr);
+      
+      allDays.push({
+        date: dateStr,
+        newLearned: existingStat?.newLearned || 0,
+        reviewed: existingStat?.reviewed || 0
+      });
+    }
+    
+    return allDays;
   };
 
   const filteredStats = getFilteredStats();
@@ -168,7 +186,7 @@ export function Statistics({ onBack }: StatisticsProps) {
               <div className="ml-12 overflow-x-auto">
                 <div 
                   className="relative"
-                  style={{ minWidth: `${filteredStats.length * 50}px` }}
+                  style={{ minWidth: `${filteredStats.length * 35}px` }}
                 >
                   {/* Grid Lines - positioned to match the actual chart area */}
                   <div className="absolute left-0 right-0 pointer-events-none" style={{ top: '30px', height: '220px' }}>
@@ -187,7 +205,7 @@ export function Statistics({ onBack }: StatisticsProps) {
                     style={{ height: '250px', paddingTop: '30px' }}
                   >
                     {/* Chart area with exact height matching grid */}
-                    <div className="flex items-end gap-2" style={{ height: '220px' }}>
+                    <div className="flex items-end gap-1" style={{ height: '220px' }}>
                       {filteredStats.map((stat, index) => {
                         const total = stat.newLearned + stat.reviewed;
                         const maxTotal = Math.max(...filteredStats.map(s => s.newLearned + s.reviewed));
@@ -196,7 +214,7 @@ export function Statistics({ onBack }: StatisticsProps) {
                         const reviewedHeightPx = maxTotal > 0 ? (stat.reviewed / maxTotal) * 220 : 0;
                         
                         return (
-                          <div key={stat.date} className="flex flex-col items-center justify-end" style={{ minWidth: '40px', height: '100%' }}>
+                          <div key={stat.date} className="flex flex-col items-center justify-end" style={{ minWidth: '28px', height: '100%' }}>
                             {/* Stacked Bar - built from bottom up */}
                             {(stat.newLearned > 0 || stat.reviewed > 0) && (
                               <div 
@@ -245,9 +263,9 @@ export function Statistics({ onBack }: StatisticsProps) {
                   </div>
                   
                   {/* X-Axis Labels - positioned below the chart */}
-                  <div className="flex gap-2">
+                  <div className="flex gap-1">
                     {filteredStats.map((stat) => (
-                      <div key={`label-${stat.date}`} className="flex justify-center" style={{ minWidth: '40px' }}>
+                      <div key={`label-${stat.date}`} className="flex justify-center" style={{ minWidth: '28px' }}>
                         <div className="text-xs text-gray-600 font-medium">
                           {formatDate(stat.date)}
                         </div>
