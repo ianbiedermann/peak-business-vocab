@@ -54,6 +54,9 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
     setResults(prev => new Map(prev).set(currentVocab.id, correct));
     setAnswered(true);
 
+    // Statistiken sofort für diese eine Vokabel aktualisieren
+    updateDailyStats(0, 1);
+
     if (correct) {
       const nextBox = Math.min(currentVocab.box + 1, 6);
       moveVocabularyToBox(currentVocab.id, nextBox, true);
@@ -75,7 +78,7 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
     setCurrentAttempt(0);
 
     if (isLastVocabulary) {
-      updateDailyStats(0, vocabularies.length);
+      // Statistiken wurden bereits pro Vokabel aktualisiert
       onComplete();
     } else {
       setCurrentIndex(prev => prev + 1);
@@ -86,6 +89,10 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
     setFeedback('correct');
     const nextBox = Math.min(currentVocab.box + 1, 6);
     moveVocabularyToBox(currentVocab.id, nextBox, true);
+    
+    // Statistiken auch bei Tippfehler aktualisieren
+    updateDailyStats(0, 1);
+    
     setTimeout(() => {
       goToNext();
     }, 600);
@@ -162,20 +169,11 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
               )}
             </div>
 
-            {/* Button Grid - zeigt verschiedene Buttons je nach Zustand */}
+            {/* Button Grid - verbesserte Anordnung */}
             <div className="grid grid-cols-2 gap-3">
               {!answered ? (
                 <>
-                  {/* Tipp Button (links) */}
-                  {!showHint && (
-                    <Button onClick={showHintHandler} variant="outline" className="gap-2">
-                      <Lightbulb className="h-4 w-4" />
-                      Tipp
-                    </Button>
-                  )}
-                  {showHint && <div></div>} {/* Platzhalter wenn Tipp bereits angezeigt */}
-                  
-                  {/* Prüfen Button (rechts) */}
+                  {/* Prüfen Button (links) - für bessere Daumen-Erreichbarkeit */}
                   <Button 
                     onClick={() => {
                       if (userInput.trim()) {
@@ -189,18 +187,27 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
                     <CheckCircle className="h-4 w-4" />
                     Prüfen
                   </Button>
+                  
+                  {/* Tipp Button (rechts) */}
+                  {!showHint && (
+                    <Button onClick={showHintHandler} variant="outline" className="gap-2">
+                      <Lightbulb className="h-4 w-4" />
+                      Tipp
+                    </Button>
+                  )}
+                  {showHint && <div></div>} {/* Platzhalter wenn Tipp bereits angezeigt */}
                 </>
               ) : (
-                // Nach der Antwort - nur bei falscher Antwort
+                // Nach der Antwort - nur bei falscher Antwort - ersetzen die vorherigen Buttons
                 !isCorrect && (
                   <>
-                    {/* War nur ein Tippfehler Button (links) */}
+                    {/* War nur ein Tippfehler Button (links) - an der Stelle des Prüfen-Buttons */}
                     <Button onClick={markAsTypo} variant="outline" className="gap-2">
                       <RotateCcw className="h-4 w-4" />
                       Tippfehler
                     </Button>
                     
-                    {/* Weiter Button (rechts) */}
+                    {/* Weiter Button (rechts) - an der Stelle des Tipp-Buttons */}
                     <Button onClick={goToNext} className="gap-2">
                       Weiter
                     </Button>
