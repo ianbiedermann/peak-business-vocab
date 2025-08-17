@@ -54,10 +54,10 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
     setResults(prev => new Map(prev).set(currentVocab.id, correct));
     setAnswered(true);
 
-    // Statistiken sofort für diese eine Vokabel aktualisieren
-    updateDailyStats(0, 1);
-
     if (correct) {
+      // Nur bei richtiger Antwort: Statistiken aktualisieren
+      updateDailyStats(0, 1);
+      
       const nextBox = Math.min(currentVocab.box + 1, 6);
       moveVocabularyToBox(currentVocab.id, nextBox, true);
       // Automatisch weiter nach kurzer Verzögerung
@@ -67,6 +67,7 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
     } else {
       resetVocabularyToBox1(currentVocab.id);
       // Kein automatischer Wechsel, Anzeige von "Weiter"-Button
+      // Keine Statistik-Aktualisierung bei falscher Antwort
     }
   };
 
