@@ -6,7 +6,6 @@ interface SubscriptionData {
   subscribed: boolean;
   subscription_tier?: string;
   subscription_end?: string;
-  cancel_at_period_end?: boolean;
 }
 
 export function useAuth() {
@@ -51,8 +50,7 @@ export function useAuth() {
         const subscriptionData: SubscriptionData = {
           subscribed: stripeData.subscribed || false,
           subscription_tier: stripeData.subscription_tier,
-          subscription_end: stripeData.subscription_end,
-          cancel_at_period_end: stripeData.cancel_at_period_end
+          subscription_end: stripeData.subscription_end
         };
 
         console.log('✅ Subscription status from Stripe:', {
