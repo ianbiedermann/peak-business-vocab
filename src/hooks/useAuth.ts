@@ -34,11 +34,24 @@ export function useAuth() {
     
     try {
       // ERST: Stripe via check-subscription Edge Function prüfen
-      const { data: stripeData, error: stripeError } = await supabase.functions.invoke('check-subscription', {
-        headers: {
-          Authorization: `Bearer ${session.access_token}`,
-        },
-      });
+      // Hole den aktuellen Access Token direkt von Supabase
+        const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
+        
+        if (sessionError || !sessionData?.session?.access_token) {
+          console.error('❌ Kein gültiger Access Token verfügbar:', sessionError?.message);
+          await checkDatabaseOnly(); // Fallback
+          return;
+        }
+        
+        const accessToken = sessionData.session.access_token;
+        
+        // Jetzt mit frischem Token die Edge Function aufrufen
+        const { data: stripeData, error: stripeError } = await supabase.functions.invoke('check-subscription', {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        });
+
 
       if (stripeError) {
         console.error('❌ Stripe check error:', stripeError.message);
