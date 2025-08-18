@@ -18,20 +18,26 @@ export function SubscriptionManager() {
     
     setLoading(true);
     try {
+      const { data: sessionData } = await supabase.auth.getSession();
+      const accessToken = sessionData.session?.access_token;
+      if (!accessToken) {
+        throw new Error('Keine gültige Session. Bitte melde dich erneut an.');
+      }
+
       const { data, error } = await supabase.functions.invoke('create-checkout', {
         headers: {
-          Authorization: `Bearer ${session.access_token}`,
+          Authorization: `Bearer ${accessToken}`,
         },
       });
 
       if (error) throw error;
       
       window.open(data.url, '_blank');
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error creating checkout:', error);
       toast({
         title: "Error",
-        description: "Failed to create checkout session. Please try again.",
+        description: error?.message || "Failed to create checkout session. Please try again.",
         variant: "destructive",
       });
     } finally {
@@ -51,13 +57,21 @@ export function SubscriptionManager() {
     
     setLoading(true);
     console.log('🚀 Starting customer portal request...');
-    console.log('Session token available:', !!session.access_token);
-    console.log('User email:', session.user?.email);
-    
     try {
+      const { data: sessionData } = await supabase.auth.getSession();
+      const accessToken = sessionData.session?.access_token;
+      if (!accessToken) {
+        toast({
+          title: "Fehler",
+          description: "Keine gültige Session. Bitte logge dich erneut ein.",
+          variant: "destructive",
+        });
+        return;
+      }
+
       const { data, error } = await supabase.functions.invoke('customer-portal', {
         headers: {
-          Authorization: `Bearer ${session.access_token}`,
+          Authorization: `Bearer ${accessToken}`,
         },
       });
 
@@ -65,14 +79,20 @@ export function SubscriptionManager() {
 
       if (error) {
         console.error('❌ Supabase function error:', error);
-        
-        if (error.message?.includes('No Stripe customer found')) {
+        const msg = error.message || "";
+        if (msg.includes('Session from session_id claim in JWT does not exist')) {
+          toast({
+            title: "Session abgelaufen",
+            description: "Bitte melde dich erneut an und versuche es nochmal.",
+            variant: "destructive",
+          });
+        } else if (msg.includes('No Stripe customer found')) {
           toast({
             title: "Kein Stripe-Kunde gefunden",
             description: "Du hast noch kein Premium-Abo abgeschlossen. Bitte abonniere zuerst Premium.",
             variant: "destructive",
           });
-        } else if (error.message?.includes('Customer portal is not enabled')) {
+        } else if (msg.includes('Customer portal is not enabled')) {
           toast({
             title: "Customer Portal nicht aktiviert",
             description: "Das Stripe Customer Portal ist nicht konfiguriert. Kontaktiere den Support.",
@@ -81,7 +101,7 @@ export function SubscriptionManager() {
         } else {
           toast({
             title: "Fehler",
-            description: `Fehler beim Öffnen des Kundenportals: ${error.message}`,
+            description: `Fehler beim Öffnen des Kundenportals: ${msg}`,
             variant: "destructive",
           });
         }
@@ -112,12 +132,12 @@ export function SubscriptionManager() {
         description: "Kundenportal wurde geöffnet!",
       });
       
-    } catch (error) {
+    } catch (error: any) {
       console.error('💥 Unexpected error:', error);
       
       toast({
         title: "Unerwarteter Fehler",
-        description: `Ein unerwarteter Fehler ist aufgetreten: ${error.message || 'Unbekannter Fehler'}`,
+        description: `Ein unerwarteter Fehler ist aufgetreten: ${error?.message || 'Unbekannter Fehler'}`,
         variant: "destructive",
       });
     } finally {

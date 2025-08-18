@@ -180,13 +180,12 @@ export function useAuth() {
 
   const signOut = async () => {
     const { error } = await supabase.auth.signOut();
-    if (!error) {
-      setUser(null);
-      setSession(null);
-      setSubscription({ subscribed: false });
-      setSubscriptionChecked(false);
-      setSubscriptionLoading(false);
-    }
+    // Always clear local state even if Supabase reports a missing/expired session
+    setUser(null);
+    setSession(null);
+    setSubscription({ subscribed: false });
+    setSubscriptionChecked(false);
+    setSubscriptionLoading(false);
     return { error };
   };
 
