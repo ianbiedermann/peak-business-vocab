@@ -143,6 +143,38 @@ export function useAuth() {
     }
   }, [user, session, subscriptionChecked, subscriptionLoading, checkSubscription]);
 
+  // Focus-basiertes Subscription Checking
+  useEffect(() => {
+    const handleFocus = () => {
+      if (user && session && !subscriptionLoading) {
+        console.log('🔄 App focused - checking subscription status...');
+        
+        // Reset subscriptionChecked um einen neuen Check zu ermöglichen
+        setSubscriptionChecked(false);
+        
+        // Kurze Verzögerung um multiple rapid Focus-Events zu vermeiden
+        setTimeout(() => {
+          checkSubscription();
+        }, 500);
+      }
+    };
+
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        handleFocus();
+      }
+    };
+
+    // Beide Events abonnieren für maximale Kompatibilität
+    window.addEventListener('focus', handleFocus);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    
+    return () => {
+      window.removeEventListener('focus', handleFocus);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, [user, session, subscriptionLoading, checkSubscription]);
+
   useEffect(() => {
     console.log('🚀 Initializing auth...');
     
