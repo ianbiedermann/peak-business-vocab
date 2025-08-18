@@ -6,7 +6,6 @@ interface SubscriptionData {
   subscribed: boolean;
   subscription_tier?: string;
   subscription_end?: string;
-  cancel_at_period_end?: boolean;
 }
 
 export function useAuth() {
@@ -34,24 +33,11 @@ export function useAuth() {
     
     try {
       // ERST: Stripe via check-subscription Edge Function prüfen
-      // Hole den aktuellen Access Token direkt von Supabase
-        const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
-        
-        if (sessionError || !sessionData?.session?.access_token) {
-          console.error('❌ Kein gültiger Access Token verfügbar:', sessionError?.message);
-          await checkDatabaseOnly(); // Fallback
-          return;
-        }
-        
-        const accessToken = sessionData.session.access_token;
-        
-        // Jetzt mit frischem Token die Edge Function aufrufen
-        const { data: stripeData, error: stripeError } = await supabase.functions.invoke('check-subscription', {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        });
-
+      const { data: stripeData, error: stripeError } = await supabase.functions.invoke('check-subscription', {
+        headers: {
+          Authorization: `Bearer ${session.access_token}`,
+        },
+      });
 
       if (stripeError) {
         console.error('❌ Stripe check error:', stripeError.message);
@@ -64,8 +50,7 @@ export function useAuth() {
         const subscriptionData: SubscriptionData = {
           subscribed: stripeData.subscribed || false,
           subscription_tier: stripeData.subscription_tier,
-          subscription_end: stripeData.subscription_end,
-          cancel_at_period_end: stripeData.cancel_at_period_end
+          subscription_end: stripeData.subscription_end
         };
 
         console.log('✅ Subscription status from Stripe:', {
@@ -195,13 +180,12 @@ export function useAuth() {
 
   const signOut = async () => {
     const { error } = await supabase.auth.signOut();
-    if (!error) {
-      setUser(null);
-      setSession(null);
-      setSubscription({ subscribed: false });
-      setSubscriptionChecked(false);
-      setSubscriptionLoading(false);
-    }
+    // Always clear local state even if Supabase reports a missing/expired session
+    setUser(null);
+    setSession(null);
+    setSubscription({ subscribed: false });
+    setSubscriptionChecked(false);
+    setSubscriptionLoading(false);
     return { error };
   };
 
