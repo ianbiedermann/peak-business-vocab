@@ -39,13 +39,7 @@ serve(async (req) => {
     const token = authHeader.replace("Bearer ", "");
     logStep("Authenticating user with token");
     
-    // Use anon client for user auth check
-    const anonClient = createClient(
-      Deno.env.get("SUPABASE_URL") ?? "",
-      Deno.env.get("SUPABASE_ANON_KEY") ?? ""
-    );
-    
-    const { data: userData, error: userError } = await anonClient.auth.getUser(token);
+    const { data: userData, error: userError } = await supabaseClient.auth.getUser(token);
     if (userError) throw new Error(`Authentication error: ${userError.message}`);
     const user = userData.user;
     if (!user?.email) throw new Error("User not authenticated or email not available");
@@ -87,11 +81,11 @@ serve(async (req) => {
     if (hasActiveSub) {
       const subscription = subscriptions.data[0];
       subscriptionEnd = new Date(subscription.current_period_end * 1000).toISOString();
-      cancelAtPeriodEnd = subscription.cancel_at_period_end;
+      cancelAtPeriodEnd = subscription.cancel_at_period_end || false;
       logStep("Active subscription found", { 
         subscriptionId: subscription.id, 
-        endDate: subscriptionEnd,
-        cancelAtPeriodEnd: cancelAtPeriodEnd
+        endDate: subscriptionEnd, 
+        cancelAtPeriodEnd 
       });
       subscriptionTier = "Premium";
       logStep("Determined subscription tier", { subscriptionTier });
