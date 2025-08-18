@@ -150,7 +150,7 @@ export function SubscriptionManager() {
         {subscription.subscription_end && (
           <div className="flex items-center justify-between">
             <span>
-              {subscriptionStatus?.cancel_at_period_end 
+              {subscription.cancel_at_period_end 
                 ? "Läuft aus am:" 
                 : "Verlängert sich am:"
               }
@@ -159,7 +159,7 @@ export function SubscriptionManager() {
               <span className="text-sm text-muted-foreground">
                 {new Date(subscription.subscription_end).toLocaleDateString('de-DE')}
               </span>
-              {subscriptionStatus?.cancel_at_period_end && (
+              {subscription.cancel_at_period_end && (
                 <div className="text-xs text-orange-600 dark:text-orange-400 mt-1">
                   Abo gekündigt
                 </div>
