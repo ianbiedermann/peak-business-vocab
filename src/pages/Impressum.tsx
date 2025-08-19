@@ -32,21 +32,14 @@ const Impressum = () => {
               <h3>Angaben gemäß § 5 TMG</h3>
               <p>
                 Ian Biedermann<br />
-                [Adresse]<br />
-                [PLZ Ort]
+                Stollestraße 27<br />
+                01159 Dresden
               </p>
 
               <h3>Kontakt</h3>
               <p>
-                E-Mail: [E-Mail-Adresse]<br />
-                Telefon: [Telefonnummer]
-              </p>
-
-              <h3>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h3>
-              <p>
-                Ian Biedermann<br />
-                [Adresse]<br />
-                [PLZ Ort]
+                E-Mail: ian.biedermann@gmail.com<br />
+                Telefon: 015525468758
               </p>
 
               <h3>EU-Streitschlichtung</h3>
