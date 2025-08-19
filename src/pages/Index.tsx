@@ -177,6 +177,12 @@ const Index = () => {
             >
               Datenschutzerklärung
             </Link>
+            <Link 
+              to="/impressum" 
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Impressum
+            </Link>
           </div>
         </footer>
       )}
