@@ -52,15 +52,8 @@ const AGB = () => {
 
               <h3>5. Kostenpflichtige Dienste und Abonnements</h3>
               <p>
-                PeakEnglish bietet kostenpflichtige Funktionen in Form eines monatlichen Abonnements zum Preis von 3,99 € an. Das Abonnement verlängert sich automatisch, wenn es nicht vor Ablauf der aktuellen Abonnementperiode gekündigt wird. Die Zahlung erfolgt über Stripe und kann mit den folgenden Zahlungsmethoden getätigt werden: Amazon Pay, Visa, Klarna.
+                PeakEnglish bietet aktuell keine kostenpflichtige Funktionen an.
               </p>
-
-              <ul>
-                <li><strong>Preismodell:</strong> 3,99 € monatlich</li>
-                <li>
-                  <strong>Zahlungsbedingungen:</strong> Zahlungen sind im Voraus fällig. Die Kündigung des Abonnements erfolgt direkt in der App. Du kannst das Abonnement jederzeit kündigen. Es erfolgt keine Rückerstattung bereits bezahlter Beträge, jedoch kannst du kostenpflichtige Funktionen der App bis zum Ende des laufenden Abrechnungszeitraums weiterhin nutzen.
-                </li>
-              </ul>
 
               <h3>6. Haftungsausschluss</h3>
               <p>
