@@ -29,6 +29,8 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
   const [shuffledGerman, setShuffledGerman] = useState<string[]>([]);
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
   const [answered, setAnswered] = useState(false);
+  const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
+  const [isProcessing, setIsProcessing] = useState(false);
 
   // Initialize shuffled German translations for matching phase
   useEffect(() => {
@@ -37,6 +39,22 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
       setShuffledGerman([...german].sort(() => Math.random() - 0.5));
     }
   }, [session.currentPhase, vocabularies]);
+
+  // Explizit alle States zurücksetzen wenn sich Index oder Phase ändert
+  useEffect(() => {
+    // Timeout um sicherzustellen, dass mobile Browser den State richtig zurücksetzen
+    const resetTimeout = setTimeout(() => {
+      setFeedback(null);
+      setSelectedAnswer(null);
+      setUserInput('');
+      setShowHint(false);
+      setCurrentAttempt(0);
+      setAnswered(false);
+      setIsProcessing(false);
+    }, 0);
+
+    return () => clearTimeout(resetTimeout);
+  }, [session.currentIndex, session.currentPhase]);
 
   const speakWord = (text: string) => {
     if ('speechSynthesis' in window) {
@@ -68,18 +86,25 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
   };
 
   const handleMatch = (germanTranslation: string) => {
+    if (isProcessing) return; // Verhindert mehrfache Klicks
+    
     const currentVocab = vocabularies[session.currentIndex];
     const isCorrect = currentVocab.german === germanTranslation;
     
-    // Show feedback
+    setIsProcessing(true);
+    setSelectedAnswer(germanTranslation);
     setFeedback(isCorrect ? 'correct' : 'incorrect');
-    setTimeout(() => setFeedback(null), 600);
     
     if (isCorrect) {
       const newMatched = new Set(session.matchedPairs);
       newMatched.add(currentVocab.id);
       
       setTimeout(() => {
+        // Explizit alle visuellen States zurücksetzen
+        setFeedback(null);
+        setSelectedAnswer(null);
+        setIsProcessing(false);
+        
         setSession(prev => ({ ...prev, matchedPairs: newMatched }));
         
         // Check if all pairs are matched
@@ -91,6 +116,13 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
           setSession(prev => ({ ...prev, currentIndex: nextIndex }));
         }
       }, 600);
+    } else {
+      // Bei falscher Antwort zurücksetzen
+      setTimeout(() => {
+        setFeedback(null);
+        setSelectedAnswer(null);
+        setIsProcessing(false);
+      }, 1000);
     }
   };
 
@@ -112,14 +144,17 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
   };
 
   const goToNext = () => {
+    // Explizit alle States zurücksetzen
     setAnswered(false);
     setFeedback(null);
+    setSelectedAnswer(null);
+    setUserInput('');
+    setShowHint(false);
+    setCurrentAttempt(0);
+    setIsProcessing(false);
     
     if (session.currentIndex < vocabularies.length - 1) {
       setSession(prev => ({ ...prev, currentIndex: prev.currentIndex + 1 }));
-      setUserInput('');
-      setShowHint(false);
-      setCurrentAttempt(0);
     } else {
       // All completed - move to box 1
       const vocabIds = vocabularies.map(v => v.id);
@@ -233,16 +268,27 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
                 </div>
                 
                 <div className="grid gap-2">
-                  {unmatchedGerman.map((german, index) => (
-                    <Button
-                      key={index}
-                      onClick={() => handleMatch(german)}
-                      variant="outline"
-                      className="h-auto p-4 text-left justify-start"
-                    >
-                      {german}
-                    </Button>
-                  ))}
+                  {unmatchedGerman.map((german, index) => {
+                    const isSelected = selectedAnswer === german;
+                    const isCorrectAnswer = feedback === 'correct' && isSelected;
+                    const isIncorrectAnswer = feedback === 'incorrect' && isSelected;
+                    
+                    return (
+                      <Button
+                        key={`${session.currentIndex}-${german}-${index}`} // Eindeutiger Key mit currentIndex
+                        onClick={() => handleMatch(german)}
+                        variant="outline"
+                        disabled={isProcessing}
+                        className={`h-auto p-4 text-left justify-start transition-all duration-300 ${
+                          isCorrectAnswer ? 'bg-green-500/20 border-green-500 text-green-700' :
+                          isIncorrectAnswer ? 'bg-red-500/20 border-red-500 text-red-700' :
+                          'hover:bg-accent'
+                        }`}
+                      >
+                        {german}
+                      </Button>
+                    );
+                  })}
                 </div>
               </div>
             )}
