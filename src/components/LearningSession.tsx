@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -31,6 +31,7 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
   const [answered, setAnswered] = useState(false);
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   // Initialize shuffled German translations for matching phase
   useEffect(() => {
@@ -51,10 +52,27 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
       setCurrentAttempt(0);
       setAnswered(false);
       setIsProcessing(false);
+      
+      // Auto-focus für Writing-Phase auf mobilen Geräten
+      if (session.currentPhase === 'writing' && inputRef.current) {
+        inputRef.current.focus();
+      }
     }, 0);
 
     return () => clearTimeout(resetTimeout);
   }, [session.currentIndex, session.currentPhase]);
+
+  // Zusätzlicher Fokus-Effect speziell für Writing-Phase
+  useEffect(() => {
+    if (session.currentPhase === 'writing' && inputRef.current) {
+      // Kleines Delay für bessere Mobile-Kompatibilität
+      const focusTimeout = setTimeout(() => {
+        inputRef.current?.focus();
+      }, 100);
+      
+      return () => clearTimeout(focusTimeout);
+    }
+  }, [session.currentPhase, session.currentIndex]);
 
   const speakWord = (text: string) => {
     if ('speechSynthesis' in window) {
@@ -155,6 +173,10 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
     
     if (session.currentIndex < vocabularies.length - 1) {
       setSession(prev => ({ ...prev, currentIndex: prev.currentIndex + 1 }));
+      // Focus auf nächstes Input-Feld setzen
+      setTimeout(() => {
+        inputRef.current?.focus();
+      }, 100);
     } else {
       // All completed - move to box 1
       const vocabIds = vocabularies.map(v => v.id);
@@ -330,6 +352,7 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
             <div className="space-y-4">
               <div className="space-y-2">
                 <Input
+                  ref={inputRef}
                   value={userInput}
                   onChange={(e) => setUserInput(e.target.value)}
                   placeholder="Englische Übersetzung..."
@@ -342,6 +365,7 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
                     }
                   }}
                   disabled={answered}
+                  autoFocus
                 />
                 
                 {showHint && (
