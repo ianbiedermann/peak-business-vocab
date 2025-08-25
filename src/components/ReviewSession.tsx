@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -23,6 +23,31 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
   const [answered, setAnswered] = useState(false);
   const [saving, setSaving] = useState(false);
+
+  // Ref für das Input-Feld um es fokussieren zu können
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  // Auto-Focus beim ersten Laden der Komponente
+  useEffect(() => {
+    if (inputRef.current && !answered && !saving) {
+      // Kurze Verzögerung damit der DOM vollständig gerendert ist
+      const timer = setTimeout(() => {
+        inputRef.current?.focus();
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
+  // Auto-Focus bei jeder neuen Vokabel
+  useEffect(() => {
+    if (inputRef.current && !answered && !saving) {
+      // Kurze Verzögerung für bessere UX nach Vokabel-Wechsel
+      const timer = setTimeout(() => {
+        inputRef.current?.focus();
+      }, 300);
+      return () => clearTimeout(timer);
+    }
+  }, [currentIndex, answered, saving]);
 
   if (vocabularies.length === 0) {
     return (
@@ -160,6 +185,12 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
 
   const showHintHandler = () => {
     setShowHint(true);
+    // Nach dem Hint wieder fokussieren
+    setTimeout(() => {
+      if (inputRef.current && !answered && !saving) {
+        inputRef.current.focus();
+      }
+    }, 100);
   };
 
   return (
@@ -195,6 +226,7 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
           <div className="space-y-4">
             <div className="space-y-2">
               <Input
+                ref={inputRef}
                 value={userInput}
                 onChange={(e) => setUserInput(e.target.value)}
                 placeholder="Englische Übersetzung..."
@@ -208,6 +240,7 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
                   }
                 }}
                 disabled={answered || saving}
+                autoFocus
               />
               {showHint && (
                 <div className="flex items-center gap-2 text-warning">
