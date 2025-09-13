@@ -28,15 +28,6 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
   const inputRef = useRef<HTMLInputElement>(null);
 
   // Funktionen definieren
-  const retryVocabulary = () => {
-    // Eingabe zurücksetzen für erneuten Versuch
-    setAnswered(false);
-    setFeedback(null);
-    setUserInput('');
-    setShowHint(false);
-    // currentAttempt nicht zurücksetzen, um Versuche zu zählen
-  };
-
   const goToNext = async () => {
     setAnswered(false);
     setFeedback(null);
