@@ -352,21 +352,6 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
                 </>
               )}
             </div>
-
-            {/* Aufgeben Button - nur bei falscher Antwort als zusätzliche Option */}
-            {answered && !isCorrect && (
-              <div className="pt-2">
-                <Button 
-                  onClick={giveUp} 
-                  variant="ghost" 
-                  size="sm"
-                  className="w-full text-muted-foreground hover:text-destructive"
-                  disabled={saving}
-                >
-                  Aufgeben (Vokabel zurück zu Box 1)
-                </Button>
-              </div>
-            )}
           </div>
 
           {/* Progress indicator */}
