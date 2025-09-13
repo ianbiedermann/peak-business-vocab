@@ -23,6 +23,7 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
   const [answered, setAnswered] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [isRetryAttempt, setIsRetryAttempt] = useState(false);
 
   // Ref für das Input-Feld um es fokussieren zu können
   const inputRef = useRef<HTMLInputElement>(null);
@@ -80,7 +81,8 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
     setResults(prev => new Map(prev).set(currentVocab.id, correct));
     setAnswered(true);
 
-    if (correct) {
+    if (correct && !isRetryAttempt) {
+      // Nur beim ERSTEN richtigen Versuch Box hochstufen
       setSaving(true);
       try {
         // KRITISCH: Alle asynchronen Operationen nacheinander awaiten
@@ -115,9 +117,31 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
           goToNext();
         }, 1000);
       }
+    } else if (correct && isRetryAttempt) {
+      // Bei richtigem Retry: Einfach zur nächsten Vokabel (Vokabel bleibt in Box 1)
+      setTimeout(() => {
+        goToNext();
+      }, 800);
+    } else if (!correct && !isRetryAttempt) {
+      // Bei falscher Antwort SOFORT in Box 1 zurücksetzen (nur beim ersten Mal)
+      setSaving(true);
+      try {
+        await resetVocabularyToBox1(currentVocab.id);
+        
+        // Zusätzliche Wartezeit für DB-Commit
+        await new Promise(resolve => setTimeout(resolve, 200));
+        
+        setSaving(false);
+      } catch (error) {
+        console.error('Error resetting vocabulary to box 1:', error);
+        setSaving(false);
+      }
+      // User kann jetzt erneut versuchen oder als Tippfehler markieren
     } else {
-      // Bei falscher Antwort NICHT automatisch in Box 1 zurücksetzen
-      // Das passiert erst wenn der User aufgibt (noch zu implementieren wenn gewünscht)
+      // Falscher Retry - einfach zur nächsten Vokabel (bleibt in Box 1)
+      setTimeout(() => {
+        goToNext();
+      }, 1500);
     }
   };
 
@@ -127,6 +151,7 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
     setUserInput('');
     setShowHint(false);
     setCurrentAttempt(0);
+    setIsRetryAttempt(false); // Reset retry flag
 
     if (isLastVocabulary) {
       onComplete();
@@ -140,7 +165,8 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
     setSaving(true);
     
     try {
-      // KRITISCH: Alle Operationen nacheinander awaiten
+      // Bei Tippfehler: Vokabel wieder in ursprüngliche Box oder eine höhere setzen
+      // Da sie bereits in Box 1 zurückgesetzt wurde, setzen wir sie wieder in die ursprüngliche Box
       const nextBox = Math.min(currentVocab.box + 1, 6);
       
       // 1. Vokabel verschieben
@@ -172,11 +198,12 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
   };
 
   const retryAnswer = () => {
-    // Reset für neuen Versuch
+    // Reset für neuen Versuch - aber Box bleibt bereits auf 1 gesetzt
     setAnswered(false);
     setFeedback(null);
     setUserInput('');
     setShowHint(false);
+    setIsRetryAttempt(true); // Markiere als Wiederholungsversuch
     
     // Input fokussieren für neuen Versuch
     setTimeout(() => {
@@ -184,27 +211,6 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
         inputRef.current.focus();
       }
     }, 100);
-  };
-
-  const giveUp = async () => {
-    // Vokabel zurück in Box 1 setzen
-    setSaving(true);
-    try {
-      await resetVocabularyToBox1(currentVocab.id);
-      
-      // Zusätzliche Wartezeit für DB-Commit
-      await new Promise(resolve => setTimeout(resolve, 200));
-      
-      setSaving(false);
-      
-      // Zur nächsten Vokabel
-      goToNext();
-      
-    } catch (error) {
-      console.error('Error resetting vocabulary to box 1:', error);
-      setSaving(false);
-      goToNext();
-    }
   };
 
   const showHintHandler = () => {
