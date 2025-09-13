@@ -322,9 +322,9 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
               ) : (
                 <>
                   {isCorrect ? (
-                    // Bei richtiger Antwort: Automatisch weiter (wird bereits automatisch gemacht)
+                    // Bei richtiger Antwort
                     <div className="col-span-2 text-center text-success font-semibold">
-                      Richtig! Lade nächste Vokabel...
+                      {isRetryAttempt ? "Gut! Zur nächsten Vokabel..." : "Richtig! Lade nächste Vokabel..."}
                     </div>
                   ) : (
                     // Bei falscher Antwort: Tippfehler oder Erneut versuchen
