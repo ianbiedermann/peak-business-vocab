@@ -27,84 +27,6 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
   // Ref für das Input-Feld um es fokussieren zu können
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Funktionen definieren
-  const goToNext = async () => {
-    setAnswered(false);
-    setFeedback(null);
-    setUserInput('');
-    setShowHint(false);
-    setCurrentAttempt(0);
-
-    if (isLastVocabulary) {
-      onComplete();
-    } else {
-      setCurrentIndex(prev => prev + 1);
-    }
-  };
-
-  const handleCorrectAnswer = async () => {
-    // Wurde die Vokabel bereits als falsch markiert? Dann zu Box 1 zurücksetzen
-    if (currentAttempt > 1) {
-      setSaving(true);
-      try {
-        await resetVocabularyToBox1(currentVocab.id);
-        await new Promise(resolve => setTimeout(resolve, 200));
-        setSaving(false);
-      } catch (error) {
-        console.error('Error resetting vocabulary to box 1:', error);
-        setSaving(false);
-      }
-    }
-    
-    // Zur nächsten Vokabel wechseln
-    setTimeout(() => {
-      goToNext();
-    }, 300);
-  };
-
-  const markAsTypo = async () => {
-    setFeedback('correct');
-    setSaving(true);
-    
-    try {
-      // Tippfehler: Vokabel direkt von aktueller Box zur nächsten verschieben
-      const nextBox = Math.min(currentVocab.box + 1, 6);
-      
-      await moveVocabularyToBox(currentVocab.id, nextBox, true);
-      
-      if (updateDailyStats.constructor.name === 'AsyncFunction') {
-        await updateDailyStats(0, 1);
-      } else {
-        updateDailyStats(0, 1);
-      }
-      
-      await new Promise(resolve => setTimeout(resolve, 300));
-      
-      setSaving(false);
-      
-      setTimeout(() => {
-        goToNext();
-      }, 300);
-      
-    } catch (error) {
-      console.error('Error marking as typo:', error);
-      setSaving(false);
-      setTimeout(() => {
-        goToNext();
-      }, 1000);
-    }
-  };
-
-  const showHintHandler = () => {
-    setShowHint(true);
-    // Nach dem Hint wieder fokussieren
-    setTimeout(() => {
-      if (inputRef.current && !answered && !saving) {
-        inputRef.current.focus();
-      }
-    }, 100);
-  };
-
   // Auto-Focus beim ersten Laden der Komponente
   useEffect(() => {
     if (inputRef.current && !answered && !saving) {
@@ -161,36 +83,114 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
     if (correct) {
       setSaving(true);
       try {
-        // Erste Eingabe richtig: Vokabel in nächste Box verschieben
-        if (currentAttempt === 1) {
-          const nextBox = Math.min(currentVocab.box + 1, 6);
-          await moveVocabularyToBox(currentVocab.id, nextBox, true);
-          
-          if (updateDailyStats.constructor.name === 'AsyncFunction') {
-            await updateDailyStats(0, 1);
-          } else {
-            updateDailyStats(0, 1);
-          }
-          
-          await new Promise(resolve => setTimeout(resolve, 300));
+        // KRITISCH: Alle asynchronen Operationen nacheinander awaiten
+        const nextBox = Math.min(currentVocab.box + 1, 6);
+        
+        // 1. Vokabel verschieben und warten bis komplett fertig
+        await moveVocabularyToBox(currentVocab.id, nextBox, true);
+        
+        // 2. Statistiken aktualisieren und warten bis fertig
+        // ANNAHME: updateDailyStats sollte auch async sein und awaited werden
+        if (updateDailyStats.constructor.name === 'AsyncFunction') {
+          await updateDailyStats(0, 1);
+        } else {
+          updateDailyStats(0, 1);
         }
+        
+        // 3. Kurz warten um sicherzustellen, dass alle DB-Operationen committed sind
+        await new Promise(resolve => setTimeout(resolve, 300));
         
         setSaving(false);
         
+        // 4. Dann automatisch weiter
         setTimeout(() => {
-          handleCorrectAnswer();
+          goToNext();
         }, 300);
         
       } catch (error) {
         console.error('Error moving vocabulary to box:', error);
         setSaving(false);
+        // Bei Fehler trotzdem weitermachen, aber länger warten
         setTimeout(() => {
-          handleCorrectAnswer();
+          goToNext();
         }, 1000);
       }
     } else {
-      // Falsche Antwort: User muss es erneut versuchen
+      setSaving(true);
+      try {
+        // KRITISCH: Auch hier alle Operationen awaiten
+        await resetVocabularyToBox1(currentVocab.id);
+        
+        // Zusätzliche Wartezeit für DB-Commit
+        await new Promise(resolve => setTimeout(resolve, 200));
+        
+        setSaving(false);
+      } catch (error) {
+        console.error('Error resetting vocabulary to box 1:', error);
+        setSaving(false);
+      }
+      // Kein automatischer Wechsel bei falscher Antwort
     }
+  };
+
+  const goToNext = () => {
+    setAnswered(false);
+    setFeedback(null);
+    setUserInput('');
+    setShowHint(false);
+    setCurrentAttempt(0);
+
+    if (isLastVocabulary) {
+      onComplete();
+    } else {
+      setCurrentIndex(prev => prev + 1);
+    }
+  };
+
+  const markAsTypo = async () => {
+    setFeedback('correct');
+    setSaving(true);
+    
+    try {
+      // KRITISCH: Alle Operationen nacheinander awaiten
+      const nextBox = Math.min(currentVocab.box + 1, 6);
+      
+      // 1. Vokabel verschieben
+      await moveVocabularyToBox(currentVocab.id, nextBox, true);
+      
+      // 2. Statistiken aktualisieren
+      if (updateDailyStats.constructor.name === 'AsyncFunction') {
+        await updateDailyStats(0, 1);
+      } else {
+        updateDailyStats(0, 1);
+      }
+      
+      // 3. Warten für DB-Commit
+      await new Promise(resolve => setTimeout(resolve, 300));
+      
+      setSaving(false);
+      
+      setTimeout(() => {
+        goToNext();
+      }, 300);
+      
+    } catch (error) {
+      console.error('Error marking as typo:', error);
+      setSaving(false);
+      setTimeout(() => {
+        goToNext();
+      }, 1000);
+    }
+  };
+
+  const showHintHandler = () => {
+    setShowHint(true);
+    // Nach dem Hint wieder fokussieren
+    setTimeout(() => {
+      if (inputRef.current && !answered && !saving) {
+        inputRef.current.focus();
+      }
+    }, 100);
   };
 
   return (
@@ -309,12 +309,11 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
                     </Button>
                     
                     <Button 
-                      onClick={retryVocabulary} 
+                      onClick={goToNext} 
                       className="gap-2"
                       disabled={saving}
                     >
-                      <RotateCcw className="h-4 w-4" />
-                      Erneut versuchen
+                      Weiter
                     </Button>
                   </>
                 )
