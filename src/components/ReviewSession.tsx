@@ -27,6 +27,93 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
   // Ref für das Input-Feld um es fokussieren zu können
   const inputRef = useRef<HTMLInputElement>(null);
 
+  // Funktionen definieren
+  const retryVocabulary = () => {
+    // Eingabe zurücksetzen für erneuten Versuch
+    setAnswered(false);
+    setFeedback(null);
+    setUserInput('');
+    setShowHint(false);
+    // currentAttempt nicht zurücksetzen, um Versuche zu zählen
+  };
+
+  const goToNext = async () => {
+    setAnswered(false);
+    setFeedback(null);
+    setUserInput('');
+    setShowHint(false);
+    setCurrentAttempt(0);
+
+    if (isLastVocabulary) {
+      onComplete();
+    } else {
+      setCurrentIndex(prev => prev + 1);
+    }
+  };
+
+  const handleCorrectAnswer = async () => {
+    // Wurde die Vokabel bereits als falsch markiert? Dann zu Box 1 zurücksetzen
+    if (currentAttempt > 1) {
+      setSaving(true);
+      try {
+        await resetVocabularyToBox1(currentVocab.id);
+        await new Promise(resolve => setTimeout(resolve, 200));
+        setSaving(false);
+      } catch (error) {
+        console.error('Error resetting vocabulary to box 1:', error);
+        setSaving(false);
+      }
+    }
+    
+    // Zur nächsten Vokabel wechseln
+    setTimeout(() => {
+      goToNext();
+    }, 300);
+  };
+
+  const markAsTypo = async () => {
+    setFeedback('correct');
+    setSaving(true);
+    
+    try {
+      // Tippfehler: Vokabel direkt von aktueller Box zur nächsten verschieben
+      const nextBox = Math.min(currentVocab.box + 1, 6);
+      
+      await moveVocabularyToBox(currentVocab.id, nextBox, true);
+      
+      if (updateDailyStats.constructor.name === 'AsyncFunction') {
+        await updateDailyStats(0, 1);
+      } else {
+        updateDailyStats(0, 1);
+      }
+      
+      await new Promise(resolve => setTimeout(resolve, 300));
+      
+      setSaving(false);
+      
+      setTimeout(() => {
+        goToNext();
+      }, 300);
+      
+    } catch (error) {
+      console.error('Error marking as typo:', error);
+      setSaving(false);
+      setTimeout(() => {
+        goToNext();
+      }, 1000);
+    }
+  };
+
+  const showHintHandler = () => {
+    setShowHint(true);
+    // Nach dem Hint wieder fokussieren
+    setTimeout(() => {
+      if (inputRef.current && !answered && !saving) {
+        inputRef.current.focus();
+      }
+    }, 100);
+  };
+
   // Auto-Focus beim ersten Laden der Komponente
   useEffect(() => {
     if (inputRef.current && !answered && !saving) {
@@ -83,106 +170,36 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
     if (correct) {
       setSaving(true);
       try {
-        // Richtige Antwort: Vokabel in nächste Box verschieben
-        const nextBox = Math.min(currentVocab.box + 1, 6);
-        
-        await moveVocabularyToBox(currentVocab.id, nextBox, true);
-        
-        if (updateDailyStats.constructor.name === 'AsyncFunction') {
-          await updateDailyStats(0, 1);
-        } else {
-          updateDailyStats(0, 1);
+        // Erste Eingabe richtig: Vokabel in nächste Box verschieben
+        if (currentAttempt === 1) {
+          const nextBox = Math.min(currentVocab.box + 1, 6);
+          await moveVocabularyToBox(currentVocab.id, nextBox, true);
+          
+          if (updateDailyStats.constructor.name === 'AsyncFunction') {
+            await updateDailyStats(0, 1);
+          } else {
+            updateDailyStats(0, 1);
+          }
+          
+          await new Promise(resolve => setTimeout(resolve, 300));
         }
-        
-        await new Promise(resolve => setTimeout(resolve, 300));
         
         setSaving(false);
         
         setTimeout(() => {
-          goToNext();
+          handleCorrectAnswer();
         }, 300);
         
       } catch (error) {
         console.error('Error moving vocabulary to box:', error);
         setSaving(false);
         setTimeout(() => {
-          goToNext();
+          handleCorrectAnswer();
         }, 1000);
       }
     } else {
-      // Falsche Antwort: NICHT automatisch zurücksetzen
-      // Das passiert nur wenn der User "Weiter" drückt, nicht bei "Tippfehler"
+      // Falsche Antwort: User muss es erneut versuchen
     }
-  };
-
-  const goToNext = async () => {
-    // Nur bei falscher Antwort: Vokabel zu Box 1 zurücksetzen
-    if (feedback === 'incorrect') {
-      setSaving(true);
-      try {
-        await resetVocabularyToBox1(currentVocab.id);
-        await new Promise(resolve => setTimeout(resolve, 200));
-        setSaving(false);
-      } catch (error) {
-        console.error('Error resetting vocabulary to box 1:', error);
-        setSaving(false);
-      }
-    }
-
-    setAnswered(false);
-    setFeedback(null);
-    setUserInput('');
-    setShowHint(false);
-    setCurrentAttempt(0);
-
-    if (isLastVocabulary) {
-      onComplete();
-    } else {
-      setCurrentIndex(prev => prev + 1);
-    }
-  };
-
-  const markAsTypo = async () => {
-    setFeedback('correct');
-    setSaving(true);
-    
-    try {
-      // Tippfehler: Vokabel direkt von aktueller Box zur nächsten verschieben
-      const nextBox = Math.min(currentVocab.box + 1, 6);
-      
-      await moveVocabularyToBox(currentVocab.id, nextBox, true);
-      
-      if (updateDailyStats.constructor.name === 'AsyncFunction') {
-        await updateDailyStats(0, 1);
-      } else {
-        updateDailyStats(0, 1);
-      }
-      
-      await new Promise(resolve => setTimeout(resolve, 300));
-      
-      setSaving(false);
-      
-      setTimeout(() => {
-        goToNext();
-      }, 300);
-      
-    } catch (error) {
-      console.error('Error marking as typo:', error);
-      setSaving(false);
-      setTimeout(() => {
-        goToNext();
-      }, 1000);
-    }
-  };
-
-  const showHintHandler = () => {
-    setShowHint(true);
-    // Nach dem Hint wieder fokussieren
-    setTimeout(() => {
-      if (inputRef.current && !answered && !saving) {
-        inputRef.current.focus();
-      }
-    }, 100);
   };
 
   return (
