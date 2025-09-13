@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { CheckCircle, XCircle, Lightbulb, RotateCcw, ArrowLeft } from "lucide-react";
+import { CheckCircle, XCircle, Lightbulb, RotateCcw, ArrowLeft, RefreshCw } from "lucide-react";
 import { Vocabulary } from '../types/vocabulary';
 import { useVocabularyStore } from '../hooks/useVocabularyStore';
 
@@ -116,20 +116,8 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
         }, 1000);
       }
     } else {
-      setSaving(true);
-      try {
-        // KRITISCH: Auch hier alle Operationen awaiten
-        await resetVocabularyToBox1(currentVocab.id);
-        
-        // Zusätzliche Wartezeit für DB-Commit
-        await new Promise(resolve => setTimeout(resolve, 200));
-        
-        setSaving(false);
-      } catch (error) {
-        console.error('Error resetting vocabulary to box 1:', error);
-        setSaving(false);
-      }
-      // Kein automatischer Wechsel bei falscher Antwort
+      // Bei falscher Antwort NICHT automatisch in Box 1 zurücksetzen
+      // Das passiert erst wenn der User aufgibt (noch zu implementieren wenn gewünscht)
     }
   };
 
@@ -180,6 +168,42 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
       setTimeout(() => {
         goToNext();
       }, 1000);
+    }
+  };
+
+  const retryAnswer = () => {
+    // Reset für neuen Versuch
+    setAnswered(false);
+    setFeedback(null);
+    setUserInput('');
+    setShowHint(false);
+    
+    // Input fokussieren für neuen Versuch
+    setTimeout(() => {
+      if (inputRef.current) {
+        inputRef.current.focus();
+      }
+    }, 100);
+  };
+
+  const giveUp = async () => {
+    // Vokabel zurück in Box 1 setzen
+    setSaving(true);
+    try {
+      await resetVocabularyToBox1(currentVocab.id);
+      
+      // Zusätzliche Wartezeit für DB-Commit
+      await new Promise(resolve => setTimeout(resolve, 200));
+      
+      setSaving(false);
+      
+      // Zur nächsten Vokabel
+      goToNext();
+      
+    } catch (error) {
+      console.error('Error resetting vocabulary to box 1:', error);
+      setSaving(false);
+      goToNext();
     }
   };
 
@@ -296,29 +320,53 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
                   </Button>
                 </>
               ) : (
-                !isCorrect && (
-                  <>
-                    <Button 
-                      onClick={markAsTypo} 
-                      variant="outline" 
-                      className="gap-2"
-                      disabled={saving}
-                    >
-                      <RotateCcw className="h-4 w-4" />
-                      Tippfehler
-                    </Button>
-                    
-                    <Button 
-                      onClick={goToNext} 
-                      className="gap-2"
-                      disabled={saving}
-                    >
-                      Weiter
-                    </Button>
-                  </>
-                )
+                <>
+                  {isCorrect ? (
+                    // Bei richtiger Antwort: Automatisch weiter (wird bereits automatisch gemacht)
+                    <div className="col-span-2 text-center text-success font-semibold">
+                      Richtig! Lade nächste Vokabel...
+                    </div>
+                  ) : (
+                    // Bei falscher Antwort: Tippfehler oder Erneut versuchen
+                    <>
+                      <Button 
+                        onClick={markAsTypo} 
+                        variant="outline" 
+                        className="gap-2"
+                        disabled={saving}
+                      >
+                        <RotateCcw className="h-4 w-4" />
+                        Tippfehler
+                      </Button>
+                      
+                      <Button 
+                        onClick={retryAnswer} 
+                        className="gap-2"
+                        disabled={saving}
+                      >
+                        <RefreshCw className="h-4 w-4" />
+                        Erneut versuchen
+                      </Button>
+                    </>
+                  )}
+                </>
               )}
             </div>
+
+            {/* Aufgeben Button - nur bei falscher Antwort als zusätzliche Option */}
+            {answered && !isCorrect && (
+              <div className="pt-2">
+                <Button 
+                  onClick={giveUp} 
+                  variant="ghost" 
+                  size="sm"
+                  className="w-full text-muted-foreground hover:text-destructive"
+                  disabled={saving}
+                >
+                  Aufgeben (Vokabel zurück zu Box 1)
+                </Button>
+              </div>
+            )}
           </div>
 
           {/* Progress indicator */}
