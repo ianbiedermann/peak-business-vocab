@@ -222,6 +222,20 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
     }
   };
 
+  const retryCurrentVocab = () => {
+    // Reset states for retry but keep the same vocabulary
+    setAnswered(false);
+    setFeedback(null);
+    setUserInput('');
+    setShowHint(false);
+    // Don't reset currentAttempt so we keep track of attempts
+    
+    // Focus on input field for retry
+    setTimeout(() => {
+      inputRef.current?.focus();
+    }, 100);
+  };
+
   const markAsTypo = () => {
     // Treat as correct answer
     setFeedback('correct');
@@ -457,9 +471,9 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
                         Tippfehler
                       </Button>
                       
-                      {/* Weiter Button (rechts) */}
-                      <Button onClick={goToNext} className="gap-2">
-                        Weiter
+                      {/* Erneut versuchen Button (rechts) */}
+                      <Button onClick={retryCurrentVocab} className="gap-2">
+                        Erneut versuchen
                       </Button>
                     </>
                   )
