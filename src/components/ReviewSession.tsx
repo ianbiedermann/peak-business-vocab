@@ -201,9 +201,7 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
     } catch (error) {
       console.error('Error marking as typo:', error);
       setSaving(false);
-      setTimeout(() => {
-        goToNext();
-      }, 1000);
+      goToNext();
     }
   };
 
