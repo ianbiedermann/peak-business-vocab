@@ -134,7 +134,7 @@ export function VocabularyLists({ lists, onUploadList, onToggleList, onDeleteLis
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <FileText className="h-5 w-5" />
-              Deine Listen ({mockLists.length})
+              Deine Listen ({lists.length})
             </CardTitle>
           </CardHeader>
           <CardContent>
