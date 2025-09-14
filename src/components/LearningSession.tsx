@@ -304,7 +304,7 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
               Wähle die richtige englische Übersetzung
             </h3>
             
-            {unmatchedVocabs.length > 0 && (
+            {unmatchedVocabs.length > 0 && currentVocab && answerOptions.length > 0 && (
               <div className="space-y-4">
                 <div className="p-4 bg-primary/10 rounded-lg border-2 border-primary/30">
                   <div className="text-lg font-semibold text-primary text-center">
