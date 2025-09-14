@@ -23,6 +23,7 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
   const [answered, setAnswered] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [hasBeenResetToBox1, setHasBeenResetToBox1] = useState(false);
 
   // Ref für das Input-Feld um es fokussieren zu können
   const inputRef = useRef<HTMLInputElement>(null);
@@ -116,18 +117,22 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
         }, 1000);
       }
     } else {
-      setSaving(true);
-      try {
-        // KRITISCH: Auch hier alle Operationen awaiten
-        await resetVocabularyToBox1(currentVocab.id);
-        
-        // Zusätzliche Wartezeit für DB-Commit
-        await new Promise(resolve => setTimeout(resolve, 200));
-        
-        setSaving(false);
-      } catch (error) {
-        console.error('Error resetting vocabulary to box 1:', error);
-        setSaving(false);
+      // Nur beim ersten falschen Versuch die Vokabel zu Box 1 zurücksetzen
+      if (!hasBeenResetToBox1) {
+        setSaving(true);
+        try {
+          // KRITISCH: Auch hier alle Operationen awaiten
+          await resetVocabularyToBox1(currentVocab.id);
+          
+          // Zusätzliche Wartezeit für DB-Commit
+          await new Promise(resolve => setTimeout(resolve, 200));
+          
+          setHasBeenResetToBox1(true);
+          setSaving(false);
+        } catch (error) {
+          console.error('Error resetting vocabulary to box 1:', error);
+          setSaving(false);
+        }
       }
       // Kein automatischer Wechsel bei falscher Antwort
     }
@@ -139,12 +144,28 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
     setUserInput('');
     setShowHint(false);
     setCurrentAttempt(0);
+    setHasBeenResetToBox1(false); // Reset für nächste Vokabel
 
     if (isLastVocabulary) {
       onComplete();
     } else {
       setCurrentIndex(prev => prev + 1);
     }
+  };
+
+  const tryAgain = () => {
+    setAnswered(false);
+    setFeedback(null);
+    setUserInput('');
+    setShowHint(false);
+    // hasBeenResetToBox1 bleibt true, damit nicht erneut zurückgesetzt wird
+    
+    // Input wieder fokussieren
+    setTimeout(() => {
+      if (inputRef.current) {
+        inputRef.current.focus();
+      }
+    }, 100);
   };
 
   const markAsTypo = async () => {
@@ -309,11 +330,11 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
                     </Button>
                     
                     <Button 
-                      onClick={goToNext} 
+                      onClick={tryAgain} 
                       className="gap-2"
                       disabled={saving}
                     >
-                      Weiter
+                      Erneut versuchen
                     </Button>
                   </>
                 )
