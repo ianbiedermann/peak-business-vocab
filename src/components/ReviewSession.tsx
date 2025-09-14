@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { CheckCircle, XCircle, Lightbulb, RotateCcw, ArrowLeft, RefreshCw } from "lucide-react";
+import { CheckCircle, XCircle, Lightbulb, RotateCcw, ArrowLeft } from "lucide-react";
 import { Vocabulary } from '../types/vocabulary';
 import { useVocabularyStore } from '../hooks/useVocabularyStore';
 
@@ -23,7 +23,6 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
   const [answered, setAnswered] = useState(false);
   const [saving, setSaving] = useState(false);
-  const [isRetryAttempt, setIsRetryAttempt] = useState(false);
 
   // Ref für das Input-Feld um es fokussieren zu können
   const inputRef = useRef<HTMLInputElement>(null);
@@ -81,8 +80,7 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
     setResults(prev => new Map(prev).set(currentVocab.id, correct));
     setAnswered(true);
 
-    if (correct && !isRetryAttempt) {
-      // Nur beim ERSTEN richtigen Versuch Box hochstufen
+    if (correct) {
       setSaving(true);
       try {
         // KRITISCH: Alle asynchronen Operationen nacheinander awaiten
@@ -117,15 +115,10 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
           goToNext();
         }, 1000);
       }
-    } else if (correct && isRetryAttempt) {
-      // Bei richtigem Retry: Einfach zur nächsten Vokabel (Vokabel bleibt in Box 1)
-      setTimeout(() => {
-        goToNext();
-      }, 800);
-    } else if (!correct && !isRetryAttempt) {
-      // Bei falscher Antwort SOFORT in Box 1 zurücksetzen (nur beim ersten Mal)
+    } else {
       setSaving(true);
       try {
+        // KRITISCH: Auch hier alle Operationen awaiten
         await resetVocabularyToBox1(currentVocab.id);
         
         // Zusätzliche Wartezeit für DB-Commit
@@ -136,12 +129,7 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
         console.error('Error resetting vocabulary to box 1:', error);
         setSaving(false);
       }
-      // User kann jetzt erneut versuchen oder als Tippfehler markieren
-    } else {
-      // Falscher Retry - einfach zur nächsten Vokabel (bleibt in Box 1)
-      setTimeout(() => {
-        goToNext();
-      }, 1500);
+      // Kein automatischer Wechsel bei falscher Antwort
     }
   };
 
@@ -151,7 +139,6 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
     setUserInput('');
     setShowHint(false);
     setCurrentAttempt(0);
-    setIsRetryAttempt(false); // Reset retry flag
 
     if (isLastVocabulary) {
       onComplete();
@@ -165,8 +152,7 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
     setSaving(true);
     
     try {
-      // Bei Tippfehler: Vokabel wieder in ursprüngliche Box oder eine höhere setzen
-      // Da sie bereits in Box 1 zurückgesetzt wurde, setzen wir sie wieder in die ursprüngliche Box
+      // KRITISCH: Alle Operationen nacheinander awaiten
       const nextBox = Math.min(currentVocab.box + 1, 6);
       
       // 1. Vokabel verschieben
@@ -195,22 +181,6 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
         goToNext();
       }, 1000);
     }
-  };
-
-  const retryAnswer = () => {
-    // Reset für neuen Versuch - aber Box bleibt bereits auf 1 gesetzt
-    setAnswered(false);
-    setFeedback(null);
-    setUserInput('');
-    setShowHint(false);
-    setIsRetryAttempt(true); // Markiere als Wiederholungsversuch
-    
-    // Input fokussieren für neuen Versuch
-    setTimeout(() => {
-      if (inputRef.current) {
-        inputRef.current.focus();
-      }
-    }, 100);
   };
 
   const showHintHandler = () => {
@@ -326,36 +296,27 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
                   </Button>
                 </>
               ) : (
-                <>
-                  {isCorrect ? (
-                    // Bei richtiger Antwort
-                    <div className="col-span-2 text-center text-success font-semibold">
-                      {firstAttemptWrong ? "Gut! Zur nächsten Vokabel..." : "Richtig! Lade nächste Vokabel..."}
-                    </div>
-                  ) : (
-                    // Bei falscher Antwort: Tippfehler oder Erneut versuchen
-                    <>
-                      <Button 
-                        onClick={markAsTypo} 
-                        variant="outline" 
-                        className="gap-2"
-                        disabled={saving}
-                      >
-                        <RotateCcw className="h-4 w-4" />
-                        Tippfehler
-                      </Button>
-                      
-                      <Button 
-                        onClick={retryAnswer} 
-                        className="gap-2"
-                        disabled={saving}
-                      >
-                        <RefreshCw className="h-4 w-4" />
-                        Erneut versuchen
-                      </Button>
-                    </>
-                  )}
-                </>
+                !isCorrect && (
+                  <>
+                    <Button 
+                      onClick={markAsTypo} 
+                      variant="outline" 
+                      className="gap-2"
+                      disabled={saving}
+                    >
+                      <RotateCcw className="h-4 w-4" />
+                      Tippfehler
+                    </Button>
+                    
+                    <Button 
+                      onClick={goToNext} 
+                      className="gap-2"
+                      disabled={saving}
+                    >
+                      Weiter
+                    </Button>
+                  </>
+                )
               )}
             </div>
           </div>
