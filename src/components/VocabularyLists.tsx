@@ -84,6 +84,36 @@ export function VocabularyLists({ lists, onUploadList, onToggleList, onDeleteLis
     }
   };
 
+  const handleToggleList = async (listId: string, checked: boolean) => {
+    try {
+      await onToggleList(listId, checked);
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : "Fehler beim Aktivieren der Liste.";
+      toast({
+        title: "Fehler",
+        description: errorMessage,
+        variant: "destructive"
+      });
+    }
+  };
+
+  const handleDeleteList = async (listId: string) => {
+    try {
+      await onDeleteList(listId);
+      toast({
+        title: "Erfolg",
+        description: "Liste erfolgreich gelöscht."
+      });
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : "Fehler beim Löschen der Liste.";
+      toast({
+        title: "Fehler",
+        description: errorMessage,
+        variant: "destructive"
+      });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background p-4">
       <div className="max-w-4xl mx-auto space-y-6">
@@ -147,13 +177,9 @@ export function VocabularyLists({ lists, onUploadList, onToggleList, onDeleteLis
             ) : (
               <div className="space-y-3">
                 {lists.map((list) => (
-                  <div
-                    key={list.id}
-                    className="border rounded-lg p-4 space-y-3 sm:space-y-0"
-                  >
-                    {/* Mobile Layout: Vertical Stack */}
+                  <div key={list.id} className="border rounded-lg p-4">
+                    {/* Mobile Layout */}
                     <div className="sm:hidden space-y-3">
-                      {/* Title and badges */}
                       <div className="space-y-2">
                         <div className="flex items-start justify-between">
                           <h3 className="font-medium pr-2">{list.name}</h3>
@@ -161,28 +187,14 @@ export function VocabularyLists({ lists, onUploadList, onToggleList, onDeleteLis
                             <Button
                               variant="outline"
                               size="sm"
-                              onClick={async () => {
-                                try {
-                                  await onDeleteList(list.id);
-                                  toast({
-                                    title: "Erfolg",
-                                    description: "Liste erfolgreich gelöscht."
-                                  });
-                                } catch (error) {
-                                  const errorMessage = error instanceof Error ? error.message : "Fehler beim Löschen der Liste.";
-                                  toast({
-                                    title: "Fehler",
-                                    description: errorMessage,
-                                    variant: "destructive"
-                                  });
-                                }
-                              }}
+                              onClick={() => handleDeleteList(list.id)}
                               className="text-destructive hover:text-destructive"
                             >
                               <Trash2 className="h-4 w-4" />
                             </Button>
                           )}
                         </div>
+                        
                         <div className="flex flex-wrap gap-2">
                           {list.isPremium && (
                             <Badge variant="secondary" className="bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200">
@@ -202,13 +214,13 @@ export function VocabularyLists({ lists, onUploadList, onToggleList, onDeleteLis
                             </Badge>
                           )}
                         </div>
+                        
                         <p className="text-sm text-muted-foreground">
                           {list.vocabularyCount} Vokabeln • 
-                          {list.isDefault ? 'Standard-Liste' : ` Hochgeladen am ${new Date(list.uploadedAt).toLocaleDateString('de-DE')}`}
+                          {list.isDefault ? ' Standard-Liste' : ` Hochgeladen am ${new Date(list.uploadedAt).toLocaleDateString('de-DE')}`}
                         </p>
                       </div>
                       
-                      {/* Toggle switch */}
                       <div className="flex items-center justify-between pt-2 border-t">
                         <div className="flex items-center gap-2">
                           {list.isActive ? (
@@ -222,23 +234,12 @@ export function VocabularyLists({ lists, onUploadList, onToggleList, onDeleteLis
                         </div>
                         <Switch
                           checked={list.isActive}
-                          onCheckedChange={async (checked) => {
-                            try {
-                              await onToggleList(list.id, checked);
-                            } catch (error) {
-                              const errorMessage = error instanceof Error ? error.message : "Fehler beim Aktivieren der Liste.";
-                              toast({
-                                title: "Fehler",
-                                description: errorMessage,
-                                variant: "destructive"
-                              });
-                            }
-                          }}
+                          onCheckedChange={(checked) => handleToggleList(list.id, checked)}
                         />
                       </div>
                     </div>
 
-                    {/* Desktop Layout: Horizontal */}
+                    {/* Desktop Layout */}
                     <div className="hidden sm:flex sm:items-center sm:justify-between">
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-1">
@@ -263,7 +264,7 @@ export function VocabularyLists({ lists, onUploadList, onToggleList, onDeleteLis
                         </div>
                         <p className="text-sm text-muted-foreground">
                           {list.vocabularyCount} Vokabeln • 
-                          {list.isDefault ? 'Standard-Liste' : `Hochgeladen am ${new Date(list.uploadedAt).toLocaleDateString('de-DE')}`}
+                          {list.isDefault ? ' Standard-Liste' : ` Hochgeladen am ${new Date(list.uploadedAt).toLocaleDateString('de-DE')}`}
                         </p>
                       </div>
                       
@@ -276,42 +277,15 @@ export function VocabularyLists({ lists, onUploadList, onToggleList, onDeleteLis
                           )}
                           <Switch
                             checked={list.isActive}
-                            onCheckedChange={async (checked) => {
-                              try {
-                                await onToggleList(list.id, checked);
-                              } catch (error) {
-                                const errorMessage = error instanceof Error ? error.message : "Fehler beim Aktivieren der Liste.";
-                                toast({
-                                  title: "Fehler",
-                                  description: errorMessage,
-                                  variant: "destructive"
-                                });
-                              }
-                            }}
-                          }}
-                        />
+                            onCheckedChange={(checked) => handleToggleList(list.id, checked)}
+                          />
                         </div>
                         
                         {!list.isDefault && (
                           <Button
                             variant="outline"
                             size="sm"
-                            onClick={async () => {
-                              try {
-                                await onDeleteList(list.id);
-                                toast({
-                                  title: "Erfolg",
-                                  description: "Liste erfolgreich gelöscht."
-                                });
-                              } catch (error) {
-                                const errorMessage = error instanceof Error ? error.message : "Fehler beim Löschen der Liste.";
-                                toast({
-                                  title: "Fehler",
-                                  description: errorMessage,
-                                  variant: "destructive"
-                                });
-                              }
-                            }}
+                            onClick={() => handleDeleteList(list.id)}
                             className="text-destructive hover:text-destructive"
                           >
                             <Trash2 className="h-4 w-4" />
