@@ -300,7 +300,7 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
               ← Zurück
             </Button>
             <span className="text-sm text-muted-foreground">
-              Matching ({session.matchedPairs.size} / {vocabularies.length})
+              {session.currentIndex + 1} / {vocabularies.length}
             </span>
           </div>
 
