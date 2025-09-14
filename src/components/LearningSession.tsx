@@ -457,9 +457,9 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
                         Tippfehler
                       </Button>
                       
-                      {/* Erneut versuchen Button (rechts) */}
-                      <Button onClick={retryCurrentVocab} className="gap-2">
-                        Erneut versuchen
+                      {/* Weiter Button (rechts) */}
+                      <Button onClick={goToNext} className="gap-2">
+                        Weiter
                       </Button>
                     </>
                   )
