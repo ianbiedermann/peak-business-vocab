@@ -26,18 +26,18 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
   const [userInput, setUserInput] = useState('');
   const [showHint, setShowHint] = useState(false);
   const [currentAttempt, setCurrentAttempt] = useState(0);
-  const [shuffledGerman, setShuffledGerman] = useState<string[]>([]);
+  const [shuffledEnglish, setShuffledEnglish] = useState<string[]>([]);
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
   const [answered, setAnswered] = useState(false);
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Initialize shuffled German translations for matching phase
+  // Initialize shuffled English translations for matching phase
   useEffect(() => {
     if (session.currentPhase === 'matching') {
-      const german = vocabularies.map(v => v.german);
-      setShuffledGerman([...german].sort(() => Math.random() - 0.5));
+      const english = vocabularies.map(v => v.english);
+      setShuffledEnglish([...english].sort(() => Math.random() - 0.5));
     }
   }, [session.currentPhase, vocabularies]);
 
@@ -103,14 +103,40 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
     }
   };
 
-  const handleMatch = (germanTranslation: string) => {
+  // Funktion um 5 englische Antwortoptionen zu generieren
+  const getAnswerOptions = (correctAnswer: string): string[] => {
+    const options = new Set<string>();
+    options.add(correctAnswer);
+    
+    // Füge andere englische Übersetzungen hinzu bis wir 5 haben
+    const otherEnglish = shuffledEnglish.filter(eng => eng !== correctAnswer);
+    
+    while (options.size < 5 && otherEnglish.length > 0) {
+      const randomIndex = Math.floor(Math.random() * otherEnglish.length);
+      options.add(otherEnglish[randomIndex]);
+    }
+    
+    // Falls wir weniger als 5 verschiedene Vokabeln haben, fülle mit den vorhandenen auf
+    if (options.size < 5) {
+      const allEnglish = vocabularies.map(v => v.english);
+      for (const eng of allEnglish) {
+        if (options.size >= 5) break;
+        options.add(eng);
+      }
+    }
+    
+    // Konvertiere zu Array und mische
+    return Array.from(options).sort(() => Math.random() - 0.5);
+  };
+
+  const handleMatch = (englishTranslation: string) => {
     if (isProcessing) return; // Verhindert mehrfache Klicks
     
     const currentVocab = vocabularies[session.currentIndex];
-    const isCorrect = currentVocab.german === germanTranslation;
+    const isCorrect = currentVocab.english === englishTranslation;
     
     setIsProcessing(true);
-    setSelectedAnswer(germanTranslation);
+    setSelectedAnswer(englishTranslation);
     setFeedback(isCorrect ? 'correct' : 'incorrect');
     
     if (isCorrect) {
@@ -257,9 +283,7 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
 
   if (session.currentPhase === 'matching') {
     const unmatchedVocabs = vocabularies.filter(v => !session.matchedPairs.has(v.id));
-    const unmatchedGerman = shuffledGerman.filter(german => 
-      !vocabularies.find(v => v.german === german && session.matchedPairs.has(v.id))
-    );
+    const answerOptions = getAnswerOptions(currentVocab.english);
 
     return (
       <div className={`min-h-screen bg-background p-4 transition-colors duration-150 ${
@@ -278,27 +302,27 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
 
           <Card className="p-6">
             <h3 className="text-lg font-semibold mb-4 text-center">
-              Verbinde die Paare
+              Wähle die richtige englische Übersetzung
             </h3>
             
             {unmatchedVocabs.length > 0 && (
               <div className="space-y-4">
                 <div className="p-4 bg-primary/10 rounded-lg border-2 border-primary/30">
                   <div className="text-lg font-semibold text-primary text-center">
-                    {currentVocab.english}
+                    {currentVocab.german}
                   </div>
                 </div>
                 
                 <div className="grid gap-2">
-                  {unmatchedGerman.map((german, index) => {
-                    const isSelected = selectedAnswer === german;
+                  {answerOptions.map((english, index) => {
+                    const isSelected = selectedAnswer === english;
                     const isCorrectAnswer = feedback === 'correct' && isSelected;
                     const isIncorrectAnswer = feedback === 'incorrect' && isSelected;
                     
                     return (
                       <Button
-                        key={`${session.currentIndex}-${german}-${index}`} // Eindeutiger Key mit currentIndex
-                        onClick={() => handleMatch(german)}
+                        key={`${session.currentIndex}-${english}-${index}`} // Eindeutiger Key mit currentIndex
+                        onClick={() => handleMatch(english)}
                         variant="outline"
                         disabled={isProcessing}
                         className={`h-auto p-4 text-left justify-start transition-all duration-300 ${
@@ -307,7 +331,7 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
                           'hover:bg-accent'
                         }`}
                       >
-                        {german}
+                        {english}
                       </Button>
                     );
                   })}
