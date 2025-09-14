@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -74,6 +74,39 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
     }
   }, [session.currentPhase, session.currentIndex]);
 
+  const currentVocab = vocabularies[session.currentIndex];
+
+  // Memoized Antwortoptionen - werden nur neu generiert wenn sich currentIndex oder Phase ändert
+  const answerOptions = useMemo(() => {
+    if (session.currentPhase !== 'matching' || !currentVocab || shuffledEnglish.length === 0) {
+      return [];
+    }
+    
+    const correctAnswer = currentVocab.english;
+    const options = new Set<string>();
+    options.add(correctAnswer);
+    
+    // Füge andere englische Übersetzungen hinzu bis wir 5 haben
+    const otherEnglish = shuffledEnglish.filter(eng => eng !== correctAnswer);
+    
+    while (options.size < 5 && otherEnglish.length > 0) {
+      const randomIndex = Math.floor(Math.random() * otherEnglish.length);
+      options.add(otherEnglish[randomIndex]);
+    }
+    
+    // Falls wir weniger als 5 verschiedene Vokabeln haben, fülle mit den vorhandenen auf
+    if (options.size < 5) {
+      const allEnglish = vocabularies.map(v => v.english);
+      for (const eng of allEnglish) {
+        if (options.size >= 5) break;
+        options.add(eng);
+      }
+    }
+    
+    // Konvertiere zu Array und mische
+    return Array.from(options).sort(() => Math.random() - 0.5);
+  }, [session.currentPhase, session.currentIndex, shuffledEnglish, currentVocab?.english, vocabularies]);
+
   const speakWord = (text: string) => {
     if ('speechSynthesis' in window) {
       const utterance = new SpeechSynthesisUtterance(text);
@@ -101,32 +134,6 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
     } else {
       setSession(prev => ({ ...prev, currentPhase: 'matching', currentIndex: 0 }));
     }
-  };
-
-  // Funktion um 5 englische Antwortoptionen zu generieren
-  const getAnswerOptions = (correctAnswer: string): string[] => {
-    const options = new Set<string>();
-    options.add(correctAnswer);
-    
-    // Füge andere englische Übersetzungen hinzu bis wir 5 haben
-    const otherEnglish = shuffledEnglish.filter(eng => eng !== correctAnswer);
-    
-    while (options.size < 5 && otherEnglish.length > 0) {
-      const randomIndex = Math.floor(Math.random() * otherEnglish.length);
-      options.add(otherEnglish[randomIndex]);
-    }
-    
-    // Falls wir weniger als 5 verschiedene Vokabeln haben, fülle mit den vorhandenen auf
-    if (options.size < 5) {
-      const allEnglish = vocabularies.map(v => v.english);
-      for (const eng of allEnglish) {
-        if (options.size >= 5) break;
-        options.add(eng);
-      }
-    }
-    
-    // Konvertiere zu Array und mische
-    return Array.from(options).sort(() => Math.random() - 0.5);
   };
 
   const handleMatch = (englishTranslation: string) => {
@@ -225,8 +232,6 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
     setShowHint(true);
   };
 
-  const currentVocab = vocabularies[session.currentIndex];
-
   if (session.currentPhase === 'introduction') {
     return (
       <div className="min-h-screen bg-background p-4">
@@ -320,7 +325,7 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
                     
                     return (
                       <Button
-                        key={`${session.currentIndex}-${english}-${index}`} // Eindeutiger Key mit currentIndex
+                        key={`${session.currentIndex}-${english}-${index}`}
                         onClick={() => handleMatch(english)}
                         variant="outline"
                         disabled={isProcessing}
