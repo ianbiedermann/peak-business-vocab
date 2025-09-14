@@ -27,19 +27,53 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
   const [showHint, setShowHint] = useState(false);
   const [currentAttempt, setCurrentAttempt] = useState(0);
   const [shuffledEnglish, setShuffledEnglish] = useState<string[]>([]);
+  const [answerOptions, setAnswerOptions] = useState<string[]>([]);
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
   const [answered, setAnswered] = useState(false);
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Initialize shuffled English translations for matching phase
+  // Initialize shuffled English translations and answer options for matching phase
   useEffect(() => {
     if (session.currentPhase === 'matching') {
       const english = vocabularies.map(v => v.english);
       setShuffledEnglish([...english].sort(() => Math.random() - 0.5));
     }
   }, [session.currentPhase, vocabularies]);
+
+  // Generate answer options when currentIndex changes in matching phase
+  useEffect(() => {
+    if (session.currentPhase === 'matching' && shuffledEnglish.length > 0) {
+      const currentVocab = vocabularies[session.currentIndex];
+      if (!currentVocab) return;
+      
+      const correctAnswer = currentVocab.english;
+      const options = new Set<string>();
+      options.add(correctAnswer);
+      
+      // Füge andere englische Übersetzungen hinzu bis wir 5 haben
+      const otherEnglish = shuffledEnglish.filter(eng => eng !== correctAnswer);
+      
+      while (options.size < 5 && otherEnglish.length > 0) {
+        const randomIndex = Math.floor(Math.random() * otherEnglish.length);
+        options.add(otherEnglish[randomIndex]);
+      }
+      
+      // Falls wir weniger als 5 verschiedene Vokabeln haben, fülle mit den vorhandenen auf
+      if (options.size < 5) {
+        const allEnglish = vocabularies.map(v => v.english);
+        for (const eng of allEnglish) {
+          if (options.size >= 5) break;
+          options.add(eng);
+        }
+      }
+      
+      // Konvertiere zu Array und mische
+      const shuffledOptions = Array.from(options).sort(() => Math.random() - 0.5);
+      setAnswerOptions(shuffledOptions);
+    }
+  }, [session.currentPhase, session.currentIndex, shuffledEnglish, vocabularies]);
 
   // Explizit alle States zurücksetzen wenn sich Index oder Phase ändert
   useEffect(() => {
@@ -75,37 +109,6 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
   }, [session.currentPhase, session.currentIndex]);
 
   const currentVocab = vocabularies[session.currentIndex];
-
-  // Memoized Antwortoptionen - werden nur neu generiert wenn sich currentIndex oder Phase ändert
-  const answerOptions = useMemo(() => {
-    if (session.currentPhase !== 'matching' || !currentVocab || shuffledEnglish.length === 0) {
-      return [];
-    }
-    
-    const correctAnswer = currentVocab.english;
-    const options = new Set<string>();
-    options.add(correctAnswer);
-    
-    // Füge andere englische Übersetzungen hinzu bis wir 5 haben
-    const otherEnglish = shuffledEnglish.filter(eng => eng !== correctAnswer);
-    
-    while (options.size < 5 && otherEnglish.length > 0) {
-      const randomIndex = Math.floor(Math.random() * otherEnglish.length);
-      options.add(otherEnglish[randomIndex]);
-    }
-    
-    // Falls wir weniger als 5 verschiedene Vokabeln haben, fülle mit den vorhandenen auf
-    if (options.size < 5) {
-      const allEnglish = vocabularies.map(v => v.english);
-      for (const eng of allEnglish) {
-        if (options.size >= 5) break;
-        options.add(eng);
-      }
-    }
-    
-    // Konvertiere zu Array und mische
-    return Array.from(options).sort(() => Math.random() - 0.5);
-  }, [session.currentPhase, session.currentIndex, shuffledEnglish, currentVocab?.english, vocabularies]);
 
   const speakWord = (text: string) => {
     if ('speechSynthesis' in window) {
