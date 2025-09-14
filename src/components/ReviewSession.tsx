@@ -292,11 +292,11 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
                     <Button 
                       onClick={showHintHandler} 
                       variant="outline" 
-                      className="gap-2"
+                      className="gap-1 h-12 text-sm min-h-[3rem]"
                       disabled={saving}
                     >
-                      <Lightbulb className="h-4 w-4" />
-                      Tipp
+                      <Lightbulb className="h-4 w-4 flex-shrink-0" />
+                      <span className="break-words leading-tight">Tipp</span>
                     </Button>
                   )}
                   {showHint && <div></div>}
@@ -309,11 +309,11 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
                         checkAnswer();
                       }
                     }} 
-                    className="gap-2"
+                    className="gap-1 h-12 text-sm min-h-[3rem]"
                     disabled={!userInput.trim() || saving}
                   >
-                    <CheckCircle className="h-4 w-4" />
-                    Prüfen
+                    <CheckCircle className="h-4 w-4 flex-shrink-0" />
+                    <span className="break-words leading-tight">Prüfen</span>
                   </Button>
                 </>
               ) : (
@@ -323,19 +323,19 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
                     <Button 
                       onClick={markAsTypo} 
                       variant="outline" 
-                      className="gap-2"
+                      className="gap-1 h-12 text-xs min-h-[3rem]"
                       disabled={saving}
                     >
-                      <RotateCcw className="h-4 w-4" />
-                      Tippfehler
+                      <RotateCcw className="h-4 w-4 flex-shrink-0" />
+                      <span className="break-words leading-tight text-center">Tippfehler</span>
                     </Button>
                     
                     <Button 
                       onClick={tryAgain} 
-                      className="gap-2"
+                      className="gap-1 h-12 text-xs min-h-[3rem]"
                       disabled={saving}
                     >
-                      Erneut versuchen
+                      <span className="break-words leading-tight text-center">Erneut versuchen</span>
                     </Button>
                   </>
                 )

@@ -66,37 +66,37 @@ export function Dashboard({ onStartLearning, onStartReview, onViewBoxes, onViewS
         </Card>
 
         {/* Overview Stats */}
-        <div className="grid grid-cols-2 gap-4">
-          <Card className="p-4">
-            <div className="flex items-center gap-2 mb-2">
-              <BookOpen className="h-4 w-4 text-muted-foreground" />
-              <span className="text-sm text-muted-foreground">Nicht begonnen</span>
+        <div className="grid grid-cols-2 gap-3 sm:gap-4">
+          <Card className="p-3 sm:p-4">
+            <div className="flex items-center gap-1 sm:gap-2 mb-2">
+              <BookOpen className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+              <span className="text-xs sm:text-sm text-muted-foreground leading-tight break-words">Nicht begonnen</span>
             </div>
-            <div className="text-xl font-bold">{stats.notStarted}</div>
+            <div className="text-lg sm:text-xl font-bold">{stats.notStarted}</div>
           </Card>
           
-          <Card className="p-4">
-            <div className="flex items-center gap-2 mb-2">
-              <RefreshCw className="h-4 w-4 text-warning" />
-              <span className="text-sm text-muted-foreground">In Bearbeitung</span>
+          <Card className="p-3 sm:p-4">
+            <div className="flex items-center gap-1 sm:gap-2 mb-2">
+              <RefreshCw className="h-4 w-4 text-warning flex-shrink-0" />
+              <span className="text-xs sm:text-sm text-muted-foreground leading-tight break-words">In Bearbeitung</span>
             </div>
-            <div className="text-xl font-bold text-warning">{stats.inProgress}</div>
+            <div className="text-lg sm:text-xl font-bold text-warning">{stats.inProgress}</div>
           </Card>
           
-          <Card className="p-4">
-            <div className="flex items-center gap-2 mb-2">
-              <Trophy className="h-4 w-4 text-success" />
-              <span className="text-sm text-muted-foreground">Gemeistert</span>
+          <Card className="p-3 sm:p-4">
+            <div className="flex items-center gap-1 sm:gap-2 mb-2">
+              <Trophy className="h-4 w-4 text-success flex-shrink-0" />
+              <span className="text-xs sm:text-sm text-muted-foreground leading-tight break-words">Gemeistert</span>
             </div>
-            <div className="text-xl font-bold text-success">{stats.mastered}</div>
+            <div className="text-lg sm:text-xl font-bold text-success">{stats.mastered}</div>
           </Card>
           
-          <Card className="p-4">
-            <div className="flex items-center gap-2 mb-2">
-              <Volume2 className="h-4 w-4 text-primary" />
-              <span className="text-sm text-muted-foreground">Gesamt</span>
+          <Card className="p-3 sm:p-4">
+            <div className="flex items-center gap-1 sm:gap-2 mb-2">
+              <Volume2 className="h-4 w-4 text-primary flex-shrink-0" />
+              <span className="text-xs sm:text-sm text-muted-foreground leading-tight break-words">Gesamt</span>
             </div>
-            <div className="text-xl font-bold">{stats.totalVocabularies}</div>
+            <div className="text-lg sm:text-xl font-bold">{stats.totalVocabularies}</div>
           </Card>
         </div>
 
@@ -104,54 +104,68 @@ export function Dashboard({ onStartLearning, onStartReview, onViewBoxes, onViewS
         <div className="space-y-3">
           <Button 
             onClick={onStartLearning} 
-            className="w-full h-14 text-lg bg-gradient-to-r from-primary to-primary-hover"
+            className="w-full h-16 text-base sm:text-lg bg-gradient-to-r from-primary to-primary-hover min-h-[4rem]"
             size="lg"
             disabled={stats.notStarted === 0}
           >
-            <BookOpen className="mr-2 h-5 w-5" />
-            Neue Vokabeln lernen
-            {stats.notStarted === 0 && <span className="ml-2 text-xs">(Alle gelernt!)</span>}
+            <div className="flex items-center justify-center gap-2 flex-wrap">
+              <BookOpen className="h-5 w-5 flex-shrink-0" />
+              <span className="break-words text-center leading-tight">
+                Neue Vokabeln lernen
+              </span>
+              {stats.notStarted === 0 && <span className="text-xs opacity-80 break-words">(Alle gelernt!)</span>}
+            </div>
           </Button>
 
           <Button 
             onClick={onStartReview} 
             variant="outline"
-            className="w-full h-14 text-lg border-success text-success hover:bg-success/10"
+            className="w-full h-16 text-base sm:text-lg border-success text-success hover:bg-success/10 min-h-[4rem]"
             size="lg"
             disabled={reviewCount === 0}
           >
-            <RefreshCw className="mr-2 h-5 w-5" />
-            Wiederholen ({reviewCount})
-            {reviewCount === 0 && <span className="ml-2 text-xs">(Keine fällig)</span>}
+            <div className="flex items-center justify-center gap-2 flex-wrap">
+              <RefreshCw className="h-5 w-5 flex-shrink-0" />
+              <span className="break-words text-center leading-tight">
+                Wiederholen ({reviewCount})
+              </span>
+              {reviewCount === 0 && <span className="text-xs opacity-80 break-words">(Keine fällig)</span>}
+            </div>
           </Button>
 
           <div className="grid grid-cols-2 gap-3">
             <Button 
               onClick={onViewBoxes} 
               variant="outline"
-              className="h-12"
+              className="h-14 min-h-[3.5rem] text-sm"
             >
-              <Target className="mr-2 h-4 w-4" />
-              Boxen ansehen
+              <div className="flex flex-col items-center gap-1">
+                <Target className="h-4 w-4" />
+                <span className="text-xs leading-tight break-words text-center">Boxen ansehen</span>
+              </div>
             </Button>
 
             <Button 
               onClick={onViewStatistics} 
               variant="outline"
-              className="h-12"
+              className="h-14 min-h-[3.5rem] text-sm"
             >
-              <BarChart3 className="mr-2 h-4 w-4" />
-              Statistiken
+              <div className="flex flex-col items-center gap-1">
+                <BarChart3 className="h-4 w-4" />
+                <span className="text-xs leading-tight break-words text-center">Statistiken</span>
+              </div>
             </Button>
           </div>
           
           <Button
             onClick={onViewLists}
             variant="outline"
-            className="w-full h-12"
+            className="w-full h-14 min-h-[3.5rem] text-sm sm:text-base"
           >
-            <FileText className="mr-2 h-4 w-4" />
-            Listen verwalten
+            <div className="flex items-center justify-center gap-2">
+              <FileText className="h-4 w-4 flex-shrink-0" />
+              <span className="break-words text-center leading-tight">Listen verwalten</span>
+            </div>
           </Button>
         </div>
 
