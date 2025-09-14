@@ -346,13 +346,13 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
                         onClick={() => handleMatch(english)}
                         variant="outline"
                         disabled={isProcessing}
-                        className={`h-auto min-h-[3rem] p-3 sm:p-4 text-left justify-start transition-all duration-300 text-sm sm:text-base ${
+                        className={`h-auto p-4 text-left justify-start transition-all duration-300 ${
                           isCorrectAnswer ? 'bg-green-500/20 border-green-500 text-green-700' :
                           isIncorrectAnswer ? 'bg-red-500/20 border-red-500 text-red-700' :
                           'hover:bg-accent'
                         }`}
                       >
-                        <span className="break-words leading-tight">{english}</span>
+                        {english}
                       </Button>
                     );
                   })}
@@ -440,9 +440,9 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
                   <>
                     {/* Tipp Button (links) */}
                     {!showHint && (
-                      <Button onClick={showHintHandler} variant="outline" className="gap-1 h-12 text-sm min-h-[3rem]">
-                        <Lightbulb className="h-4 w-4 flex-shrink-0" />
-                        <span className="break-words leading-tight">Tipp</span>
+                      <Button onClick={showHintHandler} variant="outline" className="gap-2">
+                        <Lightbulb className="h-4 w-4" />
+                        Tipp
                       </Button>
                     )}
                     {showHint && <div></div>} {/* Platzhalter wenn Tipp bereits angezeigt */}
@@ -454,11 +454,11 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
                           checkWriting();
                         }
                       }} 
-                      className="gap-1 h-12 text-sm min-h-[3rem]"
+                      className="gap-2"
                       disabled={!userInput.trim()}
                     >
-                      <CheckCircle className="h-4 w-4 flex-shrink-0" />
-                      <span className="break-words leading-tight">Prüfen</span>
+                      <CheckCircle className="h-4 w-4" />
+                      Prüfen
                     </Button>
                   </>
                 ) : (
@@ -466,14 +466,14 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
                   !isCorrect && (
                     <>
                       {/* War nur ein Tippfehler Button (links) */}
-                      <Button onClick={markAsTypo} variant="outline" className="gap-1 h-12 text-xs min-h-[3rem]">
-                        <RotateCcw className="h-4 w-4 flex-shrink-0" />
-                        <span className="break-words leading-tight text-center">Tippfehler</span>
+                      <Button onClick={markAsTypo} variant="outline" className="gap-2">
+                        <RotateCcw className="h-4 w-4" />
+                        Tippfehler
                       </Button>
                       
                       {/* Erneut versuchen Button (rechts) */}
-                      <Button onClick={retryCurrentVocab} className="gap-1 h-12 text-xs min-h-[3rem]">
-                        <span className="break-words leading-tight text-center">Erneut versuchen</span>
+                      <Button onClick={retryCurrentVocab} className="gap-2">
+                        Erneut versuchen
                       </Button>
                     </>
                   )

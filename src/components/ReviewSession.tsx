@@ -292,11 +292,11 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
                     <Button 
                       onClick={showHintHandler} 
                       variant="outline" 
-                      className="gap-1 h-12 text-sm min-h-[3rem]"
+                      className="gap-2"
                       disabled={saving}
                     >
-                      <Lightbulb className="h-4 w-4 flex-shrink-0" />
-                      <span className="break-words leading-tight">Tipp</span>
+                      <Lightbulb className="h-4 w-4" />
+                      Tipp
                     </Button>
                   )}
                   {showHint && <div></div>}
@@ -309,11 +309,11 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
                         checkAnswer();
                       }
                     }} 
-                    className="gap-1 h-12 text-sm min-h-[3rem]"
+                    className="gap-2"
                     disabled={!userInput.trim() || saving}
                   >
-                    <CheckCircle className="h-4 w-4 flex-shrink-0" />
-                    <span className="break-words leading-tight">Prüfen</span>
+                    <CheckCircle className="h-4 w-4" />
+                    Prüfen
                   </Button>
                 </>
               ) : (
@@ -323,19 +323,19 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
                     <Button 
                       onClick={markAsTypo} 
                       variant="outline" 
-                      className="gap-1 h-12 text-xs min-h-[3rem]"
+                      className="gap-2"
                       disabled={saving}
                     >
-                      <RotateCcw className="h-4 w-4 flex-shrink-0" />
-                      <span className="break-words leading-tight text-center">Tippfehler</span>
+                      <RotateCcw className="h-4 w-4" />
+                      Tippfehler
                     </Button>
                     
                     <Button 
                       onClick={tryAgain} 
-                      className="gap-1 h-12 text-xs min-h-[3rem]"
+                      className="gap-2"
                       disabled={saving}
                     >
-                      <span className="break-words leading-tight text-center">Erneut versuchen</span>
+                      Erneut versuchen
                     </Button>
                   </>
                 )
