@@ -283,7 +283,6 @@ export function LearningSessionComponent({ vocabularies, onComplete, onBack }: L
 
   if (session.currentPhase === 'matching') {
     const unmatchedVocabs = vocabularies.filter(v => !session.matchedPairs.has(v.id));
-    const answerOptions = getAnswerOptions(currentVocab.english);
 
     return (
       <div className={`min-h-screen bg-background p-4 transition-colors duration-150 ${
