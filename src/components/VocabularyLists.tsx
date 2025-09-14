@@ -149,42 +149,77 @@ export function VocabularyLists({ lists, onUploadList, onToggleList, onDeleteLis
                 {lists.map((list) => (
                   <div
                     key={list.id}
-                    className="flex items-center justify-between p-4 border rounded-lg"
+                    className="border rounded-lg p-4 space-y-3 sm:space-y-0"
                   >
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        <h3 className="font-medium">{list.name}</h3>
-                        {list.isPremium && (
-                          <Badge variant="secondary" className="bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200">
-                            <Crown className="h-3 w-3 mr-1" />
-                            Premium
-                          </Badge>
-                        )}
-                        {list.isDefault && !list.isPremium && (
-                          <Badge variant="secondary" className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
-                            <Star className="h-3 w-3 mr-1" />
-                            Free
-                          </Badge>
-                        )}
-                        {list.isUserUploaded && (
-                          <Badge variant="outline">
-                            Hochgeladen
-                          </Badge>
-                        )}
+                    {/* Mobile Layout: Vertical Stack */}
+                    <div className="sm:hidden space-y-3">
+                      {/* Title and badges */}
+                      <div className="space-y-2">
+                        <div className="flex items-start justify-between">
+                          <h3 className="font-medium pr-2">{list.name}</h3>
+                          {!list.isDefault && (
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={async () => {
+                                try {
+                                  await onDeleteList(list.id);
+                                  toast({
+                                    title: "Erfolg",
+                                    description: "Liste erfolgreich gelöscht."
+                                  });
+                                } catch (error) {
+                                  const errorMessage = error instanceof Error ? error.message : "Fehler beim Löschen der Liste.";
+                                  toast({
+                                    title: "Fehler",
+                                    description: errorMessage,
+                                    variant: "destructive"
+                                  });
+                                }
+                              }}
+                              className="text-destructive hover:text-destructive"
+                            >
+                              <Trash2 className="h-4 w-4" />
+                            </Button>
+                          )}
+                        </div>
+                        <div className="flex flex-wrap gap-2">
+                          {list.isPremium && (
+                            <Badge variant="secondary" className="bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200">
+                              <Crown className="h-3 w-3 mr-1" />
+                              Premium
+                            </Badge>
+                          )}
+                          {list.isDefault && !list.isPremium && (
+                            <Badge variant="secondary" className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                              <Star className="h-3 w-3 mr-1" />
+                              Free
+                            </Badge>
+                          )}
+                          {list.isUserUploaded && (
+                            <Badge variant="outline">
+                              Hochgeladen
+                            </Badge>
+                          )}
+                        </div>
+                        <p className="text-sm text-muted-foreground">
+                          {list.vocabularyCount} Vokabeln • 
+                          {list.isDefault ? 'Standard-Liste' : ` Hochgeladen am ${new Date(list.uploadedAt).toLocaleDateString('de-DE')}`}
+                        </p>
                       </div>
-                      <p className="text-sm text-muted-foreground">
-                        {list.vocabularyCount} Vokabeln • 
-                        {list.isDefault ? 'Standard-Liste' : `Hochgeladen am ${new Date(list.uploadedAt).toLocaleDateString('de-DE')}`}
-                      </p>
-                    </div>
-                    
-                    <div className="flex items-center gap-3">
-                      <div className="flex items-center gap-2">
-                        {list.isActive ? (
-                          <Eye className="h-4 w-4 text-primary" />
-                        ) : (
-                          <EyeOff className="h-4 w-4 text-muted-foreground" />
-                        )}
+                      
+                      {/* Toggle switch */}
+                      <div className="flex items-center justify-between pt-2 border-t">
+                        <div className="flex items-center gap-2">
+                          {list.isActive ? (
+                            <Eye className="h-4 w-4 text-primary" />
+                          ) : (
+                            <EyeOff className="h-4 w-4 text-muted-foreground" />
+                          )}
+                          <span className="text-sm font-medium">
+                            {list.isActive ? 'Aktiv' : 'Inaktiv'}
+                          </span>
+                        </div>
                         <Switch
                           checked={list.isActive}
                           onCheckedChange={async (checked) => {
@@ -201,32 +236,88 @@ export function VocabularyLists({ lists, onUploadList, onToggleList, onDeleteLis
                           }}
                         />
                       </div>
+                    </div>
+
+                    {/* Desktop Layout: Horizontal */}
+                    <div className="hidden sm:flex sm:items-center sm:justify-between">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-1">
+                          <h3 className="font-medium">{list.name}</h3>
+                          {list.isPremium && (
+                            <Badge variant="secondary" className="bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200">
+                              <Crown className="h-3 w-3 mr-1" />
+                              Premium
+                            </Badge>
+                          )}
+                          {list.isDefault && !list.isPremium && (
+                            <Badge variant="secondary" className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                              <Star className="h-3 w-3 mr-1" />
+                              Free
+                            </Badge>
+                          )}
+                          {list.isUserUploaded && (
+                            <Badge variant="outline">
+                              Hochgeladen
+                            </Badge>
+                          )}
+                        </div>
+                        <p className="text-sm text-muted-foreground">
+                          {list.vocabularyCount} Vokabeln • 
+                          {list.isDefault ? 'Standard-Liste' : `Hochgeladen am ${new Date(list.uploadedAt).toLocaleDateString('de-DE')}`}
+                        </p>
+                      </div>
                       
-                      {!list.isDefault && (
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={async () => {
-                            try {
-                              await onDeleteList(list.id);
-                              toast({
-                                title: "Erfolg",
-                                description: "Liste erfolgreich gelöscht."
-                              });
-                            } catch (error) {
-                              const errorMessage = error instanceof Error ? error.message : "Fehler beim Löschen der Liste.";
-                              toast({
-                                title: "Fehler",
-                                description: errorMessage,
-                                variant: "destructive"
-                              });
-                            }
+                      <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-2">
+                          {list.isActive ? (
+                            <Eye className="h-4 w-4 text-primary" />
+                          ) : (
+                            <EyeOff className="h-4 w-4 text-muted-foreground" />
+                          )}
+                          <Switch
+                            checked={list.isActive}
+                            onCheckedChange={async (checked) => {
+                              try {
+                                await onToggleList(list.id, checked);
+                              } catch (error) {
+                                const errorMessage = error instanceof Error ? error.message : "Fehler beim Aktivieren der Liste.";
+                                toast({
+                                  title: "Fehler",
+                                  description: errorMessage,
+                                  variant: "destructive"
+                                });
+                              }
+                            }}
                           }}
-                          className="text-destructive hover:text-destructive"
-                        >
-                          <Trash2 className="h-4 w-4" />
-                        </Button>
-                      )}
+                        />
+                        </div>
+                        
+                        {!list.isDefault && (
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={async () => {
+                              try {
+                                await onDeleteList(list.id);
+                                toast({
+                                  title: "Erfolg",
+                                  description: "Liste erfolgreich gelöscht."
+                                });
+                              } catch (error) {
+                                const errorMessage = error instanceof Error ? error.message : "Fehler beim Löschen der Liste.";
+                                toast({
+                                  title: "Fehler",
+                                  description: errorMessage,
+                                  variant: "destructive"
+                                });
+                              }
+                            }}
+                            className="text-destructive hover:text-destructive"
+                          >
+                            <Trash2 className="h-4 w-4" />
+                          </Button>
+                        )}
+                      </div>
                     </div>
                   </div>
                 ))}
