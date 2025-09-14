@@ -144,7 +144,7 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
     setUserInput('');
     setShowHint(false);
     setCurrentAttempt(0);
-    setHasBeenResetToBox1(false); // Reset für nächste Vokabel
+    setHasTriedAgain(false); // Reset für nächste Vokabel
 
     if (isLastVocabulary) {
       onComplete();
@@ -174,7 +174,10 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
     
     try {
       // KRITISCH: Alle Operationen nacheinander awaiten
-      const nextBox = Math.min(currentVocab.box + 1, 6);
+      
+      // Wenn die Vokabel bereits einmal falsch war, bleibt sie in Box 1
+      // Ansonsten geht sie eine Box weiter
+      const nextBox = hasBeenResetToBox1 ? 1 : Math.min(currentVocab.box + 1, 6);
       
       // 1. Vokabel verschieben
       await moveVocabularyToBox(currentVocab.id, nextBox, true);
