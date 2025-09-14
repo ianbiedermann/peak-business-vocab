@@ -23,6 +23,7 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
   const [answered, setAnswered] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [hasBeenResetToBox1, setHasBeenResetToBox1] = useState(false);
 
   // Ref für das Input-Feld um es fokussieren zu können
   const inputRef = useRef<HTMLInputElement>(null);
@@ -77,20 +78,21 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
   const checkAnswer = async () => {
     const correct = userInput.toLowerCase().trim() === currentVocab.english.toLowerCase();
     setFeedback(correct ? 'correct' : 'incorrect');
-    setResults(prev => new Map(prev).set(currentVocab.id, correct));
     setAnswered(true);
 
     if (correct) {
+      // Richtige Antwort - Vokabel fortschreiten lassen
+      setResults(prev => new Map(prev).set(currentVocab.id, true));
       setSaving(true);
+      
       try {
-        // KRITISCH: Alle asynchronen Operationen nacheinander awaiten
-        const nextBox = Math.min(currentVocab.box + 1, 6);
+        // Box bestimmen: Wenn schon mal falsch war, bleibt sie in Box 1, sonst eine Box weiter
+        const nextBox = hasBeenResetToBox1 ? 1 : Math.min(currentVocab.box + 1, 6);
         
         // 1. Vokabel verschieben und warten bis komplett fertig
         await moveVocabularyToBox(currentVocab.id, nextBox, true);
         
-        // 2. Statistiken aktualisieren und warten bis fertig
-        // ANNAHME: updateDailyStats sollte auch async sein und awaited werden
+        // 2. Statistiken aktualisieren
         if (updateDailyStats.constructor.name === 'AsyncFunction') {
           await updateDailyStats(0, 1);
         } else {
@@ -102,7 +104,7 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
         
         setSaving(false);
         
-        // 4. Dann automatisch weiter
+        // 4. Dann automatisch zur nächsten Vokabel
         setTimeout(() => {
           goToNext();
         }, 300);
@@ -116,29 +118,31 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
         }, 1000);
       }
     } else {
-      setSaving(true);
-      try {
-        // KRITISCH: Auch hier alle Operationen awaiten
-        await resetVocabularyToBox1(currentVocab.id);
-        
-        // Zusätzliche Wartezeit für DB-Commit
-        await new Promise(resolve => setTimeout(resolve, 200));
-        
-        setSaving(false);
-      } catch (error) {
-        console.error('Error resetting vocabulary to box 1:', error);
-        setSaving(false);
+      // Falsche Antwort - beim ersten Mal zu Box 1 zurücksetzen
+      if (!hasBeenResetToBox1) {
+        setSaving(true);
+        try {
+          await resetVocabularyToBox1(currentVocab.id);
+          await new Promise(resolve => setTimeout(resolve, 200));
+          setHasBeenResetToBox1(true);
+          setSaving(false);
+        } catch (error) {
+          console.error('Error resetting vocabulary to box 1:', error);
+          setSaving(false);
+        }
       }
-      // Kein automatischer Wechsel bei falscher Antwort
+      // Bei falscher Antwort NICHT automatisch weitergehen - User muss entscheiden
     }
   };
 
   const goToNext = () => {
+    // Reset für nächste Vokabel
     setAnswered(false);
     setFeedback(null);
     setUserInput('');
     setShowHint(false);
     setCurrentAttempt(0);
+    setHasBeenResetToBox1(false); // Reset für nächste Vokabel
 
     if (isLastVocabulary) {
       onComplete();
@@ -147,13 +151,32 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
     }
   };
 
+  const tryAgain = () => {
+    // Reset nur für erneuten Versuch bei gleicher Vokabel
+    setAnswered(false);
+    setFeedback(null);
+    setUserInput('');
+    setShowHint(false);
+    // hasBeenResetToBox1 bleibt true, damit nicht erneut zurückgesetzt wird
+    
+    // Input wieder fokussieren
+    setTimeout(() => {
+      if (inputRef.current) {
+        inputRef.current.focus();
+      }
+    }, 100);
+  };
+
   const markAsTypo = async () => {
+    // Als richtig markieren und fortschreiten
+    setResults(prev => new Map(prev).set(currentVocab.id, true));
     setFeedback('correct');
     setSaving(true);
     
     try {
-      // KRITISCH: Alle Operationen nacheinander awaiten
-      const nextBox = Math.min(currentVocab.box + 1, 6);
+      // Wenn die Vokabel bereits einmal falsch war, bleibt sie in Box 1
+      // Ansonsten geht sie eine Box weiter
+      const nextBox = hasBeenResetToBox1 ? 1 : Math.min(currentVocab.box + 1, 6);
       
       // 1. Vokabel verschieben
       await moveVocabularyToBox(currentVocab.id, nextBox, true);
@@ -177,9 +200,7 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
     } catch (error) {
       console.error('Error marking as typo:', error);
       setSaving(false);
-      setTimeout(() => {
-        goToNext();
-      }, 1000);
+      goToNext();
     }
   };
 
@@ -280,7 +301,7 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
                   )}
                   {showHint && <div></div>}
                   
-                  {/* Prüfen Button (rechts) - für bessere Daumen-Erreichbarkeit */}
+                  {/* Prüfen Button (rechts) */}
                   <Button 
                     onClick={() => {
                       if (userInput.trim()) {
@@ -296,6 +317,7 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
                   </Button>
                 </>
               ) : (
+                // Nur bei falscher Antwort die Optionen anzeigen
                 !isCorrect && (
                   <>
                     <Button 
@@ -309,11 +331,11 @@ export function ReviewSession({ vocabularies, onComplete, onBack }: ReviewSessio
                     </Button>
                     
                     <Button 
-                      onClick={goToNext} 
+                      onClick={tryAgain} 
                       className="gap-2"
                       disabled={saving}
                     >
-                      Weiter
+                      Erneut versuchen
                     </Button>
                   </>
                 )
