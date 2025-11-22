@@ -1,8 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { BarChart3, BookOpen, Target, Trophy, Volume2, RefreshCw, FileText, LogOut, Crown } from "lucide-react";
+import { BarChart3, BookOpen, Target, Trophy, Volume2, RefreshCw, FileText, User, Crown } from "lucide-react";
 import { useVocabularyStore } from "../hooks/useVocabularyStore";
-import { useAuth } from "../hooks/useAuth";
 import { SubscriptionManager } from "@/components/SubscriptionManager";
 
 interface DashboardProps {
@@ -15,12 +14,11 @@ interface DashboardProps {
 
 export function Dashboard({ onStartLearning, onStartReview, onViewBoxes, onViewStatistics, onViewLists }: DashboardProps) {
   const { getAppStats, getVocabulariesForReview } = useVocabularyStore();
-  const { signOut, subscription } = useAuth();
   const stats = getAppStats();
   const reviewCount = getVocabulariesForReview().length;
 
-  const handleSignOut = async () => {
-    await signOut();
+  const handleProfileClick = () => {
+    // TODO: Implement profile functionality
   };
 
   return (
@@ -37,10 +35,10 @@ export function Dashboard({ onStartLearning, onStartReview, onViewBoxes, onViewS
               <Button
                 variant="ghost"
                 size="sm"
-                onClick={handleSignOut}
+                onClick={handleProfileClick}
                 className="text-muted-foreground hover:text-foreground"
               >
-                <LogOut className="h-4 w-4" />
+                <User className="h-5 w-5" />
               </Button>
             </div>
           </div>
