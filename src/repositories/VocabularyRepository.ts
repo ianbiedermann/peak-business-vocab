@@ -1,5 +1,4 @@
 // Repository layer for vocabulary data access
-import { supabase } from '@/integrations/supabase/client';
 import * as localStorage from '@/lib/localStorage';
 
 export interface VocabularyList {
@@ -37,10 +36,6 @@ export interface LearningStat {
 }
 
 class VocabularyRepositoryClass {
-  private isOnline(): boolean {
-    return navigator.onLine;
-  }
-
   // Lists
   async getAllLists(): Promise<VocabularyList[]> {
     return await localStorage.loadListsFromLocal();
@@ -205,73 +200,6 @@ class VocabularyRepositoryClass {
     }
 
     await localStorage.saveStatToLocal(todayStat);
-  }
-
-  // Initial sync from Supabase (one-time)
-  async syncDefaultListsFromSupabase(): Promise<void> {
-    if (!this.isOnline()) {
-      console.log('⚠️ Offline - skipping sync from Supabase');
-      return;
-    }
-
-    const hasData = await localStorage.hasLocalData();
-    if (hasData) {
-      console.log('✅ Local data already exists - skipping initial sync');
-      return;
-    }
-
-    console.log('🔄 Loading default vocabulary lists from Supabase...');
-
-    try {
-      // Load default lists
-      const { data: defaultLists, error: listsError } = await supabase
-        .from('default_vocabulary_lists')
-        .select('*');
-
-      if (listsError) throw listsError;
-
-      // Load default vocabularies
-      const { data: defaultVocabs, error: vocabsError } = await supabase
-        .from('default_vocabularies')
-        .select('*');
-
-      if (vocabsError) throw vocabsError;
-
-      // Transform and save lists
-      const lists: VocabularyList[] = (defaultLists || []).map(list => ({
-        id: list.id,
-        name: list.name,
-        description: list.description || undefined,
-        vocabulary_count: list.vocabulary_count,
-        is_active: false, // Default to inactive
-        is_default: true,
-        premium_required: list.premium_required || false,
-        created_at: list.created_at,
-        updated_at: list.updated_at,
-      }));
-
-      await localStorage.saveListsToLocal(lists);
-
-      // Transform and save vocabularies
-      const vocabularies: Vocabulary[] = (defaultVocabs || []).map(vocab => ({
-        id: vocab.id,
-        list_id: vocab.list_id,
-        english: vocab.english,
-        german: vocab.german,
-        box: 0,
-        times_correct: 0,
-        times_incorrect: 0,
-        created_at: vocab.created_at,
-        updated_at: new Date().toISOString(),
-      }));
-
-      await localStorage.saveWordsToLocal(vocabularies);
-
-      console.log(`✅ Synced ${lists.length} lists and ${vocabularies.length} vocabularies from Supabase`);
-    } catch (error) {
-      console.error('❌ Error syncing from Supabase:', error);
-      throw error;
-    }
   }
 }
 

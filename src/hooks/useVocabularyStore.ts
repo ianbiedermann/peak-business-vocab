@@ -14,9 +14,6 @@ export function useVocabularyStore() {
     setLoading(true);
     
     try {
-      // Try to sync default lists from Supabase on first load
-      await VocabularyRepository.syncDefaultListsFromSupabase();
-      
       // Load all data from local storage
       const [localLists, localVocabs, localStats] = await Promise.all([
         VocabularyRepository.getAllLists(),
