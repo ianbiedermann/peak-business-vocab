@@ -15,7 +15,7 @@ type AppView = 'dashboard' | 'learning' | 'review' | 'boxes' | 'statistics' | 'l
 const Index = () => {
   const [currentView, setCurrentView] = useState<AppView>('dashboard');
   const [sessionVocabularies, setSessionVocabularies] = useState<Vocabulary[]>([]);
-  const { user, loading, isAuthenticated } = useAuth();
+  const { user, signOut } = useAuth();
   const navigate = useNavigate();
   const { 
     lists,
@@ -27,23 +27,7 @@ const Index = () => {
     deleteVocabularyList
   } = useVocabularyStore();
 
-  useEffect(() => {
-    if (!loading && !isAuthenticated) {
-      navigate('/auth');
-    }
-  }, [loading, isAuthenticated, navigate]);
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="text-lg">Lädt...</div>
-      </div>
-    );
-  }
-
-  if (!isAuthenticated) {
-    return null; // Will redirect to auth
-  }
+  // No auth check needed - app works offline without login
 
   const handleStartLearning = () => {
     const vocabs = getRandomVocabularies(5);
