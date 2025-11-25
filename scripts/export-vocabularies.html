@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Vocabulary Exporter</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 50px auto; padding: 20px; }
+        button { padding: 10px 20px; font-size: 16px; cursor: pointer; margin: 10px 0; }
+        .status { margin-top: 20px; padding: 10px; background: #f0f0f0; border-radius: 4px; }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+    </style>
+</head>
+<body>
+    <h1>📦 Vokabeln Exporter</h1>
+    <p>Dieser Export lädt alle Standard-Vokabeln aus Supabase und erstellt JSON-Dateien.</p>
+    
+    <button onclick="exportAllVocabularies()">🚀 Export starten</button>
+    
+    <div id="status" class="status"></div>
+    
+    <script type="module">
+        const SUPABASE_URL = 'https://rohzyfsnzytxoyaqvtjn.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJvaHp5ZnNuenl0eG95YXF2dGpuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMyOTYyMTIsImV4cCI6MjA2ODg3MjIxMn0.tOkqJiHcOP1W9O79YTfdvHWi4BweOCIk7N8vD23NZjI';
+        
+        const LIST_CONFIGS = [
+            { id: '2df27e12-efce-4798-bde7-a077f65b519f', filename: '200-wichtigste.json', name: 'Die 200 wichtigsten' },
+            { id: '000b7200-3ff2-4a9d-9098-be4e6d03d7d6', filename: 'a1-sprachniveau.json', name: 'A1 Sprachniveau' },
+            { id: '5e125683-97cc-4668-9cfb-f5ee49d1660e', filename: 'a2-sprachniveau.json', name: 'A2 Sprachniveau' },
+            { id: 'a3859f61-1037-4d76-b4fa-b022d10d77e9', filename: 'b1-sprachniveau.json', name: 'B1 Sprachniveau' },
+            { id: 'daef9a3f-dc59-4848-86ca-5624c8a2937a', filename: 'oxford-3000.json', name: 'Oxford 3000' },
+            { id: 'ab059a0f-4bd1-4af8-bb1b-3b17abab654b', filename: 'business-englisch.json', name: 'Business Englisch' },
+            { id: '7e7335a5-bbef-4e28-ba2b-b7d7936ebbf5', filename: 'venture-capital.json', name: 'Venture Capital' },
+        ];
+        
+        function updateStatus(message, type = '') {
+            const statusDiv = document.getElementById('status');
+            statusDiv.innerHTML += `<div class="${type}">${message}</div>`;
+            statusDiv.scrollTop = statusDiv.scrollHeight;
+        }
+        
+        async function fetchVocabularies(listId) {
+            const response = await fetch(
+                `${SUPABASE_URL}/rest/v1/default_vocabularies?list_id=eq.${listId}&select=id,english,german,list_id,created_at&order=created_at`,
+                {
+                    headers: {
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                    }
+                }
+            );
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            return await response.json();
+        }
+        
+        function downloadJSON(data, filename) {
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+        
+        window.exportAllVocabularies = async function() {
+            const statusDiv = document.getElementById('status');
+            statusDiv.innerHTML = '';
+            updateStatus('🔄 Export gestartet...', 'success');
+            
+            try {
+                for (const config of LIST_CONFIGS) {
+                    updateStatus(`📥 Lade ${config.name}...`);
+                    const vocabs = await fetchVocabularies(config.id);
+                    updateStatus(`✅ ${vocabs.length} Vokabeln geladen`, 'success');
+                    
+                    downloadJSON(vocabs, config.filename);
+                    updateStatus(`💾 ${config.filename} heruntergeladen`, 'success');
+                    
+                    // Small delay between downloads
+                    await new Promise(resolve => setTimeout(resolve, 500));
+                }
+                
+                updateStatus('✨ Export abgeschlossen! Alle Dateien wurden heruntergeladen.', 'success');
+                updateStatus('📁 Bitte die heruntergeladenen Dateien nach src/data/vocabularies/ verschieben.', '');
+                
+            } catch (error) {
+                updateStatus(`❌ Fehler: ${error.message}`, 'error');
+                console.error(error);
+            }
+        }
+    </script>
+</body>
+</html>
