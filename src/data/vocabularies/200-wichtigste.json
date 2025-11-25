@@ -1,1 +1,1402 @@
-[]
+[
+  {
+    "id": "a8be38f5-a8a2-4b4c-81e3-021177adc766",
+    "english": "about",
+    "german": "über",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "6291fa04-cb1a-47fe-b86f-f981393640a7",
+    "english": "after",
+    "german": "nach",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "b9d66ae0-2bdc-4142-9db5-7b001df3e2f8",
+    "english": "all",
+    "german": "alle/alles",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "3988d115-c337-4657-aaf6-7d453cb1a9e3",
+    "english": "always",
+    "german": "immer",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "81cb5e45-88a9-4f60-bc23-6c7688715270",
+    "english": "and",
+    "german": "und",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "cface4cc-8c02-47c5-8769-0e08e00b6ccf",
+    "english": "any",
+    "german": "irgendein(e)",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "e58cdc46-0f1d-4578-9027-dee14638517b",
+    "english": "are",
+    "german": "sind/bist",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "3841e9de-941a-495e-b9c4-2faa246d2b99",
+    "english": "at",
+    "german": "bei",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "808fdac0-0f32-4901-87ac-3f41f4ffc73e",
+    "english": "back",
+    "german": "zurück",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "d383ebe1-e6ee-42de-9513-6bd4d0c6943e",
+    "english": "bad",
+    "german": "schlecht",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "06525ae5-130f-4c47-94bb-443755b40f63",
+    "english": "be",
+    "german": "sein",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "18f0f513-5635-4d93-b717-2fcd32fc460f",
+    "english": "because",
+    "german": "weil",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "721b3add-bac1-491d-ab89-50d1d9512dce",
+    "english": "before",
+    "german": "vor",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "34101f74-4e6e-405f-ab88-5cd0caf4b655",
+    "english": "big",
+    "german": "groß",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "92ff206d-40d6-4442-a945-307b0c9b6d21",
+    "english": "book",
+    "german": "Buch",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "973ecd17-bec3-4c6e-bdaf-e21442ca07a1",
+    "english": "boy",
+    "german": "Junge",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "8fbccebe-6b0f-4a50-ba80-9c95045bf7ef",
+    "english": "but",
+    "german": "aber",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "962b99f7-5c7d-470d-b25d-4f29889a363c",
+    "english": "by",
+    "german": "bei/durch",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "1d27c142-8ee6-4be6-81ff-096f069ec14c",
+    "english": "can",
+    "german": "können",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "54d3be5c-2353-4cec-8f5d-726b5a151d79",
+    "english": "come",
+    "german": "kommen",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "07ed744c-1843-4e37-9d30-d08bc9a9e8bb",
+    "english": "could",
+    "german": "könnte/können",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "f6aa512d-613c-4860-b885-bb5214b27248",
+    "english": "day",
+    "german": "Tag",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "a5965573-ada2-4c97-b465-d2bf2817d11c",
+    "english": "do",
+    "german": "tun/machen",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "d37d3d21-2524-4102-a4fc-35e4acca6ab8",
+    "english": "dog",
+    "german": "Hund",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "b73832af-c487-442c-be64-ddb07d6695c1",
+    "english": "down",
+    "german": "unten/runter",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "6c91dc4c-4847-4cea-8dd0-32aaf19ebcb5",
+    "english": "eat",
+    "german": "essen",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "03ee22a0-0f99-4484-b832-533c7257c0b7",
+    "english": "eight",
+    "german": "acht",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "8d603374-fc63-4e4a-9a95-2059f21a146b",
+    "english": "find",
+    "german": "finden",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "7c8a479b-bba6-480b-ad23-61eb07eeb150",
+    "english": "first",
+    "german": "erste/r/s",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "7be729d2-882a-4fdf-86d4-be27c9c59fe1",
+    "english": "five",
+    "german": "fünf",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "d7b9ef7e-7024-4b2b-b2da-dd4eb7a30e7e",
+    "english": "for",
+    "german": "für",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "7ca04d79-78ed-4c36-934c-7cf77c438ad8",
+    "english": "friend",
+    "german": "Freund/Freundin",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "500a7e48-be39-4035-b446-ce741e78d63e",
+    "english": "from",
+    "german": "aus/von",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "6d4c81ec-fecc-4940-8a02-2ec9b5ac27be",
+    "english": "get",
+    "german": "bekommen/werden",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "3ed548c3-e2b7-484f-af33-99bb74d546d2",
+    "english": "give",
+    "german": "geben",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "20c9bc9c-d5c9-4df4-9efc-ae177c8364d0",
+    "english": "go",
+    "german": "gehen",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "de9c4075-3b9c-4158-aa3a-9b9515bea099",
+    "english": "good",
+    "german": "gut",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "1f1eb903-395c-488e-954c-4bba8de7ff3b",
+    "english": "have",
+    "german": "haben",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "3e154d7c-ff1f-403b-92e0-f14934a6a0bb",
+    "english": "he",
+    "german": "er",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "aa347f7a-f7fd-42d2-9bce-1673eff2cf91",
+    "english": "her",
+    "german": "ihr",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "be8a4b88-582f-403b-8c55-2aae6ee19ac8",
+    "english": "here",
+    "german": "hier",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "73113a71-776c-4988-9f41-7a18f6213c9d",
+    "english": "him",
+    "german": "ihn/ihm",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "31c6f124-fbde-4285-92f0-adb47d1112c4",
+    "english": "his",
+    "german": "sein",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "a63a007b-679f-44a9-bbff-d3d72679a487",
+    "english": "how",
+    "german": "wie",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "8e92678f-b2c8-4ab2-9241-deddaeac92b4",
+    "english": "I",
+    "german": "ich",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "7982c235-194b-441c-8449-36badcb7e1de",
+    "english": "if",
+    "german": "wenn",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "0b5911c9-140d-450a-b0e8-846c6655e38e",
+    "english": "in",
+    "german": "in",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "5473fa17-b164-4f80-8879-efce83f49071",
+    "english": "into",
+    "german": "hinein/in",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "addd29dc-814f-4f57-897c-4499eb1eecfc",
+    "english": "is",
+    "german": "ist",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "7a437d09-57fd-4807-b352-91ef79333377",
+    "english": "it",
+    "german": "es",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "2943ad64-6597-4cb8-8dc0-a66b456fb258",
+    "english": "know",
+    "german": "wissen",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "233c422b-3cbf-4abb-9d61-6d8f101c8beb",
+    "english": "like",
+    "german": "mögen",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "30d45cd6-b74a-4e5d-8cd6-fa10db20d676",
+    "english": "little",
+    "german": "klein/wenig",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "29fb4726-c2dc-42c0-85e7-e82c546059e2",
+    "english": "live",
+    "german": "leben/wohnen",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "8c1588c6-dcc5-4ec3-ae93-f8850146cabd",
+    "english": "long",
+    "german": "lang",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "99e277d2-9ac4-48be-85fc-fa4f20989a69",
+    "english": "look",
+    "german": "schauen/aussehen",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "674dc71c-cc46-469f-997f-5b8c3868ce03",
+    "english": "make",
+    "german": "machen",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "26c57da7-b283-49eb-9040-406c3ba6aab9",
+    "english": "man",
+    "german": "Mann",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "9b1abc29-41ea-4677-82de-0ce7cee24a3c",
+    "english": "many",
+    "german": "viele",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "5e91dd4e-6230-4319-b126-7cd091c8db39",
+    "english": "me",
+    "german": "mich/mir",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "6cea1178-ded6-47ec-8b98-3c6771a1e9a8",
+    "english": "more",
+    "german": "mehr",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "438a47fb-a0a6-4c73-94a0-e44173deab32",
+    "english": "much",
+    "german": "viel",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "f9b8a233-fecf-4d87-8a81-3347d6e5eca4",
+    "english": "must",
+    "german": "müssen",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "280d889d-3aba-4e2b-84d9-d8ee26629002",
+    "english": "my",
+    "german": "mein",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "3ea40733-cb1c-46f9-887c-4aece6bde98d",
+    "english": "name",
+    "german": "Name",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "5b8a0725-78ac-4c01-8368-cc22d108125f",
+    "english": "need",
+    "german": "brauchen",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "da70f657-39df-417c-8586-80f054ab2cc3",
+    "english": "new",
+    "german": "neu",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "9bd30ff1-a69b-4e30-9e27-cb149bf76130",
+    "english": "no",
+    "german": "nein",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "e2de76aa-3203-499f-9b45-4c95cf891717",
+    "english": "not",
+    "german": "nicht",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "7e3df8c5-6f10-4c8e-8898-c3aeb2534ac3",
+    "english": "now",
+    "german": "jetzt",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "75d3a4b3-bca7-401c-9b27-2ff443f07c84",
+    "english": "of",
+    "german": "von",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "3a8616c9-69a4-4374-abdb-72667102a3cc",
+    "english": "on",
+    "german": "auf",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "7745860b-b2f2-4b04-89a7-115f5813fa28",
+    "english": "one",
+    "german": "eins/ein(e)",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "62b35d98-dc10-407a-b65b-950df26c05fb",
+    "english": "only",
+    "german": "nur",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "0291931e-3844-4b10-8216-61451516c857",
+    "english": "or",
+    "german": "oder",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "77a2728d-7ec5-4f20-9900-0316b110c0e9",
+    "english": "other",
+    "german": "andere/r/s",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "f25098da-42f2-4747-a758-ea6162b69499",
+    "english": "our",
+    "german": "unser",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "0c6c21c1-af4d-47d1-9ff7-103df549800c",
+    "english": "out",
+    "german": "aus/raus",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "e33aaf90-2283-434a-b213-c6a452d6db3f",
+    "english": "people",
+    "german": "Leute/Menschen",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "89f408a9-50bc-4e80-b50d-a33c7b6c5dd3",
+    "english": "please",
+    "german": "bitte",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "1e41ecc7-da87-419d-b8a8-32f7604a4a86",
+    "english": "read",
+    "german": "lesen",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "17a99a7f-587c-41d8-802e-5b0d05efeb49",
+    "english": "right",
+    "german": "richtig/rechts",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "59cdf496-3bd1-4323-8f57-bc4e6f147b62",
+    "english": "run",
+    "german": "laufen/rennen",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "f6f2febf-f493-4193-ad97-fc9281a2ecf7",
+    "english": "said",
+    "german": "sagte (Past of say)",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "9408b550-28ca-46cb-a3a6-80d9d7c4c74e",
+    "english": "say",
+    "german": "sagen",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "a9cc250e-19e5-44b3-8ae9-2688125cba39",
+    "english": "see",
+    "german": "sehen",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "b6cda7e4-6579-4b7d-94a4-ad1d58d1e8b4",
+    "english": "she",
+    "german": "sie (Singular)",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "e66f138f-2367-4545-bf9b-4dd9be1a4714",
+    "english": "so",
+    "german": "so/daher",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "9577b358-bd19-49fd-93e3-be182727c6e8",
+    "english": "some",
+    "german": "einige",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "4229ffcb-4c9d-40c4-bb56-bad0cec2fe13",
+    "english": "start",
+    "german": "beginnen/Start",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "1e47bcf0-83f1-4cf8-adb2-268773aef255",
+    "english": "stop",
+    "german": "stoppen/aufhören",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "cfaf3cb9-0890-41d7-ab9c-4cbd9415efd9",
+    "english": "take",
+    "german": "nehmen",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "3ae29fba-62f8-4582-bc3a-094f2ceaf2e4",
+    "english": "thank you",
+    "german": "danke",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "693ba606-7e8d-4c4d-93d5-a95956fbc506",
+    "english": "that",
+    "german": "dass/jener",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "5044ce09-abc5-4f32-9fdf-b5a05f9440bb",
+    "english": "the",
+    "german": "der/die/das",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "ea7f5ecd-86cc-4d57-b2ae-964f705e9deb",
+    "english": "their",
+    "german": "ihr/ihre (Possessiv)",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "76a22125-ab89-4b8c-a88d-9cd3eb6d3b3e",
+    "english": "them",
+    "german": "ihnen/sie",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "3d4b7b5c-7222-4561-9f89-8421a3314ad6",
+    "english": "then",
+    "german": "dann",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "ff2cb022-cc25-4046-be2a-9fec8ae6637d",
+    "english": "there",
+    "german": "dort",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "63c900fe-bc36-4323-a3af-cdb287b06bdb",
+    "english": "these",
+    "german": "diese",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "6448f36d-6ea0-4ef0-91a3-5371a909a073",
+    "english": "they",
+    "german": "sie (Plural)",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "5ec816f1-f8e8-43ea-bd77-ca89c8872354",
+    "english": "thing",
+    "german": "Sache / Ding",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "70703dd2-f946-480e-817a-baf5ed591dec",
+    "english": "think",
+    "german": "denken",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "010c8701-81ca-49d3-9b13-76bfd8f19a46",
+    "english": "this",
+    "german": "dies / diese(r/s)",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "4b232cf6-1d61-4e06-adca-0849dd4df8bd",
+    "english": "those",
+    "german": "jene",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "9d3cef90-b7e3-412b-9cde-6bfb0e840f81",
+    "english": "three",
+    "german": "drei",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "4e2cfba8-3ef6-4038-9ed5-517b5ffce6f3",
+    "english": "through",
+    "german": "durch",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "a4a26072-d343-4f56-991c-9080b609e4df",
+    "english": "time",
+    "german": "Zeit",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "799796ef-bf23-42d7-adb0-fe4579679f5b",
+    "english": "to",
+    "german": "zu / nach",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "9289c55d-a0e9-4057-88df-543b7569baf9",
+    "english": "two",
+    "german": "zwei",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "438d406c-ce52-4bc2-a510-f4e17214da24",
+    "english": "up",
+    "german": "oben",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "f99095ae-bdf3-49ba-b1f0-515207df58d7",
+    "english": "us",
+    "german": "uns",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "068f0a83-de17-4025-b672-7769f1e6b944",
+    "english": "use",
+    "german": "benutzen / Gebrauch",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "b4dc6e78-ce81-497d-a393-2a4294b3ea5d",
+    "english": "very",
+    "german": "sehr",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "9b2a1c12-6b13-4431-9fc7-d8af057f75d7",
+    "english": "want",
+    "german": "wollen",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "af19d159-4154-46a1-978e-b6f46e3d6396",
+    "english": "was",
+    "german": "war / waren",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "02c1593e-8894-4e7e-ba69-2374113f2ba4",
+    "english": "way",
+    "german": "Weg / Art",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "686d67b7-d7bc-4327-8377-2897d5ad0b3e",
+    "english": "we",
+    "german": "wir",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "e3c2b7e5-07ff-4fee-949c-beab666e1383",
+    "english": "well",
+    "german": "gut (Adverb)",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "bfed5819-5686-4d21-afb9-8b7b0fad8d8e",
+    "english": "what",
+    "german": "was",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "757320f4-5ca8-4625-8d77-aedaeed465de",
+    "english": "when",
+    "german": "wann",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "ffb71699-a8f8-491f-82d9-e6d62f60970c",
+    "english": "where",
+    "german": "wo",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "339e4d50-e8a8-4dc8-a746-bbcf36648e05",
+    "english": "which",
+    "german": "welche(r/s)",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "e32d62f9-0026-41d9-a48f-99259d758eaf",
+    "english": "who",
+    "german": "wer",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "9719c60b-3a25-4fab-8b64-62f8c5c95893",
+    "english": "why",
+    "german": "warum",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "db897b66-bc9a-4c2f-93ac-5aa73f2806cc",
+    "english": "will",
+    "german": "werden (Futur)",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "376cffdc-d7f6-4f69-b6e0-dbebd86ee130",
+    "english": "with",
+    "german": "mit",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "4de83be8-9b38-418b-85ef-83adb7ad3d1e",
+    "english": "work",
+    "german": "Arbeit / arbeiten",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "4fa4fa57-675e-4618-a42c-e1134d991909",
+    "english": "would",
+    "german": "würde",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "fb82afac-a341-4c14-b7e3-e0be41116bba",
+    "english": "year",
+    "german": "Jahr",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "a8852c47-2dd2-48f0-9d5c-9fb6c5ee2707",
+    "english": "you",
+    "german": "du / Sie",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "caf244d7-491d-48b1-88bf-9b677a424dd2",
+    "english": "your",
+    "german": "dein / Ihr",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "9156dd28-8ec1-400c-a23b-db7ed445de17",
+    "english": "yes",
+    "german": "ja",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "cad56dc7-d833-4799-9c56-8bab299fbb34",
+    "english": "yesterday",
+    "german": "gestern",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "8343a095-4de6-4d7d-b975-103da02b2c2d",
+    "english": "again",
+    "german": "wieder",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "1c3ad7e2-90a0-4c3b-a865-34a213fb85af",
+    "english": "ago",
+    "german": "vor (zeitlich)",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "1e921893-fe9e-4d41-ae23-47f0d4f1983c",
+    "english": "also",
+    "german": "auch",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "a8a06ac7-a6e9-4c53-8948-a7e8ff302818",
+    "english": "another",
+    "german": "ein anderer",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "b4b5e661-69cd-41ec-b0cf-b59176d4b3c7",
+    "english": "anyone",
+    "german": "irgendjemand",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "6cc75c0f-afdc-4957-a234-4245011d5aab",
+    "english": "anything",
+    "german": "irgendetwas",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "ebff3226-2547-487f-ad70-f8d8dd3acbdf",
+    "english": "apartment",
+    "german": "Wohnung",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "f25eb192-54c9-41bd-a9db-a351a32b85c2",
+    "english": "around",
+    "german": "um / herum",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "e113a451-0cc0-4fca-9c32-fc54b77bb0d4",
+    "english": "ask",
+    "german": "fragen",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "e123180c-9444-4ea0-a9c8-8efda24338be",
+    "english": "baby",
+    "german": "Baby / Kleinkind",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "e83dc3a3-8ba8-4c4d-8eec-863056108cfa",
+    "english": "ball",
+    "german": "Ball",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "b34e96a0-a27a-4062-a9cb-ef76f18f47db",
+    "english": "bank",
+    "german": "Bank",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "ffe39f12-db33-448a-baa0-84b386167ec6",
+    "english": "bathroom",
+    "german": "Bad / WC",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "b9f8e964-4045-4505-bd1d-677ab927da43",
+    "english": "become",
+    "german": "werden (Veränderung)",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "e02dd353-6123-4235-9b3a-bf2d81b8f945",
+    "english": "bed",
+    "german": "Bett",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "2172339c-dba5-4b64-879a-53d5cfcb163f",
+    "english": "between",
+    "german": "zwischen",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "bdfe83d5-b024-4570-8c9e-0076ce13cf53",
+    "english": "bird",
+    "german": "Vogel",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "250125ff-02a5-4862-9ab0-31aa1ab84b97",
+    "english": "birthday",
+    "german": "Geburtstag",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "c2df8036-684c-48bf-84d3-c3a97a2205e3",
+    "english": "black",
+    "german": "schwarz",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "66a04141-49fa-4f73-8754-0e998f394266",
+    "english": "blue",
+    "german": "blau",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "40246bf6-2164-454f-a366-c6c50e6d1558",
+    "english": "bread",
+    "german": "Brot",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "d576407d-07d9-45b6-b87e-3f8c14c2777f",
+    "english": "bring",
+    "german": "bringen",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "3bf98e9d-d9ab-416f-aa45-bc03d55a23e6",
+    "english": "brother",
+    "german": "Bruder",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "8089988a-87f1-4b61-9a0f-ec4767ec0fa4",
+    "english": "build",
+    "german": "bauen",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "4041c9b2-348a-4ba7-b492-ab2db0ee0cab",
+    "english": "busy",
+    "german": "beschäftigt",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "dcaea42c-005d-4719-8fc7-27ef1739ca27",
+    "english": "buy",
+    "german": "kaufen",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "3c72e458-b122-4e77-80b0-90d2890154bd",
+    "english": "call",
+    "german": "rufen / nennen",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "863e9894-e982-4fc0-bcd2-f78f074d7d67",
+    "english": "car",
+    "german": "Auto",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "68aab7e5-5790-40fd-99cd-8f756a33c035",
+    "english": "cat",
+    "german": "Katze",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "84607d64-945b-4949-90ed-48d17ced2997",
+    "english": "child",
+    "german": "Kind",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "6d103b64-24bc-47f0-af91-7e311848eae1",
+    "english": "children",
+    "german": "Kinder",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "724b8517-b9c4-4866-a12c-10ef97985fed",
+    "english": "city",
+    "german": "Stadt",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "87de28ea-33e3-4cbc-b453-b6a044058a15",
+    "english": "class",
+    "german": "Klasse",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "8740cd19-8870-4aa5-b88b-38292585a40a",
+    "english": "classroom",
+    "german": "Klassenzimmer",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "9a5be8ff-a46a-4362-abd4-08ff66a5aee5",
+    "english": "clean",
+    "german": "sauber / reinigen",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "a76ac66b-b3f3-4efc-af53-9f35006b95ce",
+    "english": "close",
+    "german": "schließen / nah",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "37e7dae5-ec00-4559-b974-8ad7ee2bf720",
+    "english": "clothes",
+    "german": "Kleidung",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "22a797fd-678e-42e1-a617-bf2fbc3ac65b",
+    "english": "coffee",
+    "german": "Kaffee",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "f6ffc227-7175-4830-9ed3-a3bc2bb0922a",
+    "english": "cold",
+    "german": "kalt",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "d927db02-9ab7-4f28-abfc-c2f698c830df",
+    "english": "colour",
+    "german": "Farbe",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "983f2601-35c7-42a5-a423-98098bcf6028",
+    "english": "country",
+    "german": "Land",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "cf9eeda3-256f-42b7-9854-64a891b5ef18",
+    "english": "cousin",
+    "german": "Cousin / Cousine",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "0186b651-5bd8-4a95-b68c-7974ae968fb9",
+    "english": "cry",
+    "german": "weinen",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "e2dda308-5761-47d8-ab7d-f2f99884842a",
+    "english": "dance",
+    "german": "tanzen / Tanz",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "baa5bf88-211e-4a57-b3ca-7d65f46a41c6",
+    "english": "different",
+    "german": "anders",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "8c70d440-39cb-418a-8bcc-e865bd1096d9",
+    "english": "dinner",
+    "german": "Abendessen",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "41632c05-22a8-4180-af2d-1be67737c69d",
+    "english": "doctor",
+    "german": "Arzt / Ärztin",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "c8775326-27a7-4392-a54d-58601053804e",
+    "english": "door",
+    "german": "Tür",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "1abf8b77-f299-4e67-89ae-f72c62d28534",
+    "english": "draw",
+    "german": "zeichnen",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "6c50d854-b50c-4758-b5cc-13907b9afd6c",
+    "english": "drink",
+    "german": "trinken / Getränk",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "9deb5e93-73d5-4b73-a50c-2719bda0a705",
+    "english": "drive",
+    "german": "fahren",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "5971044d-8780-49c2-86b2-a5bf25ee654c",
+    "english": "each",
+    "german": "jeder",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "bf730d60-7dfe-49b1-80ff-6b8afad6d20d",
+    "english": "earth",
+    "german": "Erde",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "ca006a4a-c82b-4571-a7e0-6f30428ff204",
+    "english": "east",
+    "german": "Osten",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "71b7c8de-5c5f-4e47-aeb9-63a1c501040b",
+    "english": "easy",
+    "german": "einfach",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "1893a31b-47bf-410e-b38e-c3a66591560d",
+    "english": "either",
+    "german": "entweder",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "9dd08ed0-4858-405b-9633-156ad2b1050f",
+    "english": "else",
+    "german": "sonst",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "09ecbd48-3fec-436c-b398-de768a378e93",
+    "english": "end",
+    "german": "Ende",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "72f0c555-f4c6-49f7-a07c-45e8ad28f038",
+    "english": "enough",
+    "german": "genug",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "adf11b0d-7121-4c4e-9b4c-0fb2395da8ed",
+    "english": "even",
+    "german": "sogar",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "a1beb59e-f66c-4014-aa79-8199f57f9d9a",
+    "english": "ever",
+    "german": "jemals",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "276f9a94-aa50-4477-8824-529330fce6ec",
+    "english": "explain",
+    "german": "erklären",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "50776856-7201-40d1-83c2-98bdf03df4b0",
+    "english": "eye",
+    "german": "Auge",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "74aede2d-06e2-44d5-b59e-d2c9580557cd",
+    "english": "face",
+    "german": "Gesicht",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "b04420bb-a51f-4a54-8518-a97a396de4ca",
+    "english": "family",
+    "german": "Familie",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  },
+  {
+    "id": "f4a7d272-7eea-4880-848d-a279bd0a71d5",
+    "english": "zero",
+    "german": "null",
+    "list_id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "created_at": "2025-08-02T19:18:17.282731+00:00"
+  }
+]

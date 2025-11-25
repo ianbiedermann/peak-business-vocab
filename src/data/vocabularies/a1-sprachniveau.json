@@ -1,1 +1,4202 @@
-[]
+[
+  {
+    "id": "111b9ead-28c9-4d51-9a8e-b8f6a9efa4cf",
+    "english": "about",
+    "german": "über",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "0aca4bed-c6fa-4285-a5df-2255e9bda023",
+    "english": "above",
+    "german": "über",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "871d898b-a194-4ee4-b71c-f3dff7d8f9ca",
+    "english": "across",
+    "german": "hinüber, über",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "174caf33-d42b-4fe1-8895-8aa4d8feaf59",
+    "english": "act",
+    "german": "handeln",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "cb7d523d-0953-4e24-9f3b-1c14fdcc0f4b",
+    "english": "add",
+    "german": "hinzufügen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "d9630376-723d-45ca-a991-a4d97042b66c",
+    "english": "adult",
+    "german": "Erwachsener",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "49b82847-b43d-410d-b3a1-399f9d101017",
+    "english": "after",
+    "german": "nach",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "6e155bf3-e889-43bf-b5f4-97020b7037dd",
+    "english": "afternoon",
+    "german": "Nachmittag",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "b70f6b9e-5293-4ac3-b681-3e514853c077",
+    "english": "again",
+    "german": "wieder",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "e5ba599c-7089-4e08-bf9d-033cbb32148e",
+    "english": "age",
+    "german": "Alter",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "3b2a1f6a-7490-4270-bf9f-63027b6ed245",
+    "english": "ago",
+    "german": "vor",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "5217d901-0ed7-400e-9e8f-c7ddea8e87c9",
+    "english": "agree",
+    "german": "zustimmen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "9cce298b-52cd-42be-be13-40eff74a8c78",
+    "english": "air",
+    "german": "Luft",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "7e947238-99a8-4764-a8ad-3586758bdd71",
+    "english": "airport",
+    "german": "Flughafen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "81c6bb55-8b7d-4348-91f3-173ef03d666f",
+    "english": "all",
+    "german": "alle",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "89fbfa5f-f861-40bd-8316-8e929c905d23",
+    "english": "also",
+    "german": "auch",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "44dd1b9d-41f3-49a3-87fc-3caa17acaa39",
+    "english": "always",
+    "german": "immer",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "76b252d3-b92f-42f0-9f63-be337b660a76",
+    "english": "and",
+    "german": "und",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "20a06119-1b5c-419c-9548-534dbe68c95e",
+    "english": "animal",
+    "german": "Tier",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "42df649d-30e7-4cc1-993e-452bbf458d61",
+    "english": "another",
+    "german": "noch ein/ein weiteres",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "5f55de1a-e8bd-4143-ac3c-6025c1d9c0a6",
+    "english": "answer",
+    "german": "antworten / Antwort",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "7c9025b4-ab18-4fce-8347-5cc2c0bb0941",
+    "english": "any",
+    "german": "irgendein",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "4387d9dd-bb89-4e5d-a516-d4b3796c2b3f",
+    "english": "anyone",
+    "german": "irgendjemand",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "88503bf5-1282-4552-9c1e-847b2d870a94",
+    "english": "anything",
+    "german": "irgendetwas",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "a63851b4-526b-43a5-b32d-7c34b42307ff",
+    "english": "apartment",
+    "german": "Wohnung",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "fe01b48c-40a1-452b-be63-08b227b83e02",
+    "english": "apple",
+    "german": "Apfel",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "fa0e237c-b10e-450a-ad9e-3bea0b2b5d5d",
+    "english": "April",
+    "german": "April",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "7aa5c00a-ffb2-43f5-8065-0022ee9e0591",
+    "english": "area",
+    "german": "Gebiet",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "84cdbda5-93fa-4068-86d6-698ea150e381",
+    "english": "arm",
+    "german": "Arm",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "4fbc85cd-e9c9-4b68-9242-2e1bfbeaba2e",
+    "english": "around",
+    "german": "um … herum",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "f18b5ef3-ba87-47b2-b1f9-52eb8e902f03",
+    "english": "ask",
+    "german": "fragen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "33aab994-b0eb-4a94-9120-223b1a070554",
+    "english": "at",
+    "german": "bei, an",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "e8b1c682-2eac-4038-bbee-729366b3728e",
+    "english": "August",
+    "german": "August",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "29eeac6b-6686-4c0f-9c3d-e3a7f61a88bc",
+    "english": "aunt",
+    "german": "Tante",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "b9f249ea-5e4d-4d37-be3f-79c03719e810",
+    "english": "autumn",
+    "german": "Herbst",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "f65283f4-1d5f-4726-9f96-c9e7dcb3e431",
+    "english": "away",
+    "german": "weg",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "78999163-dc7e-4681-a1ff-edb1958c29c5",
+    "english": "baby",
+    "german": "Baby",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "911c84c0-f4d7-47ba-8b59-81b116bff209",
+    "english": "back",
+    "german": "Rücken; zurück",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "c5cb5e4c-2595-459f-89df-45ea66d28abf",
+    "english": "bad",
+    "german": "schlecht",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "62889ac0-554a-4b11-afba-0ab75e9e00de",
+    "english": "bag",
+    "german": "Tasche",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "1d2cd83d-9333-446a-bfce-84e1f06f865e",
+    "english": "ball",
+    "german": "Ball",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "9449b464-3e09-4411-8c1f-cc275bcdbbfb",
+    "english": "banana",
+    "german": "Banane",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "2299eb7e-9c38-4a40-9cfd-cf0a16047c0b",
+    "english": "bank",
+    "german": "Bank",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "e3f762a5-812f-45a8-8d6d-2536f344a18b",
+    "english": "bar",
+    "german": "Bar",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "ed06e57f-9109-4154-9a73-60635bd75502",
+    "english": "bathroom",
+    "german": "Badezimmer",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "17f0a45f-3104-4952-b687-fe55ceeb4cdf",
+    "english": "beach",
+    "german": "Strand",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "565d1a08-5f7b-4a20-9827-7a802c4034e7",
+    "english": "beautiful",
+    "german": "schön",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "086fb59a-156f-453d-af2c-b35e992a0f04",
+    "english": "because",
+    "german": "weil",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "586546ca-9304-4c58-889b-309a505d106a",
+    "english": "bed",
+    "german": "Bett",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "24189a3a-6458-435e-b816-20c196c22b01",
+    "english": "bedroom",
+    "german": "Schlafzimmer",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "282e61e0-14cc-4765-a5fe-1f95bb357172",
+    "english": "beer",
+    "german": "Bier",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "9f2b04b3-2f4c-4d60-89c2-85620b093039",
+    "english": "before",
+    "german": "bevor",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "1d0edf38-ae74-4df1-8a36-1dca97622ddd",
+    "english": "begin",
+    "german": "beginnen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "35c6ab4b-e2b1-4ecd-aad2-97c1228c0f16",
+    "english": "behind",
+    "german": "hinter",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "a898b3ca-1eb0-457c-ae15-e5ff84b93c5b",
+    "english": "believe",
+    "german": "glauben",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "3ea027bd-d9f2-4c51-8da9-fcfbe8df0df6",
+    "english": "below",
+    "german": "unter",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "c5509106-8d36-489a-8557-99368d0ddfe1",
+    "english": "best",
+    "german": "am besten",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "1134c858-5fb0-488b-9b21-37c40c0ff992",
+    "english": "better",
+    "german": "besser",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "b8157a95-b1c8-4e3b-9941-ed06ac11a4c1",
+    "english": "between",
+    "german": "zwischen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "5ceecaea-1a56-4095-9ee9-7934e2ee623b",
+    "english": "big",
+    "german": "groß",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "17f56d5c-c8d5-420c-bccb-a9ebbc5abcf1",
+    "english": "bird",
+    "german": "Vogel",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "2fb60988-58f5-4b74-aaef-90e6f163089c",
+    "english": "birthday",
+    "german": "Geburtstag",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "dcaff321-b059-4a8f-a5a1-42220bbdec76",
+    "english": "black",
+    "german": "schwarz",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "64ed4cfe-c9e5-480c-afce-3b86455fb3f8",
+    "english": "blue",
+    "german": "blau",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "d5a5d6e6-b248-405c-940e-0a59d9f3bab5",
+    "english": "boat",
+    "german": "Boot",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "115c2cbf-5f5c-460d-85af-b1ef0a8a8723",
+    "english": "book",
+    "german": "Buch",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "10092400-620d-47b5-8b19-ed9cb0d787c6",
+    "english": "boring",
+    "german": "langweilig",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "476a93b6-5738-459b-a280-755c58468c5e",
+    "english": "both",
+    "german": "beide",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "bb722a24-9b7c-410d-92d6-55a53e388d74",
+    "english": "bottle",
+    "german": "Flasche",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "9167bbc9-4891-4891-a2c4-909917b8fee7",
+    "english": "box",
+    "german": "Kiste",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "a967852d-62df-490b-9725-2ee2328b298d",
+    "english": "boy",
+    "german": "Junge",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "328b450d-f953-41be-93d3-ee6bad6e583a",
+    "english": "bread",
+    "german": "Brot",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "1b218a27-8133-4e6c-9a19-f8c9e9661f15",
+    "english": "breakfast",
+    "german": "Frühstück",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "d9ba9308-cc70-42cb-bcf8-9599c50aa814",
+    "english": "brother",
+    "german": "Bruder",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "09be2c6b-15dc-4d35-b93f-9b2d928bde5a",
+    "english": "brown",
+    "german": "braun",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "9f19c178-3e47-4450-8ddf-cf671c3bc8c1",
+    "english": "build",
+    "german": "bauen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "da7698c0-d2ad-4590-8305-cb0e895d26be",
+    "english": "building",
+    "german": "Gebäude",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "3ab1d691-a22e-47e7-a218-2ce105c268d9",
+    "english": "bus",
+    "german": "Bus",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "0faa0d98-1dc1-4ee0-8878-275d86d3baa2",
+    "english": "business",
+    "german": "Geschäft",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "0930391b-fbf4-467c-817d-759fcef22024",
+    "english": "busy",
+    "german": "beschäftigt",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "cb725596-a87c-4947-9cbe-e427328bbb20",
+    "english": "but",
+    "german": "aber",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "8e25072b-31e4-4e3e-b5e5-4a98df8d805a",
+    "english": "butter",
+    "german": "Butter",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "780bdce6-226f-4742-b7ee-21f0e1297581",
+    "english": "button",
+    "german": "Knopf",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "77a99b94-e987-408f-9286-eb2934db52a1",
+    "english": "buy",
+    "german": "kaufen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "506b89eb-6f8b-411a-b3c5-2db4c7641f8e",
+    "english": "by",
+    "german": "von, bei",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "87504a39-3af5-4d4a-9294-15364539d229",
+    "english": "cake",
+    "german": "Kuchen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "6e87f637-6745-4293-9d9c-7fa4e975e5d3",
+    "english": "call",
+    "german": "anrufen / nennen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "806b87ec-a0c0-436f-a0eb-20824dd8c342",
+    "english": "can",
+    "german": "können; Dose",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "a433a23b-e7fa-46f9-b27a-62385209b2e6",
+    "english": "car",
+    "german": "Auto",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "307812aa-8e1c-4a75-bebd-3ccbf8598da4",
+    "english": "card",
+    "german": "Karte",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "e57500ab-1f71-4916-b044-4d1dfff1d4c2",
+    "english": "carry",
+    "german": "tragen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "d2f61bad-8409-4a9b-bcc6-cac62c896466",
+    "english": "cat",
+    "german": "Katze",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "858c32b9-4b38-46cd-9042-eda294981417",
+    "english": "chair",
+    "german": "Stuhl",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "6a13de5f-6c31-4508-b00b-3f5e3401fced",
+    "english": "change",
+    "german": "ändern; Wechsel",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "a8b8df6a-7e06-42ae-863e-dd35d952066e",
+    "english": "cheese",
+    "german": "Käse",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "a7c4b3ef-e53c-4170-8074-16b47637f036",
+    "english": "chicken",
+    "german": "Huhn",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "e887aab0-39c2-4040-8420-4b5a50bd0591",
+    "english": "child",
+    "german": "Kind",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "ece26742-833a-46cc-9f78-ba93cfa10d28",
+    "english": "choose",
+    "german": "wählen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "bf1d9f27-ef6a-4418-9294-64926451b0c9",
+    "english": "city",
+    "german": "Stadt",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "e1ad5ddb-5ebd-4c05-95da-5d567602a21f",
+    "english": "class",
+    "german": "Klasse",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "11594222-4a30-4d8c-8784-462e56babea4",
+    "english": "clean",
+    "german": "sauber / reinigen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "e607e4c0-1bde-4667-bd02-f7e13ba82120",
+    "english": "clear",
+    "german": "klar",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "549c1cea-9421-4b36-9b17-19c93707be15",
+    "english": "climb",
+    "german": "klettern",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "36e83400-7b12-4c6f-9c14-e083172059be",
+    "english": "clock",
+    "german": "Uhr",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "029de410-e808-472d-85b0-a5ef3cb1d5cf",
+    "english": "close",
+    "german": "schließen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "ab6617b1-3be3-4bdc-8a30-532c02785108",
+    "english": "clothes",
+    "german": "Kleidung",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "af30165d-7f20-4674-bf8b-be656c217056",
+    "english": "cloud",
+    "german": "Wolke",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "362a1f29-4cf0-45be-a013-e5c746ec9c07",
+    "english": "club",
+    "german": "Club",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "f905e638-d015-4edb-a656-a13e304d13e4",
+    "english": "coat",
+    "german": "Mantel",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "65bd6b02-bcaa-49f4-ad8a-964b93d13dc8",
+    "english": "coffee",
+    "german": "Kaffee",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "240310c0-0cd6-4817-9732-e22f1feddc6c",
+    "english": "cold",
+    "german": "kalt",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "ad43c6e0-6c1d-4f03-879a-7fa3a16b3068",
+    "english": "college",
+    "german": "Hochschule",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "6c6bb601-9171-40ed-996e-d8163796e759",
+    "english": "colour",
+    "german": "Farbe",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "e8604db5-44d1-441f-8ea5-b1e773371b65",
+    "english": "come",
+    "german": "kommen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "10759826-5dbe-4f4d-9389-d5ee7d59eec7",
+    "english": "common",
+    "german": "gewöhnlich",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "cc352e1c-4005-413f-98a2-a9cc229c8e4c",
+    "english": "company",
+    "german": "Firma",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "d9f2596d-7a22-47f9-bbd6-1b59143ec163",
+    "english": "compare",
+    "german": "vergleichen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "f382f734-9158-443b-9cdd-03131a85bdb4",
+    "english": "complete",
+    "german": "vollständig / beenden",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "605ca9a9-3ad6-4fd6-96b3-fcfd1950ffa9",
+    "english": "computer",
+    "german": "Computer",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "4bfd8797-b353-45b6-8e0f-242bcb0e0fb8",
+    "english": "cook",
+    "german": "kochen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "9716cc81-8fb6-4b63-801d-3f03a93cf95b",
+    "english": "cool",
+    "german": "kühl",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "d0f66755-0eb3-48fd-a063-7b4b640315ed",
+    "english": "correct",
+    "german": "richtig",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "d9fbc70f-1323-4db6-b80a-e9106d37ef2f",
+    "english": "cost",
+    "german": "kosten",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "cb8a48c8-1def-443f-8252-760933097e1a",
+    "english": "could",
+    "german": "könnte",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "2aeeaf83-4144-461b-aa56-0dcbd8010a18",
+    "english": "country",
+    "german": "Land",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "50b55c8f-0b91-46bb-beef-5bd782db9c6a",
+    "english": "course",
+    "german": "Kurs",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "a2e61752-560d-42f4-8f6d-b5a886b27f5f",
+    "english": "cousin",
+    "german": "Cousin / Cousine",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "f52cdfb3-8f6c-4502-a0d8-9e563d29bf9c",
+    "english": "cow",
+    "german": "Kuh",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "5bc559c1-2ada-4542-85a1-1add47d2b569",
+    "english": "create",
+    "german": "erschaffen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "c8b13289-e3c7-4167-ac75-c47d6ff04896",
+    "english": "cry",
+    "german": "weinen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "b8087c69-8110-4b20-8502-fea8d235d32f",
+    "english": "cup",
+    "german": "Tasse",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "fbbe106d-0288-4471-9921-17419a904849",
+    "english": "cut",
+    "german": "schneiden",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "fe21cc91-9e76-4480-b381-bfa311be8034",
+    "english": "dad",
+    "german": "Vater",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "bd97e534-68ad-45d0-baff-7727be2714a2",
+    "english": "dance",
+    "german": "tanzen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "afe98b7f-983d-4a82-a25d-760028deec79",
+    "english": "dancer",
+    "german": "Tänzer",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "2b67700e-b70b-4777-92b8-16481bf31a12",
+    "english": "dark",
+    "german": "dunkel",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "2f279aea-46ad-4970-8ec4-8b17505ce400",
+    "english": "date",
+    "german": "Datum",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "d53bfdcf-aacf-4c0f-8620-87e6ed0c69ba",
+    "english": "daughter",
+    "german": "Tochter",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "f7a716d1-d263-4e7a-9521-ca8e94d32e17",
+    "english": "day",
+    "german": "Tag",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "d632305a-4666-42bd-a267-99b73307b446",
+    "english": "dead",
+    "german": "tot",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "5f0e30d0-0233-444e-b1f2-ce86b2e4b273",
+    "english": "dear",
+    "german": "lieb",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "8517f1ad-fa3b-416b-95a5-512db4dac2fd",
+    "english": "decide",
+    "german": "entscheiden",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "857d3442-b01d-4bde-aeb3-710ff7591716",
+    "english": "desk",
+    "german": "Schreibtisch",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "2d949867-3422-4f93-90b9-b4cb0a00b357",
+    "english": "did",
+    "german": "tat",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "39db46cc-1a7d-4232-8951-8e3aa64d5526",
+    "english": "die",
+    "german": "sterben",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "38f0ba66-a35c-4688-a9cf-129059821f63",
+    "english": "different",
+    "german": "anders",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "fb69c9d1-5c7e-46a4-9732-2bc69c304154",
+    "english": "dinner",
+    "german": "Abendessen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "aa7b93d1-4aed-415a-80bf-0557bddc5369",
+    "english": "dirty",
+    "german": "schmutzig",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "c42034a1-0b43-46ac-bb2d-61dc1aa6db91",
+    "english": "discover",
+    "german": "entdecken",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "522e8dc6-b01b-4dc1-8d16-e9b8d8fcc1e4",
+    "english": "dish",
+    "german": "Gericht",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "9b8181aa-008c-4b71-bfa0-9fce4e5a01b7",
+    "english": "do",
+    "german": "machen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "d62ff2b8-a5ab-4381-b4eb-b134ebf4e70f",
+    "english": "doctor",
+    "german": "Arzt / Ärztin",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "4a6f9b81-2b36-4dca-bdab-fbca2eec337f",
+    "english": "dog",
+    "german": "Hund",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "a0a5192a-3fcf-492b-b270-0ded0c7fcc69",
+    "english": "door",
+    "german": "Tür",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "1494f0fc-421f-417e-897f-85ff4ed0d053",
+    "english": "down",
+    "german": "unten",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "f384afd3-865e-4cec-89dc-8731a71c6b12",
+    "english": "draw",
+    "german": "zeichnen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "713113c1-8b64-4325-87dd-66b86acba971",
+    "english": "dress",
+    "german": "Kleid",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "505b5bd6-a94c-4c8d-8a88-6585e9041b60",
+    "english": "drink",
+    "german": "trinken",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "0217e8b6-c606-4f0b-8f9c-49e64f3d9d3d",
+    "english": "drive",
+    "german": "fahren",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "96d7e244-e90a-4687-86fd-83caf20178e6",
+    "english": "driver",
+    "german": "Fahrer",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "4cc7d19c-2b34-497e-8f17-9a5531f0da4c",
+    "english": "drop",
+    "german": "fallen lassen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "fcb22f8c-5e30-4268-a398-abeaecb3b9ff",
+    "english": "dry",
+    "german": "trocken",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "8d097774-5fad-4e0e-b559-f9148a56bc9c",
+    "english": "during",
+    "german": "während",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "56d49f50-3369-4cd1-b2f9-09e4ca28a994",
+    "english": "each",
+    "german": "jeder",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "b18bcd69-a47e-4564-978c-6c272fea3768",
+    "english": "ear",
+    "german": "Ohr",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "fd193cc0-3b88-4a65-a361-a290306f6366",
+    "english": "early",
+    "german": "früh",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "0fd9361c-35da-427d-981f-8d2a27d409f4",
+    "english": "east",
+    "german": "Osten",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "d7c6aaa3-7fa9-4072-993b-65e3f01c3d75",
+    "english": "easy",
+    "german": "einfach",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "8174eddd-3cae-4460-970b-15f47cf34231",
+    "english": "eat",
+    "german": "essen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "5caa7315-c185-4617-b64f-06aa87b6471d",
+    "english": "egg",
+    "german": "Ei",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "4a91d4fc-92ae-4e16-93bf-4fa0ace71207",
+    "english": "eight",
+    "german": "acht",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "20802c41-fd25-4063-9343-f4448238e1c1",
+    "english": "eighteen",
+    "german": "achtzehn",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "752f90a7-6191-476c-abaf-7dbd57127674",
+    "english": "eighty",
+    "german": "achtzig",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "923b691c-dbc0-4922-a867-ce67c597cc77",
+    "english": "eleven",
+    "german": "elf",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "0261abf1-d5f0-4b00-812a-6ed96db9285b",
+    "english": "else",
+    "german": "sonst",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "eac7a133-40c4-4cb5-a214-503c7e26a9e8",
+    "english": "end",
+    "german": "Ende",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "9de98135-84d1-4d06-825a-0688f5b68a6e",
+    "english": "enjoy",
+    "german": "genießen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "0db60539-c093-45a9-a401-3c37a9ea316e",
+    "english": "enough",
+    "german": "genug",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "191f5ea2-f5e0-4a67-b2ea-c793957523fd",
+    "english": "even",
+    "german": "sogar",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "b353b194-ecf9-4d0f-9411-6d7908687134",
+    "english": "evening",
+    "german": "Abend",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "c4ea72a6-24da-4924-a6c0-04e3720de3e2",
+    "english": "ever",
+    "german": "jemals",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "0c5d8261-c062-43c7-99a5-b780ea444cac",
+    "english": "every",
+    "german": "jeder",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "55835c07-8a7a-4ae4-8bdc-0ed961751a0d",
+    "english": "example",
+    "german": "Beispiel",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "93447d06-1db3-4735-b359-277bc65cf727",
+    "english": "expensive",
+    "german": "teuer",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "64ae057c-3c0c-408f-97f0-280daef48a7f",
+    "english": "eye",
+    "german": "Auge",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "4bb3f4c0-ecd4-492e-b61f-bcc20dc4eb2e",
+    "english": "face",
+    "german": "Gesicht",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "49056018-c4fb-48c6-87fb-be4d514c943a",
+    "english": "family",
+    "german": "Familie",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "b3969d63-fb1a-44a7-a846-0b0a3b6ab899",
+    "english": "far",
+    "german": "weit",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "c35a4d42-333c-4ea0-ac11-afe42376737b",
+    "english": "farm",
+    "german": "Bauernhof",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "c0a2a96f-3f6b-447a-90fa-b472d30b53cd",
+    "english": "fast",
+    "german": "schnell",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "2fb79bff-d1d6-4200-b1a2-b8ee25f49f1c",
+    "english": "father",
+    "german": "Vater",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "bd9334c7-4e0a-413e-9bee-9e1396f17fb6",
+    "english": "favour",
+    "german": "Gefallen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "9febc8fd-515e-4fb2-8de4-990c637494ea",
+    "english": "February",
+    "german": "Februar",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "c8d7982b-dae7-4963-b5bd-db8bc4fd834e",
+    "english": "feel",
+    "german": "fühlen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "ee756d16-4144-4b53-971d-cd0cfbcd90c8",
+    "english": "feeling",
+    "german": "Gefühl",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "011b113e-5c4b-4fe9-a37b-2bca764dea38",
+    "english": "few",
+    "german": "wenige",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "64f63909-73b6-4388-94c8-e9339f3f5e50",
+    "english": "fifteen",
+    "german": "fünfzehn",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "abc7f65f-6d9d-43a8-bfff-c3ef0727bcff",
+    "english": "fifty",
+    "german": "fünfzig",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "f9ef7cd0-9b41-4b95-98a6-2bbc58ce828e",
+    "english": "fill",
+    "german": "füllen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "771b7d02-9728-427b-8611-c69773dbb6cb",
+    "english": "film",
+    "german": "Film",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "1c45326d-9dce-4500-890d-d5716549946b",
+    "english": "find",
+    "german": "finden",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "44b11de4-6584-450b-9c55-66709f93bf59",
+    "english": "fine",
+    "german": "gut; schön",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "4e8a2df1-364f-4bce-b43f-2a0b24c2486a",
+    "english": "finger",
+    "german": "Finger",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "08b939f9-df41-4263-b85f-419fa9f2ecde",
+    "english": "finish",
+    "german": "beenden",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "c2182068-0a40-49c0-8181-fdb3c9f6eec7",
+    "english": "fire",
+    "german": "Feuer",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "4e76c736-ad09-475e-950b-0867c72b15d4",
+    "english": "first",
+    "german": "erste; zuerst",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "211a178c-fdab-4383-851f-c486757b278f",
+    "english": "fish",
+    "german": "Fisch",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "95da3da9-4177-4b83-ab48-02b36ef6b4e6",
+    "english": "five",
+    "german": "fünf",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "0e377475-7072-4111-992d-cfe47c48258a",
+    "english": "flag",
+    "german": "Flagge",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "94508130-e38f-4d46-af6b-671ee68c4bf0",
+    "english": "floor",
+    "german": "Boden; Stockwerk",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "64b04e1d-8182-4299-9a60-bd5fb7c457d2",
+    "english": "flower",
+    "german": "Blume",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "ca59a468-4c84-423a-8f12-34e341de8171",
+    "english": "fly",
+    "german": "fliegen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "730375cf-9acc-4c5b-9eaf-543c566b51ce",
+    "english": "food",
+    "german": "Essen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "380b08d4-43bb-4660-8003-7c93f4e22acb",
+    "english": "foot",
+    "german": "Fuß",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "bb2201a3-6864-42b9-9c7d-768255127e4d",
+    "english": "for",
+    "german": "für",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "720f48eb-bea5-44dd-a9a3-5ed01c0ae4f1",
+    "english": "forget",
+    "german": "vergessen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "9df0f242-5015-494c-b782-2bcc30a00f44",
+    "english": "fork",
+    "german": "Gabel",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "5244c90d-a357-4339-a1c1-bc4a1724056c",
+    "english": "form",
+    "german": "Form; Formular",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "bb8ced3c-06d4-4903-b582-ab92109211e8",
+    "english": "forty",
+    "german": "vierzig",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "23d3225a-9169-4808-83f1-fca010c3a293",
+    "english": "four",
+    "german": "vier",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "cdeadcae-30ed-492d-93e1-7f3e9ceec454",
+    "english": "free",
+    "german": "frei",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "007dd2dd-55c3-4bc9-bb9a-ecd6ba705d06",
+    "english": "friend",
+    "german": "Freund",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "55ef4e18-c735-4361-9b9b-f59b0a5cdf0f",
+    "english": "from",
+    "german": "von",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "12cc3424-0244-463f-8ef0-5fd28784dfa8",
+    "english": "front",
+    "german": "vorn; Vorderseite",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "27ca4d8e-726c-404d-a672-c41f9b512339",
+    "english": "fruit",
+    "german": "Obst",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "c2270c42-b7fa-47af-a868-10936f9508b7",
+    "english": "full",
+    "german": "voll",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "c8591dfc-048a-4523-b539-e2e5fa4543ea",
+    "english": "fun",
+    "german": "Spaß",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "defc95c7-290c-47ca-a6fb-0ba6c0bbd546",
+    "english": "game",
+    "german": "Spiel",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "a097cc29-3ebf-4384-a197-56aa60cc415a",
+    "english": "garden",
+    "german": "Garten",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "165bbb2e-553b-44eb-9444-6233a798ea08",
+    "english": "get",
+    "german": "bekommen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "f73c837f-6043-489b-b8db-9852eeb9438b",
+    "english": "girl",
+    "german": "Mädchen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "8f318008-82d8-4af5-8f90-5528ae42ceba",
+    "english": "give",
+    "german": "geben",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "dc80ee81-7c62-4e58-9778-a6ce7bc90841",
+    "english": "glass",
+    "german": "Glas",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "a20e0135-94e0-4a61-b07f-8f5ec09b974c",
+    "english": "go",
+    "german": "gehen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "7ed56a97-0974-4171-a30b-c8d112c8e08b",
+    "english": "good",
+    "german": "gut",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "ddfb71a1-8b5a-4267-a220-69f9da743414",
+    "english": "goodbye",
+    "german": "auf Wiedersehen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "f8136710-ebbb-4d98-9ce1-781836d506c6",
+    "english": "grandfather",
+    "german": "Großvater",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "8490519a-cb85-44c7-a6e6-dab2e7bea2d3",
+    "english": "grandmother",
+    "german": "Großmutter",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "bb4c7d21-84ba-4c87-8ffd-15c3746e388d",
+    "english": "green",
+    "german": "grün",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "30d7bd78-431d-41f5-8604-19ece304b61d",
+    "english": "guess",
+    "german": "raten",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "9a18b49f-a384-4031-9707-465ad0c9a046",
+    "english": "grow",
+    "german": "wachsen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "fd3919f2-9b43-491a-bede-06fc23ca0064",
+    "english": "hair",
+    "german": "Haar",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "c0820b6a-92c1-443e-8331-7bd5a7ad2201",
+    "english": "half",
+    "german": "halb; Hälfte",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "8538c5aa-c329-462a-82d5-64698e9d0078",
+    "english": "hand",
+    "german": "Hand",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "88893e7d-d80c-4ae9-a44c-9d2f8daaa211",
+    "english": "happen",
+    "german": "passieren",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "ea526eaf-080d-41b4-b5bc-acc0e01ce558",
+    "english": "happy",
+    "german": "glücklich",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "7531f77c-137d-4720-b9d6-1ffd6bb0c2ac",
+    "english": "hard",
+    "german": "hart; schwierig",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "1b74ef46-b08f-46cb-81e5-cb5957e0ad37",
+    "english": "hat",
+    "german": "Hut",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "7b30f689-3c4b-49f5-a54b-340898ff97c2",
+    "english": "have",
+    "german": "haben",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "8ba8fd5f-721f-46a6-912e-643b17df797d",
+    "english": "he",
+    "german": "er",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "2eed5a2e-3dd4-445c-83b5-f95c6ecb3bd4",
+    "english": "head",
+    "german": "Kopf",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "74cdb7d3-ff78-4a64-8323-6e545a82ea48",
+    "english": "hear",
+    "german": "hören",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "3b02642d-bed4-4a1e-b4fb-205c28d72e5a",
+    "english": "hello",
+    "german": "Hallo",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "5e40078a-a53e-4843-9a8b-0d55fa9e23c8",
+    "english": "help",
+    "german": "helfen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "ebe2d51d-1c4d-4176-b63a-7cf4cd1e5bde",
+    "english": "her",
+    "german": "sie; ihr",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "5ac20bad-028b-4d6b-b8a7-72ea7f9beedf",
+    "english": "here",
+    "german": "hier",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "f910b887-99e5-403c-b5de-0ccdf9969315",
+    "english": "him",
+    "german": "ihn; ihm",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "a362907b-ccf0-495c-963d-38146955b49a",
+    "english": "his",
+    "german": "sein; seine",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "e9ff699c-0843-4b1d-bce6-44fe78e01973",
+    "english": "hold",
+    "german": "halten",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "94f3d03c-ee69-4f0a-b545-6e71f81b7b42",
+    "english": "home",
+    "german": "Zuhause",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "92208662-40d9-4c88-b8f2-6db142bbe3be",
+    "english": "hour",
+    "german": "Stunde",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "9f4954d9-b769-4ebf-b523-1194270b2454",
+    "english": "house",
+    "german": "Haus",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "8365c92e-0b59-44af-ac04-4a2edc13dd29",
+    "english": "how",
+    "german": "wie",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "4ebbba15-7daf-4c87-8782-870f381bbe54",
+    "english": "hundred",
+    "german": "hundert",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "39804de0-86b1-4fc3-8db4-92de7da90375",
+    "english": "husband",
+    "german": "Ehemann",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "69cf2b9f-33e8-4c09-8f4b-dd8ca68b5c50",
+    "english": "I",
+    "german": "ich",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "0096e467-8d54-403c-b345-87e38c9a8c15",
+    "english": "ice",
+    "german": "Eis",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "1edb5f63-dd73-4240-90e7-33a5b1ebda57",
+    "english": "if",
+    "german": "wenn",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "558099fa-c7b0-4321-8d2b-84f89b9a6b94",
+    "english": "in",
+    "german": "in",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "4ba4e5d8-ff6f-4cfa-8585-ae34218ceed1",
+    "english": "jacket",
+    "german": "Jacke",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "5e80fef3-0b45-4149-b439-28d03d9ae720",
+    "english": "January",
+    "german": "Januar",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "efa168ff-6500-4ad8-9dcb-3267c8564962",
+    "english": "job",
+    "german": "Job; Arbeit",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "4514d44f-7685-4eca-9356-0192eab4afc2",
+    "english": "join",
+    "german": "beitreten",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "cc144715-10da-49db-8fa6-60e0a013522d",
+    "english": "juice",
+    "german": "Saft",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "536d7eb6-a306-4d30-b71f-9a8ab92dc9ac",
+    "english": "July",
+    "german": "Juli",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "49781272-fa48-4844-bb2c-bfee1b486afa",
+    "english": "June",
+    "german": "Juni",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "4850978b-030a-4491-8ffa-eaae6ab2aac3",
+    "english": "keep",
+    "german": "behalten; halten",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "619b76b8-4e95-4b6a-9533-14847dc9e0a2",
+    "english": "key",
+    "german": "Schlüssel",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "a6273863-d744-4da1-bc0f-23ad8602831b",
+    "english": "kind",
+    "german": "freundlich; Art",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "a9ecf852-97af-483e-b9df-10f931b346a2",
+    "english": "know",
+    "german": "wissen; kennen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "81f9bb3d-ad73-4662-b9be-b07e878bc0fa",
+    "english": "learn",
+    "german": "lernen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "bb98e44b-a7db-4470-9556-5cee8ec37f64",
+    "english": "leave",
+    "german": "verlassen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "f4a084d4-868a-4be7-a7b8-2c22447a2fed",
+    "english": "left",
+    "german": "links; übrig",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "bc30557f-bca0-4a54-9384-459661ccbf71",
+    "english": "leg",
+    "german": "Bein",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "2fe1c527-244f-42da-9ef3-894ecf43ee07",
+    "english": "letter",
+    "german": "Brief; Buchstabe",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "828a8a94-06db-4007-963e-882ddf223b6a",
+    "english": "life",
+    "german": "Leben",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "4b8fae99-3db2-45ee-99a3-8b896a8bd354",
+    "english": "light",
+    "german": "Licht; leicht",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "5950d3c0-62c6-43f7-b8f2-84235bf57939",
+    "english": "like",
+    "german": "mögen; wie",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "25f3cece-0ada-4907-af44-ad1bbc49e3c7",
+    "english": "line",
+    "german": "Linie; Zeile",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "bd675911-7e86-46e9-91d0-5289917a8c81",
+    "english": "listen",
+    "german": "zuhören",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "ffb8aaaa-d28c-450e-9134-cad73579e00a",
+    "english": "little",
+    "german": "klein",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "1c0aa1d4-53bf-496d-a446-68ca57e00216",
+    "english": "live",
+    "german": "leben; wohnen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "a492e841-aa4a-4828-843f-10fd6f116607",
+    "english": "long",
+    "german": "lang",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "8bec5b25-ab43-4004-ae51-ec533196e798",
+    "english": "look",
+    "german": "schauen; ansehen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "2b92d4a6-c03f-4baa-b38d-e0dd46d598b2",
+    "english": "lose",
+    "german": "verlieren",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "04387ebf-8db9-4854-9904-eade36bdb20b",
+    "english": "love",
+    "german": "lieben; Liebe",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "65fd3ed2-d7c9-4688-be2a-ff7c90d868dd",
+    "english": "low",
+    "german": "niedrig; tief",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "3248cb1f-773e-4384-9c5c-3fb20cce6529",
+    "english": "lunch",
+    "german": "Mittagessen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "23f4452d-6160-4189-8d1f-567f3fec09d1",
+    "english": "make",
+    "german": "machen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "48d3cea4-b292-4742-afa8-cc755ba64aac",
+    "english": "many",
+    "german": "viele",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "df5d3774-739a-46f7-9abe-c07e4e5313e2",
+    "english": "map",
+    "german": "Karte",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "b7fb1bff-c02e-4b34-838a-a84778401af5",
+    "english": "market",
+    "german": "Markt",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "8ec3b111-e0fd-4861-8e0e-99ea5dc7ea10",
+    "english": "married",
+    "german": "verheiratet",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "485a5be7-a527-4fa6-b2d3-43912dfeb69e",
+    "english": "may",
+    "german": "dürfen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "570f0624-2a35-4cc1-98e1-61de7d56a720",
+    "english": "me",
+    "german": "mich; mir",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "bda06093-800d-4519-b618-0906966f72d5",
+    "english": "meal",
+    "german": "Mahl",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "69cf6a77-81b3-46dd-861e-987b649996fe",
+    "english": "mean",
+    "german": "bedeuten",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "e0be74f2-b156-47f8-9312-3b96daa09adc",
+    "english": "meat",
+    "german": "Fleisch",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "f4c762c3-6afb-4b42-b6c0-03544c1594c6",
+    "english": "meet",
+    "german": "treffen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "3a324581-fd66-4590-be5a-e2dde32afef5",
+    "english": "member",
+    "german": "Mitglied",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "9ba68d9d-29da-444f-a7d2-a6c000e693cd",
+    "english": "memory",
+    "german": "Gedächtnis; Erinnerung",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "d3cdf0a9-0d10-40d6-b246-5e556e0702eb",
+    "english": "men",
+    "german": "Männer",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "7cacd8e4-8a76-47b3-9b2b-a7a31637df84",
+    "english": "menu",
+    "german": "Speisekarte",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "e3aee2b5-193a-4e26-a645-75d7aedd5a20",
+    "english": "message",
+    "german": "Nachricht",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "eeee9f41-72a1-488c-bee2-675fdc2f509f",
+    "english": "might",
+    "german": "könnte",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "d238dd73-a0da-4017-9ec8-2e8b42b62e6f",
+    "english": "mile",
+    "german": "Meile",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "01d8283d-1de8-426c-be76-b00d0bd610f3",
+    "english": "milk",
+    "german": "Milch",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "be833bed-cce0-4ce6-9907-b109ba9935cd",
+    "english": "million",
+    "german": "Million",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "ec3fa6b1-de73-4844-9809-6c76f86e1a06",
+    "english": "minute",
+    "german": "Minute",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "1cbbc413-ddf3-4150-b84f-0968144012a2",
+    "english": "miss",
+    "german": "vermissen; verpassen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "c47de4f6-2a0a-47bf-bf36-0de181fedd60",
+    "english": "mistake",
+    "german": "Fehler",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "647ca855-89a9-4a6f-8837-7beded6dde28",
+    "english": "money",
+    "german": "Geld",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "95977590-4842-4d4f-95eb-5595391698fa",
+    "english": "month",
+    "german": "Monat",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "3fa1550c-f295-42f8-b324-bc345800000c",
+    "english": "more",
+    "german": "mehr",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "47745327-0f1e-4afa-b130-47ea7010ebef",
+    "english": "morning",
+    "german": "Morgen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "f9006ba1-e0fd-4ebe-9243-3bc60e06e860",
+    "english": "most",
+    "german": "am meisten",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "612d9ca5-9735-4d20-ad88-20375293b437",
+    "english": "mother",
+    "german": "Mutter",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "387178db-0f17-4f0d-ad0d-960f8ac6ae59",
+    "english": "mountain",
+    "german": "Berg",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "f112b6bb-c3fe-4b3c-8031-f3fdf06c7fa7",
+    "english": "mouth",
+    "german": "Mund",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "e92654ba-ae8c-428f-9e17-dea58ae410fd",
+    "english": "move",
+    "german": "umziehen; bewegen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "5c68c0f4-d73c-42ac-926f-a9dee00ca302",
+    "english": "movie",
+    "german": "Film",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "d13583b2-851d-442c-8984-e83878980abc",
+    "english": "much",
+    "german": "viel",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "65d1c15d-a4d5-4175-ace9-7df8e7ca070a",
+    "english": "music",
+    "german": "Musik",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "690ce085-2515-46ad-93a7-e30929dfdace",
+    "english": "must",
+    "german": "müssen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "7e98391d-d52c-4b6f-a8d6-70e242a85496",
+    "english": "my",
+    "german": "mein(e)",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "ea0f3cc8-7698-40a7-9034-9ee7285ec7e8",
+    "english": "name",
+    "german": "Name",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "acf0c03b-6a4b-4eed-9067-a500f67e5148",
+    "english": "near",
+    "german": "nahe; in der Nähe",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "91035fea-9231-4ab2-87a7-4542dc0903d1",
+    "english": "need",
+    "german": "brauchen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "603fd14c-8802-4e54-815f-c5cd35f910b0",
+    "english": "never",
+    "german": "niemals",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "8af2b8d6-6eaf-4f0e-9201-4f8df760f469",
+    "english": "new",
+    "german": "neu",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "44009df5-9583-4518-b81e-f87c05a70989",
+    "english": "newspaper",
+    "german": "Zeitung",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "7728b9fc-d5e0-48c0-9584-0acaacd8b545",
+    "english": "next",
+    "german": "nächste(r/s)",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "63be42df-a3c4-4a0e-b100-b0073f217c2b",
+    "english": "nice",
+    "german": "schön; nett",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "da492454-18d2-4549-a1fb-23140cce8a8e",
+    "english": "night",
+    "german": "Nacht",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "a3353060-72ef-4d45-baa6-1db7e6c6194b",
+    "english": "nine",
+    "german": "neun",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "5ae2ec1f-82b0-4428-99e2-9dfa6c3ccbff",
+    "english": "nineteen",
+    "german": "neunzehn",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "ae83aa02-8d6d-4000-91e0-960c431779a3",
+    "english": "ninety",
+    "german": "neunzig",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "020d41dd-ca17-4b5f-a0d3-774472b7cd9a",
+    "english": "no",
+    "german": "nein; kein",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "c0be33c7-0e56-4c87-b13a-855fe64e9d31",
+    "english": "nobody",
+    "german": "niemand",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "1d8cb78a-e938-49b3-a4a1-1b916291a580",
+    "english": "noise",
+    "german": "Lärm; Geräusch",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "0bb815e4-49ae-445a-a8a3-32febfd1a886",
+    "english": "none",
+    "german": "keiner",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "32ca8f5c-5377-48b9-91ef-b769ea13b3c5",
+    "english": "north",
+    "german": "Norden; nördlich",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "de296f51-4a67-48fd-aac7-76642751bf1b",
+    "english": "normal",
+    "german": "normal",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "c0c08162-c39c-474b-9100-512bfd051297",
+    "english": "not",
+    "german": "nicht",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "fa676ba5-e4ae-4f48-9adb-0e661cc02d24",
+    "english": "nothing",
+    "german": "nichts",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "1b4e2caa-5489-4db1-8c7b-c5412471bd29",
+    "english": "November",
+    "german": "November",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "c9a068cb-899e-41a6-84e2-6aad2c2a2997",
+    "english": "now",
+    "german": "jetzt",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "719881eb-fd46-42f6-8e3f-1e5dca8896cd",
+    "english": "number",
+    "german": "Zahl; Nummer",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "138872df-2a2c-473e-abd8-f0b6de333fff",
+    "english": "of",
+    "german": "von",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "006a2ee1-4199-452e-ba32-7c4a6cfd9c30",
+    "english": "off",
+    "german": "aus; weg",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "e573dbf4-2a95-4459-89a7-eded0e33d42c",
+    "english": "offer",
+    "german": "anbieten; Angebot",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "1dc4c575-b8e1-49a3-bf08-36cdbdd78150",
+    "english": "office",
+    "german": "Büro; Geschäftsstelle",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "b18fdb10-4212-4fa8-8b3a-b92dd9769e93",
+    "english": "often",
+    "german": "oft",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "9ea67dea-64e7-43b7-a7d2-499f5c861fc7",
+    "english": "oh",
+    "german": "oh",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "01e9887a-7d2f-45b3-94c1-dad4e46e0e8c",
+    "english": "oil",
+    "german": "Öl",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "463dc204-36a0-40aa-82a7-d61d7b025286",
+    "english": "ok",
+    "german": "in Ordnung",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "618eb15b-c4eb-431a-825b-d97359d23888",
+    "english": "on",
+    "german": "auf; an",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "52ceb847-0d84-4575-8c67-ff5b99c0f9cd",
+    "english": "once",
+    "german": "einmal",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "fd991011-f373-4348-a386-dfe2ec13383c",
+    "english": "one",
+    "german": "eins; ein/e",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "493df7f3-e881-4707-91bc-3e65d3277771",
+    "english": "only",
+    "german": "nur; einzig",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "4b7fb1d2-5cc0-4746-a75a-8c1126929b36",
+    "english": "open",
+    "german": "öffnen; offen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "9213082d-5122-457e-a1ca-c2e3d08c6025",
+    "english": "orange",
+    "german": "Orange; orange",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "bf72f85f-fe17-4850-ba9a-c22324d82702",
+    "english": "or",
+    "german": "oder",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "7a11b722-87af-465f-9bb9-800abd8293b4",
+    "english": "order",
+    "german": "bestellen; Bestellung",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "589f1b23-69fa-43e3-bb36-2381f87de6e7",
+    "english": "other",
+    "german": "andere(r/s)",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "81cd5426-2d2e-4a9c-81f7-337b2b89fc73",
+    "english": "our",
+    "german": "unser(e)",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "aae1cd21-cb32-49c5-92eb-61b5f099c537",
+    "english": "out",
+    "german": "aus; heraus",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "3fa693c0-9599-4b3c-bb18-703b1f697509",
+    "english": "outside",
+    "german": "draußen; außerhalb",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "56da837d-22dc-4166-915c-4f3bbdd2d719",
+    "english": "over",
+    "german": "über; vorbei",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "dff1af03-625b-4454-943f-af9eb0306e99",
+    "english": "own",
+    "german": "besitzen; eigen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "de6bbd51-0924-4b30-ab27-7ca76917b1ed",
+    "english": "page",
+    "german": "Seite",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "2fb548bd-9901-4e84-bf54-0ea702995d44",
+    "english": "paint",
+    "german": "malen; Farbe",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "db9503a4-ea99-4a86-811d-fbeb645de0ea",
+    "english": "pair",
+    "german": "Paar",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "d0e6d29c-cb1c-4421-b8dd-991fb8b40375",
+    "english": "paper",
+    "german": "Papier",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "ad7ea848-45e9-4eee-84a2-75b935c20a34",
+    "english": "parent",
+    "german": "Elternteil",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "84ee54e5-62aa-46b1-8cb8-d07e74c2fd13",
+    "english": "park",
+    "german": "Park; parken",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "03e75c4a-1591-429d-841f-2b44b6fb567e",
+    "english": "part",
+    "german": "Teil",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "18aed67e-09cd-44c9-ad8c-ca091f365e45",
+    "english": "party",
+    "german": "Party; Partei",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "408186a0-e8c2-4ae7-95f7-68c92d02a11b",
+    "english": "pass",
+    "german": "passieren; bestehen; vorbeigehen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "6cfeeebf-795f-4e43-bf15-ae2f1dc2262b",
+    "english": "past",
+    "german": "vergangen; vorbei",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "a2ccfdd1-4f73-43f3-95e9-ef3c8553a21b",
+    "english": "pay",
+    "german": "bezahlen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "8f1ec75f-1a47-40ca-844d-e03a87e04e91",
+    "english": "pen",
+    "german": "Stift; Kuli",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "f2dc9d73-307b-4f46-9e90-21fe34ce8cd5",
+    "english": "pencil",
+    "german": "Bleistift",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "9cd35dfe-1325-4f6b-a723-90470d5584b3",
+    "english": "people",
+    "german": "Leute; Menschen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "014ee0e3-8695-4d59-9b84-856bd1a5a494",
+    "english": "person",
+    "german": "Person; Mensch",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "b13b9204-9f6a-4a08-b343-2b1a7243626b",
+    "english": "phone",
+    "german": "Telefon; anrufen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "1ba4d2a7-27a0-4957-90a8-7bee6d2bf84e",
+    "english": "photo",
+    "german": "Foto",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "623a3460-13b1-4866-a8e7-dbfee16dcf42",
+    "english": "pick",
+    "german": "auswählen; pflücken",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "414dae25-dc8d-4d1f-b24c-7d749d4712f6",
+    "english": "picture",
+    "german": "Bild; Foto",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "1cb52577-02e9-4913-b131-764c26598104",
+    "english": "plate",
+    "german": "Teller",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "25aaef27-4347-4bb6-b9f3-cc07fc331f49",
+    "english": "play",
+    "german": "spielen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "f267584a-fee4-409c-87ed-f0c1fca92f3e",
+    "english": "please",
+    "german": "bitte",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "142e1d19-16ef-4cd7-bcb6-a9dddd26a102",
+    "english": "pocket",
+    "german": "Tasche / Hosentasche",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "298058a4-0bf4-47fb-8a31-5178098143f4",
+    "english": "point",
+    "german": "Punkt / zeigen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "ac958c4e-7e10-44c2-89a8-dc32ab8fde22",
+    "english": "police",
+    "german": "Polizei",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "a27dc4da-4551-4218-8a42-4e888968122c",
+    "english": "pool",
+    "german": "Schwimmbad",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "d5c98a2a-f598-4473-9c73-6c2ee852dd84",
+    "english": "poor",
+    "german": "arm / schlecht",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "4001546d-33eb-4c35-8ced-a7fb8197200a",
+    "english": "popular",
+    "german": "beliebt",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "54b5299c-32c2-42ca-a776-88c9a0999329",
+    "english": "position",
+    "german": "Position / Stelle",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "e265ff8d-173d-4e13-84a8-80a44feafb34",
+    "english": "possible",
+    "german": "möglich",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "52a0eb17-3c2a-42ab-9f62-b55cbbcb7759",
+    "english": "post",
+    "german": "Post / schicken",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "9cdbb1f3-b2a5-4832-98a9-24e50cfa51b8",
+    "english": "potato",
+    "german": "Kartoffel",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "0340d247-ae10-47c2-952b-ec4e3b4c53bd",
+    "english": "pound",
+    "german": "Pfund",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "0f64f589-63d0-4082-b615-3da6c800c553",
+    "english": "pour",
+    "german": "gießen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "4c5c5b19-713d-4408-806f-a0aada205fa6",
+    "english": "power",
+    "german": "Macht / Kraft",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "60bbe8b9-884e-4c52-8129-8bbfd348884f",
+    "english": "practice",
+    "german": "üben / Übung",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "56250e66-9d5a-421d-8f39-e81bd990db9f",
+    "english": "prepare",
+    "german": "vorbereiten",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "b3169c41-d40c-4690-8890-484cd04f0eaa",
+    "english": "present",
+    "german": "Geschenk / präsentieren",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "be22850e-9e39-4a83-8afb-b8370adc15e3",
+    "english": "pretty",
+    "german": "hübsch",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "4fa9a241-252a-4e80-a742-3d898c36b71f",
+    "english": "price",
+    "german": "Preis",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "2bed0f05-2058-4b1c-87ac-0e3b7b77da5a",
+    "english": "print",
+    "german": "drucken",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "6b66ae30-d565-4b60-b865-07153c0abeb1",
+    "english": "problem",
+    "german": "Problem",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "85b2e370-e2ae-4995-921a-edf44ca051e1",
+    "english": "produce",
+    "german": "produzieren / Obst und Gemüse",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "b0600872-2cc3-4dfa-8fe1-4bb3487426ce",
+    "english": "program",
+    "german": "Programm",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "3ba0497d-2575-468d-99af-36cdde6e1ff3",
+    "english": "promise",
+    "german": "versprechen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "017a878d-24f2-4c37-9d20-94e5d42850a2",
+    "english": "proper",
+    "german": "richtig / angemessen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "3d204753-7f8f-4807-bc6a-8be51a13d967",
+    "english": "protect",
+    "german": "schützen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "74cf0957-3b4d-40d2-8a7a-4d9db9067434",
+    "english": "prove",
+    "german": "beweisen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "135382ea-ca3c-48bf-9cb6-fd6b4249e19d",
+    "english": "public",
+    "german": "öffentlich",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "c277f3fe-8469-44e2-b048-5a3c3b6474b0",
+    "english": "pull",
+    "german": "ziehen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "0be66c52-68e4-4d5b-9b4d-3ad756decc33",
+    "english": "push",
+    "german": "drücken",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "8685ede5-9658-4d3b-93c8-103f26d0f19b",
+    "english": "put",
+    "german": "legen / stellen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "40daf291-0c30-4af3-8b15-124daa8b6b95",
+    "english": "quality",
+    "german": "Qualität",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "b7876431-f80a-480a-990b-975ff163cd08",
+    "english": "question",
+    "german": "Frage",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "441fb2d0-4fe0-4bed-b4d8-daa1e49c9a7b",
+    "english": "quick",
+    "german": "schnell",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "49d4f06d-70e5-4e16-a08a-35a4b5208ff4",
+    "english": "quiet",
+    "german": "ruhig",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "de4f1ed5-fd82-4895-b45c-a5b10dffa3dd",
+    "english": "rabbit",
+    "german": "Kaninchen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "6be0cfc8-305c-404c-8ac9-bfbb1ae145d0",
+    "english": "race",
+    "german": "Rennen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "c1b79eec-dcfc-4fda-8b5f-a4dc2e579fd7",
+    "english": "radio",
+    "german": "Radio",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "6662f1a6-d353-4bfe-b164-0a2011b2e8c6",
+    "english": "rain",
+    "german": "Regen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "b70f43ca-6632-4350-8f79-56b36f43bf0e",
+    "english": "rainbow",
+    "german": "Regenbogen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "7ef98f37-d6ed-405d-bded-892543e2e243",
+    "english": "raise",
+    "german": "erhöhen / aufziehen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "2091dcec-f7fb-4dbd-8cc1-f13e54e304e7",
+    "english": "rather",
+    "german": "eher",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "626cd45f-bb6d-4ebc-817f-be734b6f48c0",
+    "english": "reach",
+    "german": "erreichen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "3501ef24-5b38-47ee-addf-1e61ed545eed",
+    "english": "read",
+    "german": "lesen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "6cad1fae-3b57-4de2-a349-0314d618b56f",
+    "english": "ready",
+    "german": "bereit",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "cac1dbf4-a668-46da-8293-17593262785f",
+    "english": "real",
+    "german": "echt",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "29508764-7d03-4fa1-8b6c-a1a77751cf7c",
+    "english": "reason",
+    "german": "Grund / Vernunft",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "23a77fac-8945-40cc-9cb0-31863820429f",
+    "english": "receive",
+    "german": "erhalten",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "1436ab2f-8a7c-4c21-a5eb-59b05b45058b",
+    "english": "record",
+    "german": "aufzeichnen / Rekord",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "7aa556cc-e695-4922-a994-4b9beb553efa",
+    "english": "red",
+    "german": "rot",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "76c7a1a7-d4ca-467a-b2c9-a417e5449327",
+    "english": "relax",
+    "german": "entspannen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "b75e6b10-58c7-478f-8673-d8966e646a40",
+    "english": "remember",
+    "german": "erinnern",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "3a40d491-102f-4f98-808c-ad05719c8e7c",
+    "english": "remove",
+    "german": "entfernen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "30ca3a70-0e67-4025-b540-44657120104e",
+    "english": "rent",
+    "german": "mieten / Miete",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "d5b7b0b9-96fb-4f2c-b326-1d944f0e8d94",
+    "english": "repair",
+    "german": "reparieren",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "6185868d-a987-476d-8c3f-95ec2004bbd8",
+    "english": "repeat",
+    "german": "wiederholen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "e4852e95-2c70-4a18-a817-c48c2e5f7db2",
+    "english": "replace",
+    "german": "ersetzen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "d10ca49e-65a5-40c2-867d-d15f4d7cfef4",
+    "english": "reply",
+    "german": "antworten / Antwort",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "73fd1d34-59d1-4223-88bc-8e09d703935c",
+    "english": "report",
+    "german": "Bericht / melden",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "74f450aa-5055-4d7a-b349-d72d2544d724",
+    "english": "restaurant",
+    "german": "Restaurant",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "8b5c08bf-6627-4cfb-a9c9-26916ce3a9eb",
+    "english": "return",
+    "german": "zurückkehren / Rückkehr",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "6327857b-8838-41f0-87a9-ef196432ab31",
+    "english": "review",
+    "german": "überprüfen / Rezension",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "06f85526-6e4d-4d81-b66a-6535e909243e",
+    "english": "rich",
+    "german": "reich",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "e71322a9-0fd3-4060-9f2c-187fec7894ed",
+    "english": "ride",
+    "german": "reiten / Fahrt",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "685c67c5-2fa2-4405-aaec-605441130272",
+    "english": "right",
+    "german": "richtig / Recht",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "7bac1efc-84d4-4997-8060-c40674ca2cfe",
+    "english": "ring",
+    "german": "klingeln / Ring",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "5c7fde34-d817-4e9b-abf4-b6e32f2a29ab",
+    "english": "rise",
+    "german": "steigen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "4ef5e26d-f833-4418-b23c-cb904756106a",
+    "english": "river",
+    "german": "Fluss",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "06959bf5-8f25-403d-a2d1-3bb569dbc2f1",
+    "english": "road",
+    "german": "Straße",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "54751e11-2576-4197-abbe-93581f3c5a77",
+    "english": "rock",
+    "german": "Felsen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "9ead5f86-0b86-48d7-aabe-2110f1a7f01e",
+    "english": "room",
+    "german": "Zimmer",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "a3c9e453-7168-465d-b26e-4823e8b893eb",
+    "english": "root",
+    "german": "Wurzel",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "713a5cc9-c04a-4931-abcf-550af8c40dc1",
+    "english": "rope",
+    "german": "Seil",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "4a1940bf-b835-48ac-8dae-49ca10333083",
+    "english": "rose",
+    "german": "Rose",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "a3c90fd4-7925-43d0-89a6-aa35775c6b07",
+    "english": "round",
+    "german": "rund",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "8976d633-7f5f-4a60-a7ec-b0cb5db843c5",
+    "english": "rule",
+    "german": "Regel",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "522e945b-39c4-42ce-acae-e12b9fe426e0",
+    "english": "run",
+    "german": "laufen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "3c2a8615-23d9-41a1-9943-a53cdf682351",
+    "english": "sad",
+    "german": "traurig",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "62ac7597-2b65-44cc-bed3-11dc873ddae5",
+    "english": "safe",
+    "german": "sicher",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "f0aa867e-f187-43be-97c3-0ed51b94210e",
+    "english": "sail",
+    "german": "segeln",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "50ce96c5-c0cb-4eb6-b227-d124239f631f",
+    "english": "salt",
+    "german": "Salz",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "70c514fa-baf3-4351-849e-683ed7091db7",
+    "english": "same",
+    "german": "gleich",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "c5f05c0d-a95a-488c-ba12-ed63a2ceb81d",
+    "english": "sand",
+    "german": "Sand",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "310ed90e-f843-4837-a168-4ec3b385a8aa",
+    "english": "save",
+    "german": "speichern / retten",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "80e4ed8d-139a-4107-acf8-c1d6283a0b33",
+    "english": "say",
+    "german": "sagen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "e4d3cb8a-5301-4312-b9dc-dc586af53201",
+    "english": "school",
+    "german": "Schule",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "21a2bb7c-4d60-43f6-81e7-4453c15d7827",
+    "english": "science",
+    "german": "Wissenschaft",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "1bf7f38e-7351-499f-b82f-3efb25d7a111",
+    "english": "sea",
+    "german": "Meer",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "c50c2691-f493-444e-ad76-c1598580c70c",
+    "english": "seat",
+    "german": "Sitz",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "ea557b7f-d75f-4bff-aa63-8d6d01c50247",
+    "english": "second",
+    "german": "zweite(r/s) / Sekunde",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "9e577fb1-ea35-4013-9cb5-011eeebd8c8a",
+    "english": "see",
+    "german": "sehen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "514fe321-758b-4b67-b9f3-7bdf626a3347",
+    "english": "sell",
+    "german": "verkaufen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "be7c361f-51ed-445b-95f4-2f54d64175ed",
+    "english": "send",
+    "german": "senden",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "3875fa30-d6c4-47c5-b674-24ee7b6f9e05",
+    "english": "sentence",
+    "german": "Satz",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "93889267-0a1b-4542-90ac-116d931915db",
+    "english": "separate",
+    "german": "trennen / getrennt",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "fd17a53a-148c-4f55-95ce-0bd3cf3dd1f8",
+    "english": "September",
+    "german": "September",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "c0c4a680-c5ce-41c3-96e4-4f8b19e50420",
+    "english": "serious",
+    "german": "ernst",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "1f2c8c14-38b3-4b18-9307-5dae90b9b08b",
+    "english": "table",
+    "german": "Tisch",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "875279d4-857b-4f05-bf49-c67e1c2f2838",
+    "english": "take",
+    "german": "nehmen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "9c8fd2a9-fc4c-45a8-b4dd-e7d8f60f9e68",
+    "english": "talk",
+    "german": "sprechen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "61228022-112c-4f0b-ba01-2cce4b99053a",
+    "english": "tall",
+    "german": "groß",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "c48ebb09-0de0-474f-a89a-01d26d7794e6",
+    "english": "tea",
+    "german": "Tee",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "7671ab69-74a0-424b-9cd9-b321b0718492",
+    "english": "teach",
+    "german": "lehren",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "3b715a20-f680-4a56-8914-80434d526df6",
+    "english": "teacher",
+    "german": "Lehrer/Lehrerin",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "b8f2e087-8624-40a7-a5ff-34e768e8c90b",
+    "english": "team",
+    "german": "Mannschaft",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "e9e4a876-8a85-4947-a404-113105551570",
+    "english": "telephone",
+    "german": "Telefon",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "af56b846-a1b4-4237-b891-8dfb86fc8592",
+    "english": "tell",
+    "german": "erzählen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "24168d02-32e7-4fe9-9679-56300d6db7ab",
+    "english": "ten",
+    "german": "zehn",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "673640a3-8b28-4f9f-b962-b06148ad26c3",
+    "english": "thank",
+    "german": "danken",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "6f91d8e5-7cc3-4744-9c72-e24c11983528",
+    "english": "thanks",
+    "german": "danke",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "831efa84-fbff-4567-be87-4e229aea7bcc",
+    "english": "that",
+    "german": "dass; das",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "8672fa1b-e546-487a-a886-392b47f1c075",
+    "english": "their",
+    "german": "ihr(e)",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "8a2abcf9-a247-4b3b-98f5-5d8174a9d966",
+    "english": "them",
+    "german": "sie; ihnen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "a9a886e0-cac0-416b-b7e4-dd6bcc2201b2",
+    "english": "then",
+    "german": "dann",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "08449714-c9ad-4844-afea-194987ddb135",
+    "english": "there",
+    "german": "dort; da",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "85b2e17b-a309-4704-a9be-bb7c63b7f1e9",
+    "english": "these",
+    "german": "diese",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "82c7fc6d-5416-41e9-a620-56e85319b758",
+    "english": "they",
+    "german": "sie",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "113e029b-2eac-4fa7-aa96-9618aff5a0ca",
+    "english": "thing",
+    "german": "Sache; Ding",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "84f4a14b-9578-43f9-8dc7-ab620b6e6bc6",
+    "english": "think",
+    "german": "denken",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "60adebd7-1c76-4256-85b9-e1f4c2ec2009",
+    "english": "this",
+    "german": "dies; diese(r)",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "7208d7aa-92f0-43f8-b52b-f967c1041b8a",
+    "english": "those",
+    "german": "jene; diejenigen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "f9a54102-135c-4546-a8e6-94454a3b3578",
+    "english": "three",
+    "german": "drei",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "779a056d-31e6-4009-92fd-f21c57f35a30",
+    "english": "through",
+    "german": "durch",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "35aaf4de-a8b7-479f-8d22-e0e1e79e34ab",
+    "english": "Thursday",
+    "german": "Donnerstag",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "d562ac39-3d13-4a0b-a3a2-2371c2054dc2",
+    "english": "ticket",
+    "german": "Fahrkarte; Ticket",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "7e209109-643b-4033-99a9-c8b0d22cf2a3",
+    "english": "time",
+    "german": "Zeit",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "2a54c5f3-9882-4b60-b5c9-909ac93d157d",
+    "english": "to",
+    "german": "zu; nach",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "99d9fe96-0711-4641-9ffe-dde5ef3527ed",
+    "english": "today",
+    "german": "heute",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "1bc3a997-591c-4c3b-b438-c62238c0ee3f",
+    "english": "together",
+    "german": "zusammen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "de3b0520-848b-4710-a8a7-949e180f05bc",
+    "english": "tomorrow",
+    "german": "morgen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "33c9c5e4-bd39-44e3-be89-b2acd8970453",
+    "english": "too",
+    "german": "too; auch",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "4ab19dd3-722d-4766-9b08-7048cc3298e8",
+    "english": "tour",
+    "german": "Rundfahrt; Reise",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "a62311dc-1fb0-4f8f-aa89-e944f2d4e322",
+    "english": "town",
+    "german": "Stadt; Ort",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "19f3d01c-142d-4f9e-a17a-93e5d6a95d19",
+    "english": "train",
+    "german": "Zug; fahren",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "da396ee2-b801-4ff3-8cc8-80a38d106ae4",
+    "english": "travel",
+    "german": "reisen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "5f3ad882-dd27-45ce-8476-a7a39ae6426d",
+    "english": "tree",
+    "german": "Baum",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "8664fdcb-0e27-4f60-a2af-e1fc38984863",
+    "english": "trip",
+    "german": "Ausflug; Reise",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "e60e3caf-9dd0-46af-bdfe-74d3b7c75d45",
+    "english": "try",
+    "german": "versuchen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "bef178d6-421a-4eaa-afb3-1b21347f4edb",
+    "english": "Tuesday",
+    "german": "Dienstag",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "f7978480-a291-4b81-b75e-6813b9eacce4",
+    "english": "two",
+    "german": "zwei",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "a66f2af8-252b-476f-8194-1ec9a6ff499a",
+    "english": "type",
+    "german": "Art; eintippen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "aea37910-5d34-46d4-897a-b4009a5647f3",
+    "english": "umbrella",
+    "german": "Regenschirm",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "b0e3ae71-18c1-4868-b7ce-5b3a467c7a57",
+    "english": "uncle",
+    "german": "Onkel",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "6a21bcaf-f5d6-4a8e-b69e-1a9649274aad",
+    "english": "under",
+    "german": "unter",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "5a295dd4-9b7b-4ce3-9b8b-b26fbc3bc9a4",
+    "english": "understand",
+    "german": "verstehen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "6c16c782-90c9-424a-9c5b-2a9dc9ff67ee",
+    "english": "until",
+    "german": "bis",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "1aae0c1d-010c-455b-b316-3ddfb48f39cb",
+    "english": "up",
+    "german": "oben; hinauf",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "def6945c-2f27-46c6-bf11-d539c6311b59",
+    "english": "us",
+    "german": "uns",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "db73cc31-fc99-4c93-9e4b-bad393c91dd4",
+    "english": "use",
+    "german": "benutzen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "03daa794-73b3-4469-94c8-b96c3f10d7d5",
+    "english": "vacation",
+    "german": "Urlaub",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "80a02de5-a8fa-423c-8eea-72437f3db600",
+    "english": "vegetable",
+    "german": "Gemüse",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "c49040fe-79d2-4608-a2f7-0355fdad24e1",
+    "english": "very",
+    "german": "sehr",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "8afe9043-4a62-48ba-9818-d88d478f7e74",
+    "english": "video",
+    "german": "Video",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "3a1b8126-f6ca-4948-8063-fa3b390d2acc",
+    "english": "visit",
+    "german": "besuchen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "970c12aa-8440-49d0-abb7-0471ed2e6440",
+    "english": "voice",
+    "german": "Stimme",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "023d3b3e-18fb-4e15-9848-f5dc111fa89d",
+    "english": "wait",
+    "german": "warten",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "cb47fb2e-e6a9-48f0-9ae3-1148eeb81968",
+    "english": "walk",
+    "german": "gehen; spazieren",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "82d47f15-0e94-4aa6-84db-cd0be89358df",
+    "english": "wall",
+    "german": "Wand; Mauer",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "25d01c72-eb23-470e-aa62-ecc8ac46f23a",
+    "english": "want",
+    "german": "wollen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "1953ac54-518c-46ed-87d0-2778e65838ba",
+    "english": "warm",
+    "german": "warm",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "59c81a81-ef72-4ee4-a35f-a5a2b15bf85e",
+    "english": "wash",
+    "german": "waschen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "bbd33ad3-3633-4013-b11c-15c31d233046",
+    "english": "watch",
+    "german": "sehen; anschauen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "974cad91-d0cb-4e4e-806f-cf306f51b0c4",
+    "english": "water",
+    "german": "Wasser",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "ba2181f9-9504-44a6-ac90-de3765ba48f5",
+    "english": "way",
+    "german": "Weg; Art und Weise",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "b4189e28-4f6e-4939-aa4f-a8b919871676",
+    "english": "we",
+    "german": "wir",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "5ad26f91-86f9-4c29-9b79-313814e9b1e4",
+    "english": "wear",
+    "german": "tragen (Kleidung)",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "0707e7c7-c231-4036-9d3f-f84fc78297c2",
+    "english": "weather",
+    "german": "Wetter",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "e6a883a1-c8e3-4caf-a072-9ba8701a715e",
+    "english": "week",
+    "german": "Woche",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "dc9ece45-12ea-49dc-9c5a-d7792c770041",
+    "english": "welcome",
+    "german": "willkommen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "81844607-8690-403d-8a8d-88f9d87ce74b",
+    "english": "well",
+    "german": "gut; Brunnen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "12a3dcab-9b55-4ef6-80ee-48553bf9dd07",
+    "english": "what",
+    "german": "was",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "7237dc40-4ccd-4611-8608-143e16dbd601",
+    "english": "when",
+    "german": "wann",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "89a203c0-1e66-4606-bad8-3233e87842d1",
+    "english": "where",
+    "german": "wo; wohin",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "eff0f7e9-0b5e-4c57-bca1-9e14dbbd644c",
+    "english": "which",
+    "german": "welcher; welche",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "bede0a70-d8d7-4c46-9d46-017ab68165a7",
+    "english": "while",
+    "german": "während",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "8d0b86e3-f453-43fc-9610-bfb9a1224265",
+    "english": "white",
+    "german": "weiß",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "6f186dce-bf7c-47df-8a33-954490d59c86",
+    "english": "who",
+    "german": "wer",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "48368ae5-8529-4bd7-9447-9c9389276d52",
+    "english": "why",
+    "german": "warum",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "c0d63aed-b93a-4c5e-9342-8c367433b88d",
+    "english": "wife",
+    "german": "Ehefrau",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "c66dc4e5-e121-4653-a93c-8c51d46d70e0",
+    "english": "window",
+    "german": "Fenster",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "ac43a03b-d076-423f-b87d-0c41f0ef9d6b",
+    "english": "wind",
+    "german": "Wind",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "60f07806-5ca8-4312-87a9-6ed7c273c3ef",
+    "english": "winter",
+    "german": "Winter",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "9da57b95-4e7b-4112-8e42-fc4063ea3e56",
+    "english": "with",
+    "german": "mit",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "d61e114b-f39d-420d-a2ce-230dfbd46af9",
+    "english": "woman",
+    "german": "Frau",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "d89327ec-4bcb-4ab3-84cf-2bfe1a60edef",
+    "english": "women",
+    "german": "Frauen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "0ba5ba5e-1042-4e87-8f3e-010ab4567631",
+    "english": "word",
+    "german": "Wort",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "aa552b39-3ae0-47cb-a544-0e24a3c4eda1",
+    "english": "work",
+    "german": "arbeiten; Arbeit",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "e32ef4eb-6f57-4c97-994a-564f35c978c2",
+    "english": "world",
+    "german": "Welt",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "3c2c0593-eb94-4f07-904a-0f1ed28b87ac",
+    "english": "write",
+    "german": "schreiben",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "0807476d-4841-40dd-a088-d6a5ce2f627d",
+    "english": "x-ray",
+    "german": "Röntgenstrahlen",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "7485fe3d-91ac-4fff-8c0c-56cdf3e8a58a",
+    "english": "year",
+    "german": "Jahr",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "fbe61f2d-ea3f-4d7e-a8b8-cc30a3b8b9b0",
+    "english": "yellow",
+    "german": "gelb",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "30489509-21ad-43b6-997a-61fc25497449",
+    "english": "yes",
+    "german": "ja",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "a3bcce30-6a97-4a31-a903-bc5afab36fa3",
+    "english": "yesterday",
+    "german": "gestern",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "c6dfdccd-5b4e-4bbd-9f1b-24093c9752a3",
+    "english": "yet",
+    "german": "noch",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "29a72a3a-64aa-4e0e-be24-294bcbcc968b",
+    "english": "you",
+    "german": "du; Sie",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "fac6b5c8-8f39-4c62-adaf-39c3d951315f",
+    "english": "young",
+    "german": "jung",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "29ccfdde-e0ab-4db2-ac71-ab427e80d15b",
+    "english": "zero",
+    "german": "null",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  },
+  {
+    "id": "b4aa9414-3aa5-44a0-a6c8-66bf8fee07f4",
+    "english": "zoo",
+    "german": "Zoo",
+    "list_id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "created_at": "2025-08-02T19:18:22.203325+00:00"
+  }
+]
