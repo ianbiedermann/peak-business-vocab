@@ -14,6 +14,9 @@ export function useVocabularyStore() {
     setLoading(true);
     
     try {
+      // Ensure default vocabularies are loaded (one-time on first launch)
+      await VocabularyRepository.ensureDefaultVocabularies();
+      
       // Load all data from local storage
       const [localLists, localVocabs, localStats] = await Promise.all([
         VocabularyRepository.getAllLists(),
