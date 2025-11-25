@@ -1,5 +1,6 @@
 // Repository layer for vocabulary data access
 import * as localStorage from '@/lib/localStorage';
+import { loadDefaultVocabularies } from '@/lib/defaultVocabularies';
 
 export interface VocabularyList {
   id: string;
@@ -36,6 +37,20 @@ export interface LearningStat {
 }
 
 class VocabularyRepositoryClass {
+  // Load default vocabularies if local storage is empty
+  async ensureDefaultVocabularies(): Promise<void> {
+    const hasData = await localStorage.hasLocalData();
+    if (!hasData) {
+      console.log('📦 No local data found, loading default vocabularies...');
+      try {
+        await loadDefaultVocabularies();
+      } catch (error) {
+        console.error('❌ Failed to load default vocabularies:', error);
+        // Continue anyway - app can still work with user-uploaded lists
+      }
+    }
+  }
+
   // Lists
   async getAllLists(): Promise<VocabularyList[]> {
     return await localStorage.loadListsFromLocal();

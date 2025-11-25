@@ -1,0 +1,65 @@
+[
+  {
+    "id": "2df27e12-efce-4798-bde7-a077f65b519f",
+    "name": "Die 200 wichtigsten Englisch Vokabeln",
+    "description": null,
+    "vocabulary_count": 200,
+    "premium_required": false,
+    "created_at": "2025-08-02T16:08:51.741476Z",
+    "updated_at": "2025-08-02T16:59:26.690485Z"
+  },
+  {
+    "id": "000b7200-3ff2-4a9d-9098-be4e6d03d7d6",
+    "name": "A1 Sprachniveau (600 Vokabeln)",
+    "description": null,
+    "vocabulary_count": 600,
+    "premium_required": false,
+    "created_at": "2025-08-02T16:09:15.017637Z",
+    "updated_at": "2025-08-02T16:59:26.690485Z"
+  },
+  {
+    "id": "5e125683-97cc-4668-9cfb-f5ee49d1660e",
+    "name": "A2 Sprachniveau (1.100 Vokabeln)",
+    "description": null,
+    "vocabulary_count": 1100,
+    "premium_required": false,
+    "created_at": "2025-08-02T16:09:47.081539Z",
+    "updated_at": "2025-08-20T11:36:52.177764Z"
+  },
+  {
+    "id": "a3859f61-1037-4d76-b4fa-b022d10d77e9",
+    "name": "B1 Sprachniveau (2.100 Vokabeln)",
+    "description": null,
+    "vocabulary_count": 2100,
+    "premium_required": false,
+    "created_at": "2025-08-02T16:09:59.173538Z",
+    "updated_at": "2025-08-20T11:36:49.914906Z"
+  },
+  {
+    "id": "daef9a3f-dc59-4848-86ca-5624c8a2937a",
+    "name": "Oxford 3.000",
+    "description": null,
+    "vocabulary_count": 3000,
+    "premium_required": false,
+    "created_at": "2025-08-02T16:10:09.86772Z",
+    "updated_at": "2025-08-20T11:37:39.98363Z"
+  },
+  {
+    "id": "ab059a0f-4bd1-4af8-bb1b-3b17abab654b",
+    "name": "Business Englisch (1.000 Vokabeln)",
+    "description": null,
+    "vocabulary_count": 1000,
+    "premium_required": false,
+    "created_at": "2025-08-02T16:10:28.199206Z",
+    "updated_at": "2025-08-20T11:36:48.398479Z"
+  },
+  {
+    "id": "7e7335a5-bbef-4e28-ba2b-b7d7936ebbf5",
+    "name": "Venture Capital (1.000 Vokabeln)",
+    "description": null,
+    "vocabulary_count": 1000,
+    "premium_required": false,
+    "created_at": "2025-08-02T16:12:33.034422Z",
+    "updated_at": "2025-08-02T16:59:26.690485Z"
+  }
+]
