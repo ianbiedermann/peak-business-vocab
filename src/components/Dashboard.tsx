@@ -1,8 +1,9 @@
 import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { BarChart3, BookOpen, Target, Trophy, Volume2, RefreshCw, FileText, User, Crown } from "lucide-react";
+import { BarChart3, BookOpen, Target, Trophy, Volume2, RefreshCw, FileText } from "lucide-react";
 import { useVocabularyStore } from "../hooks/useVocabularyStore";
 import { SubscriptionManager } from "@/components/SubscriptionManager";
+import { ProfileModal } from "@/components/profile/ProfileModal";
+import { Button } from "@/components/ui/button";
 
 interface DashboardProps {
   onStartLearning: () => void;
@@ -17,10 +18,6 @@ export function Dashboard({ onStartLearning, onStartReview, onViewBoxes, onViewS
   const stats = getAppStats();
   const reviewCount = getVocabulariesForReview().length;
 
-  const handleProfileClick = () => {
-    // TODO: Implement profile functionality
-  };
-
   return (
     <div className="min-h-screen bg-background p-4">
       <div className="max-w-md mx-auto space-y-6">
@@ -32,14 +29,7 @@ export function Dashboard({ onStartLearning, onStartReview, onViewBoxes, onViewS
               PeakEnglish
             </h1>
             <div className="flex-1 flex justify-end">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={handleProfileClick}
-                className="text-muted-foreground hover:text-foreground"
-              >
-                <User className="h-5 w-5" />
-              </Button>
+              <ProfileModal />
             </div>
           </div>
           <p className="text-muted-foreground text-center">Business Englisch meistern</p>
