@@ -1,6 +1,7 @@
 // Repository layer for vocabulary data access
 import * as localStorage from '@/lib/localStorage';
 import { loadDefaultVocabularies } from '@/lib/defaultVocabularies';
+import { BOX_INTERVALS } from '@/types/vocabulary';
 
 export interface VocabularyList {
   id: string;
@@ -180,8 +181,8 @@ class VocabularyRepositoryClass {
         word.times_incorrect++;
       }
 
-      // Calculate next review date based on box
-      const daysUntilReview = Math.pow(2, newBox);
+      // Calculate next review date based on box using BOX_INTERVALS
+      const daysUntilReview = BOX_INTERVALS[newBox] || 1;
       const nextReview = new Date();
       nextReview.setDate(nextReview.getDate() + daysUntilReview);
       word.next_review = nextReview.toISOString();
